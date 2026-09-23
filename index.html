@@ -1,0 +1,292 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>CineVerse - OTT Streaming</title>
+
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+
+    <!-- Navbar -->
+    <header class="navbar">
+        <div class="logo">Cine<span>Verse</span></div>
+
+        <nav>
+            <a href="#home">Home</a>
+            <a href="#trending">Trending</a>
+            <a href="#movies">Movies</a>
+            <a href="#series">Series</a>
+            <a href="#watchlist">My List</a>
+        </nav>
+
+        <button id="themeBtn">🌙</button>
+    </header>
+
+
+    <!-- Hero Section -->
+    <section class="hero" id="home">
+
+        <div class="hero-content">
+            <p class="subtitle">CINEVERSE ORIGINAL</p>
+
+            <h1>Beyond The Void</h1>
+
+            <p>
+                Enter a world beyond imagination. Discover movies,
+                series and entertainment from across the universe.
+            </p>
+
+            <div class="hero-buttons">
+                <button onclick="playMovie('Beyond The Void')">
+                    ▶ Play Now
+                </button>
+
+                <button class="secondary" onclick="addToWatchlist('Beyond The Void')">
+                    + My List
+                </button>
+            </div>
+        </div>
+
+    </section>
+
+
+    <!-- Continue Watching -->
+    <section class="section">
+
+        <h2>Continue Watching</h2>
+
+        <div class="movie-container">
+
+            <div class="movie-card">
+                <img src="https://images.unsplash.com/photo-1485846234645-a62644f84728"
+                     alt="Movie">
+
+                <div class="movie-info">
+                    <h3>Lost Galaxy</h3>
+                    <p>Movie • 1h 48m</p>
+                    <button onclick="playMovie('Lost Galaxy')">
+                        Continue
+                    </button>
+                </div>
+            </div>
+
+            <div class="movie-card">
+                <img src="https://images.unsplash.com/photo-1517604931442-7e0c8ed2963c"
+                     alt="Movie">
+
+                <div class="movie-info">
+                    <h3>Dark Future</h3>
+                    <p>Series • S1 E4</p>
+                    <button onclick="playMovie('Dark Future')">
+                        Continue
+                    </button>
+                </div>
+            </div>
+
+            <div class="movie-card">
+                <img src="https://images.unsplash.com/photo-1440404653325-ab127d49abc1"
+                     alt="Movie">
+
+                <div class="movie-info">
+                    <h3>Last Mission</h3>
+                    <p>Movie • 2h 05m</p>
+                    <button onclick="playMovie('Last Mission')">
+                        Continue
+                    </button>
+                </div>
+            </div>
+
+        </div>
+
+    </section>
+
+
+    <!-- Trending -->
+    <section class="section" id="trending">
+
+        <h2>🔥 Trending Now</h2>
+
+        <div class="movie-container">
+
+            <div class="movie-card">
+                <img src="https://images.unsplash.com/photo-1489599849927-2ee91cede3ba"
+                     alt="Movie">
+
+                <div class="movie-info">
+                    <h3>Cyber World</h3>
+                    <p>Action • 2026</p>
+                    <button onclick="playMovie('Cyber World')">
+                        Watch
+                    </button>
+                </div>
+            </div>
+
+            <div class="movie-card">
+                <img src="https://images.unsplash.com/photo-1500534623283-312aade485b7"
+                     alt="Movie">
+
+                <div class="movie-info">
+                    <h3>Infinity</h3>
+                    <p>Sci-Fi • 2026</p>
+                    <button onclick="playMovie('Infinity')">
+                        Watch
+                    </button>
+                </div>
+            </div>
+
+            <div class="movie-card">
+                <img src="https://images.unsplash.com/photo-1485230405346-71acb9518d9c"
+                     alt="Movie">
+
+                <div class="movie-info">
+                    <h3>Night City</h3>
+                    <p>Thriller • 2026</p>
+                    <button onclick="playMovie('Night City')">
+                        Watch
+                    </button>
+                </div>
+            </div>
+
+        </div>
+
+    </section>
+
+
+    <!-- Movies -->
+    <section class="section" id="movies">
+
+        <h2>🎬 Popular Movies</h2>
+
+        <div class="movie-container">
+
+            <div class="movie-card">
+                <img src="https://images.unsplash.com/photo-1518929458119-e5bf444c30f4"
+                     alt="Movie">
+
+                <div class="movie-info">
+                    <h3>Space Journey</h3>
+                    <p>Sci-Fi • 2h 10m</p>
+                    <button onclick="playMovie('Space Journey')">
+                        Watch
+                    </button>
+                </div>
+            </div>
+
+            <div class="movie-card">
+                <img src="https://images.unsplash.com/photo-1536440136628-849c177e76a1"
+                     alt="Movie">
+
+                <div class="movie-info">
+                    <h3>Final Code</h3>
+                    <p>Action • 1h 55m</p>
+                    <button onclick="playMovie('Final Code')">
+                        Watch
+                    </button>
+                </div>
+            </div>
+
+            <div class="movie-card">
+                <img src="https://images.unsplash.com/photo-1542206395-9feb3edaa68d"
+                     alt="Movie">
+
+                <div class="movie-info">
+                    <h3>Shadow</h3>
+                    <p>Thriller • 2h</p>
+                    <button onclick="playMovie('Shadow')">
+                        Watch
+                    </button>
+                </div>
+            </div>
+
+        </div>
+
+    </section>
+
+
+    <!-- Series -->
+    <section class="section" id="series">
+
+        <h2>📺 Popular Series</h2>
+
+        <div class="movie-container">
+
+            <div class="movie-card">
+                <img src="https://images.unsplash.com/photo-1574375927938-d5a98e8ffe85"
+                     alt="Series">
+
+                <div class="movie-info">
+                    <h3>Dark Protocol</h3>
+                    <p>Series • 2 Seasons</p>
+                    <button onclick="playMovie('Dark Protocol')">
+                        Watch
+                    </button>
+                </div>
+            </div>
+
+            <div class="movie-card">
+                <img src="https://images.unsplash.com/photo-1598899134739-24c46f58b8c0"
+                     alt="Series">
+
+                <div class="movie-info">
+                    <h3>The Unknown</h3>
+                    <p>Series • 1 Season</p>
+                    <button onclick="playMovie('The Unknown')">
+                        Watch
+                    </button>
+                </div>
+            </div>
+
+            <div class="movie-card">
+                <img src="https://images.unsplash.com/photo-1500530855697-b586d89ba3ee"
+                     alt="Series">
+
+                <div class="movie-info">
+                    <h3>Future Earth</h3>
+                    <p>Series • 3 Seasons</p>
+                    <button onclick="playMovie('Future Earth')">
+                        Watch
+                    </button>
+                </div>
+            </div>
+
+        </div>
+
+    </section>
+
+
+    <!-- Watchlist -->
+    <section class="section" id="watchlist">
+
+        <h2>❤️ My Watchlist</h2>
+
+        <div id="watchlistItems">
+            <p class="empty">Your watchlist is empty.</p>
+        </div>
+
+    </section>
+
+
+    <!-- Footer -->
+    <footer>
+
+        <h2>CineVerse</h2>
+
+        <p>
+            Your entertainment universe.
+        </p>
+
+        <p>
+            © 2026 CineVerse. All rights reserved.
+        </p>
+
+    </footer>
+
+
+    <script src="script.js"></script>
+
+</body>
+</html>
