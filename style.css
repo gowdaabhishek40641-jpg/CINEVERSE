@@ -12,15 +12,160 @@ body {
     font-family: Arial, sans-serif;
     background: #080808;
     color: white;
+    overflow-x: hidden;
+    transition: background 0.5s, color 0.5s;
 }
 
 
-/* Navbar */
+/* =========================
+   PRELOADER
+========================= */
+
+#preloader {
+    position: fixed;
+    inset: 0;
+
+    background: #050505;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    z-index: 9999;
+
+    transition: opacity 0.8s, visibility 0.8s;
+}
+
+#preloader.hide {
+    opacity: 0;
+    visibility: hidden;
+}
+
+.loader {
+    text-align: center;
+}
+
+.loader h2 {
+    margin-top: 20px;
+    font-size: 32px;
+}
+
+.loader h2 span {
+    color: #e50914;
+}
+
+.loader p {
+    color: #888;
+    margin-top: 10px;
+}
+
+.loader-circle {
+    width: 70px;
+    height: 70px;
+
+    border: 4px solid #333;
+    border-top-color: #e50914;
+
+    border-radius: 50%;
+
+    animation: spin 1s linear infinite;
+}
+
+@keyframes spin {
+
+    to {
+        transform: rotate(360deg);
+    }
+
+}
+
+
+/* =========================
+   BACKGROUND EFFECTS
+========================= */
+
+.background-effects {
+    position: fixed;
+    inset: 0;
+
+    pointer-events: none;
+
+    overflow: hidden;
+
+    z-index: -1;
+}
+
+.background-effects span {
+    position: absolute;
+
+    width: 5px;
+    height: 5px;
+
+    background: #e50914;
+
+    border-radius: 50%;
+
+    opacity: 0.25;
+
+    animation: floating 10s infinite linear;
+}
+
+.background-effects span:nth-child(1) {
+    left: 10%;
+    top: 20%;
+}
+
+.background-effects span:nth-child(2) {
+    left: 30%;
+    top: 70%;
+    animation-delay: 2s;
+}
+
+.background-effects span:nth-child(3) {
+    left: 60%;
+    top: 30%;
+    animation-delay: 4s;
+}
+
+.background-effects span:nth-child(4) {
+    left: 80%;
+    top: 80%;
+    animation-delay: 6s;
+}
+
+.background-effects span:nth-child(5) {
+    left: 90%;
+    top: 15%;
+    animation-delay: 8s;
+}
+
+@keyframes floating {
+
+    0% {
+        transform: translateY(0);
+    }
+
+    50% {
+        transform: translateY(-100px);
+    }
+
+    100% {
+        transform: translateY(0);
+    }
+
+}
+
+
+/* =========================
+   NAVBAR
+========================= */
 
 .navbar {
     position: fixed;
+
     top: 0;
     width: 100%;
+
     height: 70px;
 
     display: flex;
@@ -29,14 +174,21 @@ body {
 
     padding: 0 6%;
 
-    background: rgba(0, 0, 0, 0.9);
+    background: rgba(0, 0, 0, 0.75);
+
+    backdrop-filter: blur(15px);
+
+    border-bottom: 1px solid rgba(255, 255, 255, 0.08);
 
     z-index: 1000;
+
+    transition: 0.4s;
 }
 
 .logo {
     font-size: 28px;
     font-weight: bold;
+    letter-spacing: -1px;
 }
 
 .logo span {
@@ -49,8 +201,28 @@ nav {
 }
 
 nav a {
+    position: relative;
+
     color: white;
+
     text-decoration: none;
+
+    transition: 0.3s;
+}
+
+nav a::after {
+    content: "";
+
+    position: absolute;
+
+    left: 0;
+    bottom: -7px;
+
+    width: 0;
+    height: 2px;
+
+    background: #e50914;
+
     transition: 0.3s;
 }
 
@@ -58,100 +230,247 @@ nav a:hover {
     color: #e50914;
 }
 
-#themeBtn {
-    border: none;
-    background: transparent;
+nav a:hover::after {
+    width: 100%;
+}
+
+.theme-btn {
+    border: 1px solid #333;
+
+    background: #151515;
+
     color: white;
-    font-size: 20px;
+
+    width: 40px;
+    height: 40px;
+
+    border-radius: 50%;
+
     cursor: pointer;
+
+    transition: 0.3s;
+}
+
+.theme-btn:hover {
+    transform: rotate(20deg) scale(1.1);
 }
 
 
-/* Hero */
+/* =========================
+   HERO
+========================= */
 
 .hero {
-    min-height: 700px;
+    position: relative;
+
+    min-height: 720px;
 
     display: flex;
     align-items: center;
 
-    padding: 120px 8% 60px;
+    padding: 120px 8% 70px;
 
     background:
         linear-gradient(
-            to right,
-            rgba(0,0,0,0.95),
-            rgba(0,0,0,0.4),
-            rgba(0,0,0,0.9)
+            90deg,
+            rgba(0, 0, 0, 0.95),
+            rgba(0, 0, 0, 0.55),
+            rgba(0, 0, 0, 0.85)
         ),
         url("https://images.unsplash.com/photo-1489599849927-2ee91cede3ba");
 
     background-size: cover;
     background-position: center;
+
+    overflow: hidden;
+}
+
+.hero::after {
+    content: "";
+
+    position: absolute;
+
+    inset: 0;
+
+    background:
+        radial-gradient(
+            circle at 70% 50%,
+            rgba(229, 9, 20, 0.18),
+            transparent 45%
+        );
+
+    pointer-events: none;
 }
 
 .hero-content {
-    max-width: 600px;
+    position: relative;
+
+    max-width: 650px;
+
+    z-index: 2;
+
+    animation: heroEntry 1.2s ease forwards;
+}
+
+@keyframes heroEntry {
+
+    from {
+        opacity: 0;
+        transform: translateY(50px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+
 }
 
 .subtitle {
     color: #e50914;
+
     font-weight: bold;
-    letter-spacing: 3px;
+
+    letter-spacing: 4px;
+
     margin-bottom: 15px;
 }
 
 .hero h1 {
-    font-size: 70px;
+    font-size: clamp(45px, 7vw, 80px);
+
     margin-bottom: 20px;
+
+    line-height: 1;
+
+    text-shadow:
+        0 0 20px rgba(229, 9, 20, 0.4);
 }
 
-.hero p {
+.hero-description {
     font-size: 18px;
+
     line-height: 1.7;
+
     color: #ddd;
+
+    max-width: 570px;
 }
 
 .hero-buttons {
-    margin-top: 30px;
     display: flex;
+
     gap: 15px;
+
+    margin-top: 30px;
 }
 
-button {
+.hero-buttons button {
     border: none;
-    padding: 12px 22px;
-    border-radius: 5px;
+
+    padding: 14px 25px;
+
+    border-radius: 6px;
+
     background: #e50914;
+
     color: white;
-    cursor: pointer;
+
     font-weight: bold;
+
+    cursor: pointer;
+
     transition: 0.3s;
 }
 
-button:hover {
-    transform: scale(1.05);
-    background: #ff1b25;
+.hero-buttons button:hover {
+    transform: translateY(-4px);
+
+    box-shadow:
+        0 10px 30px rgba(229, 9, 20, 0.4);
 }
 
-.secondary {
-    background: #333;
+.hero-buttons .secondary {
+    background: rgba(255, 255, 255, 0.12);
+
+    backdrop-filter: blur(10px);
+}
+
+.scroll-indicator {
+    position: absolute;
+
+    bottom: 30px;
+    left: 50%;
+
+    transform: translateX(-50%);
+
+    text-align: center;
+
+    color: #aaa;
+
+    font-size: 13px;
+
+    animation: bounce 2s infinite;
+}
+
+.scroll-indicator div {
+    font-size: 25px;
+
+    color: #e50914;
+}
+
+@keyframes bounce {
+
+    0%,
+    100% {
+        transform: translate(-50%, 0);
+    }
+
+    50% {
+        transform: translate(-50%, 10px);
+    }
+
 }
 
 
-/* Sections */
+/* =========================
+   SECTIONS
+========================= */
 
 .section {
-    padding: 70px 6%;
+    padding: 80px 6%;
 }
 
-.section h2 {
-    margin-bottom: 25px;
+.section-title {
+    display: flex;
+
+    align-items: center;
+
+    gap: 12px;
+
+    margin-bottom: 30px;
+}
+
+.section-title h2 {
     font-size: 28px;
 }
 
+.section-line {
+    width: 5px;
+    height: 28px;
 
-/* Movie Cards */
+    background: #e50914;
+
+    border-radius: 10px;
+
+    box-shadow:
+        0 0 15px rgba(229, 9, 20, 0.6);
+}
+
+
+/* =========================
+   MOVIE GRID
+========================= */
 
 .movie-container {
     display: grid;
@@ -163,26 +482,105 @@ button:hover {
 }
 
 .movie-card {
-    background: #151515;
-    border-radius: 8px;
+    background: #121212;
+
+    border: 1px solid rgba(255, 255, 255, 0.05);
+
+    border-radius: 10px;
+
     overflow: hidden;
 
-    transition: 0.3s;
+    transition:
+        transform 0.4s,
+        box-shadow 0.4s,
+        border-color 0.4s;
+
+    animation: cardEntry 0.7s ease both;
+}
+
+@keyframes cardEntry {
+
+    from {
+        opacity: 0;
+        transform: translateY(30px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+
 }
 
 .movie-card:hover {
-    transform: translateY(-8px);
-    box-shadow: 0 10px 30px rgba(229, 9, 20, 0.3);
+    transform: translateY(-10px) scale(1.02);
+
+    border-color: rgba(229, 9, 20, 0.5);
+
+    box-shadow:
+        0 20px 45px rgba(0, 0, 0, 0.5),
+        0 0 25px rgba(229, 9, 20, 0.12);
+}
+
+
+/* =========================
+   IMAGE
+========================= */
+
+.image-wrapper {
+    position: relative;
+
+    overflow: hidden;
 }
 
 .movie-card img {
     width: 100%;
-    height: 280px;
+    height: 290px;
 
     object-fit: cover;
 
     display: block;
+
+    transition:
+        transform 0.6s,
+        filter 0.6s;
 }
+
+.movie-card:hover img {
+    transform: scale(1.08);
+
+    filter: brightness(0.7);
+}
+
+.image-overlay {
+    position: absolute;
+
+    inset: 0;
+
+    display: flex;
+
+    align-items: center;
+    justify-content: center;
+
+    font-size: 45px;
+
+    color: white;
+
+    opacity: 0;
+
+    background: rgba(0, 0, 0, 0.35);
+
+    transition: 0.4s;
+}
+
+.movie-card:hover .image-overlay {
+    opacity: 1;
+}
+
+
+/* =========================
+   MOVIE INFO
+========================= */
 
 .movie-info {
     padding: 18px;
@@ -190,52 +588,155 @@ button:hover {
 
 .movie-info h3 {
     margin-bottom: 8px;
+
+    font-size: 19px;
 }
 
 .movie-info p {
-    color: #aaa;
+    color: #999;
+
     margin-bottom: 15px;
+
+    font-size: 14px;
+}
+
+.movie-info button {
+    border: none;
+
+    padding: 10px 17px;
+
+    border-radius: 5px;
+
+    background: #e50914;
+
+    color: white;
+
+    cursor: pointer;
+
+    transition: 0.3s;
+}
+
+.movie-info button:hover {
+    background: #ff1d28;
+
+    transform: translateY(-2px);
 }
 
 
-/* Watchlist */
+/* =========================
+   PROGRESS BAR
+========================= */
+
+.progress {
+    width: 100%;
+
+    height: 4px;
+
+    background: #333;
+
+    border-radius: 10px;
+
+    margin-bottom: 15px;
+
+    overflow: hidden;
+}
+
+.progress span {
+    display: block;
+
+    height: 100%;
+
+    background: #e50914;
+}
+
+
+/* =========================
+   WATCHLIST
+========================= */
 
 #watchlistItems {
     min-height: 100px;
 }
 
 .empty {
-    color: #888;
+    color: #777;
+
+    padding: 30px;
 }
 
 
-/* Footer */
+/* =========================
+   FOOTER
+========================= */
 
 footer {
     text-align: center;
 
-    padding: 50px 20px;
+    padding: 60px 20px;
 
     background: #050505;
 
-    color: #888;
+    color: #777;
 }
 
-footer h2 {
-    color: #e50914;
+.footer-logo {
+    font-size: 30px;
+
+    font-weight: bold;
+
     margin-bottom: 10px;
+
+    color: white;
+}
+
+.footer-logo span {
+    color: #e50914;
+}
+
+.footer-line {
+    width: 100px;
+
+    height: 2px;
+
+    background: #e50914;
+
+    margin: 20px auto;
 }
 
 
-/* Light Theme */
+/* =========================
+   REVEAL ANIMATION
+========================= */
+
+.reveal {
+    opacity: 0;
+
+    transform: translateY(50px);
+
+    transition:
+        opacity 0.8s ease,
+        transform 0.8s ease;
+}
+
+.reveal.active {
+    opacity: 1;
+
+    transform: translateY(0);
+}
+
+
+/* =========================
+   LIGHT THEME
+========================= */
 
 .light-theme {
-    background: #f5f5f5;
+    background: #f3f3f3;
+
     color: #111;
 }
 
 .light-theme .navbar {
-    background: white;
+    background: rgba(255, 255, 255, 0.9);
 }
 
 .light-theme nav a {
@@ -244,34 +745,113 @@ footer h2 {
 
 .light-theme .movie-card {
     background: white;
+
+    color: #111;
 }
 
 .light-theme .movie-info p {
     color: #555;
 }
 
+.light-theme .theme-btn {
+    background: #eee;
 
-/* Responsive */
+    color: #111;
+}
 
-@media (max-width: 768px) {
+
+/* =========================
+   RESPONSIVE
+========================= */
+
+@media (max-width: 900px) {
+
+    nav {
+        gap: 12px;
+    }
+
+    nav a {
+        font-size: 14px;
+    }
+
+    .movie-container {
+        grid-template-columns:
+            repeat(2, 1fr);
+    }
+
+}
+
+
+@media (max-width: 650px) {
+
+    .navbar {
+        padding: 0 4%;
+    }
+
+    .logo {
+        font-size: 22px;
+    }
 
     nav {
         display: none;
     }
 
     .hero {
-        min-height: 600px;
+        min-height: 650px;
+
+        padding:
+            120px 6% 70px;
     }
 
     .hero h1 {
-        font-size: 45px;
+        font-size: 48px;
     }
 
-    .hero p {
+    .hero-description {
         font-size: 16px;
     }
 
-    .section {
-        padding: 50px 5%;
+    .hero-buttons {
+        flex-direction: column;
+
+        align-items: flex-start;
     }
+
+    .section {
+        padding: 55px 5%;
+    }
+
+    .section-title h2 {
+        font-size: 23px;
+    }
+
+    .movie-container {
+        grid-template-columns: 1fr;
+    }
+
+    .movie-card img {
+        height: 320px;
+    }
+
+}
+
+
+/* =========================
+   REDUCED MOTION
+========================= */
+
+@media (prefers-reduced-motion: reduce) {
+
+    *,
+    *::before,
+    *::after {
+        animation-duration: 0.01ms !important;
+
+        animation-iteration-count: 1 !important;
+
+        scroll-behavior: auto !important;
+
+        transition-duration: 0.01ms !important;
+    }
+
 }

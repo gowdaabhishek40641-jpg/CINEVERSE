@@ -1,11 +1,21 @@
-// CineVerse - First Commit
+console.log("CineVerse JavaScript loaded");
+
+window.addEventListener("load", function () {
+
+    console.log("Page loaded");
+
+    const preloader = document.getElementById("preloader");
+
+    if (preloader) {
+        preloader.classList.add("hide");
+    }
+
+});
 
 
 // Watchlist
-
 let watchlist =
     JSON.parse(localStorage.getItem("cineverseWatchlist")) || [];
-
 
 function addToWatchlist(movie) {
 
@@ -30,12 +40,14 @@ function addToWatchlist(movie) {
 }
 
 
-// Display Watchlist
-
 function displayWatchlist() {
 
     const container =
         document.getElementById("watchlistItems");
+
+    if (!container) {
+        return;
+    }
 
     if (watchlist.length === 0) {
 
@@ -47,37 +59,32 @@ function displayWatchlist() {
 
     container.innerHTML = "";
 
-    watchlist.forEach(function(movie) {
+    watchlist.forEach(function (movie, index) {
 
         const item = document.createElement("div");
 
         item.className = "movie-card";
 
-        item.style.padding = "20px";
-        item.style.marginBottom = "10px";
-
         item.innerHTML = `
-            <h3>${movie}</h3>
+            <div class="movie-info">
+                <h3>${movie}</h3>
 
-            <button onclick="removeFromWatchlist('${movie}')">
-                Remove
-            </button>
+                <button onclick="removeFromWatchlist(${index})">
+                    Remove
+                </button>
+            </div>
         `;
 
         container.appendChild(item);
 
     });
+
 }
 
 
-// Remove from Watchlist
+function removeFromWatchlist(index) {
 
-function removeFromWatchlist(movie) {
-
-    watchlist =
-        watchlist.filter(function(item) {
-            return item !== movie;
-        });
+    watchlist.splice(index, 1);
 
     localStorage.setItem(
         "cineverseWatchlist",
@@ -85,67 +92,139 @@ function removeFromWatchlist(movie) {
     );
 
     displayWatchlist();
+
 }
 
-
-// Play Movie
 
 function playMovie(movie) {
 
     alert(
-        "Playing: " + movie +
-        "\n\nTrailer/player feature will be added in a future version."
+        "Playing: " +
+        movie +
+        "\n\nTrailer feature will be added later."
     );
 
 }
 
 
 // Theme
-
 const themeButton =
     document.getElementById("themeBtn");
 
+if (themeButton) {
 
-themeButton.addEventListener("click", function() {
+    themeButton.addEventListener("click", function () {
 
-    document.body.classList.toggle("light-theme");
+        document.body.classList.toggle("light-theme");
 
-    if (document.body.classList.contains("light-theme")) {
+        if (document.body.classList.contains("light-theme")) {
 
-        themeButton.textContent = "☀️";
+            themeButton.textContent = "☀️";
 
-        localStorage.setItem(
-            "cineverseTheme",
-            "light"
-        );
+            localStorage.setItem(
+                "cineverseTheme",
+                "light"
+            );
 
-    } else {
+        } else {
 
-        themeButton.textContent = "🌙";
+            themeButton.textContent = "🌙";
 
-        localStorage.setItem(
-            "cineverseTheme",
-            "dark"
-        );
-    }
+            localStorage.setItem(
+                "cineverseTheme",
+                "dark"
+            );
 
-});
+        }
+
+    });
+
+}
 
 
-// Load Saved Theme
-
+// Load theme
 const savedTheme =
     localStorage.getItem("cineverseTheme");
 
-if (savedTheme === "light") {
+if (
+    savedTheme === "light" &&
+    themeButton
+) {
 
     document.body.classList.add("light-theme");
 
     themeButton.textContent = "☀️";
+
 }
 
 
-// Load Watchlist
+// Scroll animation
+const revealElements =
+    document.querySelectorAll(".reveal");
 
+function revealOnScroll() {
+
+    const windowHeight =
+        window.innerHeight;
+
+    revealElements.forEach(function (element) {
+
+        const elementTop =
+            element.getBoundingClientRect().top;
+
+        if (elementTop < windowHeight - 100) {
+
+            element.classList.add("active");
+
+        }
+
+    });
+
+}
+
+window.addEventListener(
+    "scroll",
+    revealOnScroll
+);
+
+revealOnScroll();
+
+
+// Navbar
+const navbar =
+    document.querySelector(".navbar");
+
+window.addEventListener(
+    "scroll",
+    function () {
+
+        if (!navbar) {
+            return;
+        }
+
+        if (window.scrollY > 50) {
+
+            navbar.style.background =
+                "rgba(0, 0, 0, 0.95)";
+
+            navbar.style.boxShadow =
+                "0 5px 30px rgba(0,0,0,0.4)";
+
+        } else {
+
+            navbar.style.background =
+                "rgba(0, 0, 0, 0.75)";
+
+            navbar.style.boxShadow =
+                "none";
+
+        }
+
+    }
+);
+
+
+// Display watchlist
 displayWatchlist();
 
+console.log("CineVerse initialized successfully");
