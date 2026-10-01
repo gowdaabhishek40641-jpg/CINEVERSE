@@ -1,172 +1,6 @@
-/* ============================================
-   COMMIT 4 — SEARCH & FILTER SYSTEM
-============================================ */
-
-.icon-btn {
-    width: 40px;
-    height: 40px;
-    border: 1px solid #333;
-    border-radius: 50%;
-    background: #111;
-    color: #fff;
-    cursor: pointer;
-    font-size: 21px;
-    transition: .3s;
-}
-
-.icon-btn:hover {
-    transform: translateY(-2px) scale(1.06);
-    border-color: #e50914;
-    box-shadow: 0 0 20px rgba(229,9,20,.25);
-}
-
-.search-panel {
-    position: fixed;
-    inset: 0;
-    background: rgba(0,0,0,.82);
-    backdrop-filter: blur(20px);
-    z-index: 3000;
-    opacity: 0;
-    visibility: hidden;
-    transition: .4s ease;
-}
-
-.search-panel.active {
-    opacity: 1;
-    visibility: visible;
-}
-
-.search-box {
-    width: min(850px, 90%);
-    margin: 120px auto;
-    transform: translateY(-25px);
-    transition: .45s ease;
-}
-
-.search-panel.active .search-box {
-    transform: translateY(0);
-}
-
-.search-input-wrapper {
-    display: flex;
-    align-items: center;
-    gap: 15px;
-    padding: 18px 20px;
-    background: rgba(20,20,20,.92);
-    border: 1px solid rgba(255,255,255,.12);
-    border-radius: 14px;
-    box-shadow: 0 25px 80px rgba(0,0,0,.6);
-}
-
-.search-input-wrapper > span {
-    color: #e50914;
-    font-size: 25px;
-}
-
-.search-input-wrapper input {
-    flex: 1;
-    border: 0;
-    outline: 0;
-    background: transparent;
-    color: white;
-    font-size: 20px;
-}
-
-.search-input-wrapper input::placeholder {
-    color: #666;
-}
-
-.search-input-wrapper button {
-    border: 0;
-    background: transparent;
-    color: #888;
-    cursor: pointer;
-    font-size: 18px;
-}
-
-.search-input-wrapper button:hover {
-    color: #e50914;
-}
-
-.search-meta {
-    display: flex;
-    justify-content: space-between;
-    margin-top: 13px;
-    padding: 0 5px;
-    color: #777;
-    font-size: 12px;
-}
-
-.search-meta button {
-    border: 0;
-    background: transparent;
-    color: #e50914;
-    cursor: pointer;
-}
-
-.filter-bar {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 10px;
-}
-
-.filter-btn {
-    padding: 10px 17px;
-    border-radius: 30px;
-    border: 1px solid #292929;
-    background: #111;
-    color: #888;
-    cursor: pointer;
-    transition: .3s;
-}
-
-.filter-btn:hover,
-.filter-btn.active {
-    color: white;
-    background: #e50914;
-    border-color: #e50914;
-    box-shadow: 0 8px 25px rgba(229,9,20,.2);
-    transform: translateY(-2px);
-}
-
-.search-hidden,
-.filter-hidden {
-    display: none !important;
-}
-
-@media (max-width: 650px) {
-
-    .search-box {
-        width: 92%;
-        margin: 90px auto;
-    }
-
-    .search-input-wrapper {
-        padding: 15px;
-    }
-
-    .search-input-wrapper input {
-        font-size: 16px;
-    }
-
-    .filter-bar {
-        overflow-x: auto;
-        flex-wrap: nowrap;
-        padding-bottom: 5px;
-        scrollbar-width: none;
-    }
-
-    .filter-bar::-webkit-scrollbar {
-        display: none;
-    }
-
-    .filter-btn {
-        white-space: nowrap;
-    }
-
-}
 /* =========================================================
-   COMMIT 5 — CINEMATIC MOVIE MODAL
+   COMMIT 6
+   ADVANCED WATCHLIST + CONTINUE WATCHING
 ========================================================= */
 
 body.modal-open {
@@ -174,401 +8,730 @@ body.modal-open {
 }
 
 
-/* MODAL */
+/* =========================================================
+   WATCHLIST
+========================================================= */
 
-#movieModal {
-    position: fixed;
-    inset: 0;
+.advanced-watch-card {
+    transition:
+        transform 0.35s ease,
+        box-shadow 0.35s ease;
+}
 
-    z-index: 10000;
+
+.advanced-watch-card:hover {
+    transform: translateY(-8px);
+}
+
+
+.watchlist-card .movie-overlay {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+
+.remove-btn {
+    border: 1px solid rgba(255,255,255,0.25);
+    background: rgba(0,0,0,0.7);
+    color: #fff;
+    padding: 10px 18px;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: 0.3s ease;
+}
+
+
+.remove-btn:hover {
+    background: rgba(255,0,0,0.2);
+    border-color: #ff3b3b;
+}
+
+
+/* =========================================================
+   EMPTY WATCHLIST
+========================================================= */
+
+.empty-watchlist,
+.continue-empty {
+    width: 100%;
+    min-height: 220px;
+
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+
+    text-align: center;
+
+    border: 1px dashed rgba(255,255,255,0.14);
+    border-radius: 18px;
+
+    background:
+        linear-gradient(
+            135deg,
+            rgba(255,255,255,0.025),
+            rgba(255,255,255,0.01)
+        );
+
+    padding: 40px;
+}
+
+
+.empty-icon,
+.continue-empty-icon {
+    width: 60px;
+    height: 60px;
 
     display: flex;
     align-items: center;
     justify-content: center;
 
-    padding: 30px;
+    border-radius: 50%;
 
-    opacity: 0;
-    visibility: hidden;
+    background: rgba(255,255,255,0.06);
 
-    transition:
-        opacity 0.35s ease,
-        visibility 0.35s ease;
-}
+    font-size: 28px;
 
-#movieModal.active {
-    opacity: 1;
-    visibility: visible;
+    margin-bottom: 15px;
 }
 
 
-/* BACKDROP */
-
-.movie-modal-backdrop {
-    position: absolute;
-    inset: 0;
-
-    background:
-        radial-gradient(
-            circle at center,
-            rgba(229, 9, 20, 0.08),
-            transparent 45%
-        ),
-        rgba(0, 0, 0, 0.88);
-
-    backdrop-filter: blur(18px);
+.empty-watchlist h3,
+.continue-empty h3 {
+    margin-bottom: 8px;
 }
 
 
-/* MODAL BOX */
+.empty-watchlist p,
+.continue-empty p {
+    opacity: 0.65;
+    max-width: 420px;
+}
 
-.movie-modal {
+
+/* =========================================================
+   CONTINUE WATCHING SECTION
+========================================================= */
+
+#continueWatchingSection {
     position: relative;
+    margin-top: 70px;
+}
 
-    width: min(1000px, 95vw);
 
-    max-height: 92vh;
+.section-kicker {
+    display: block;
 
-    overflow-y: auto;
+    font-size: 11px;
+    letter-spacing: 3px;
+
+    opacity: 0.5;
+
+    margin-bottom: 7px;
+}
+
+
+.continue-live-indicator {
+    font-size: 10px;
+
+    letter-spacing: 1.5px;
+
+    opacity: 0.55;
+}
+
+
+.continue-grid {
+    display: grid;
+
+    grid-template-columns:
+        repeat(
+            auto-fit,
+            minmax(280px, 1fr)
+        );
+
+    gap: 24px;
+}
+
+
+/* =========================================================
+   CONTINUE CARD
+========================================================= */
+
+.continue-card {
+
+    display: grid;
+
+    grid-template-columns:
+        190px 1fr;
+
+    min-height: 145px;
+
+    overflow: hidden;
+
+    border-radius: 16px;
 
     background:
         linear-gradient(
-            145deg,
-            #151515,
-            #080808
+            135deg,
+            rgba(255,255,255,0.065),
+            rgba(255,255,255,0.018)
         );
 
     border:
         1px solid
-        rgba(255,255,255,0.1);
+        rgba(255,255,255,0.09);
 
-    border-radius: 18px;
-
-    box-shadow:
-        0 40px 100px rgba(0,0,0,0.8),
-        0 0 60px rgba(229,9,20,0.08);
-
-    transform:
-        translateY(40px)
-        scale(0.96);
-
-    opacity: 0;
+    backdrop-filter: blur(14px);
 
     transition:
-        transform 0.4s ease,
-        opacity 0.4s ease;
+        transform 0.3s ease,
+        border-color 0.3s ease,
+        box-shadow 0.3s ease;
+}
+
+
+.continue-card:hover {
+
+    transform: translateY(-5px);
+
+    border-color:
+        rgba(255,255,255,0.22);
+
+    box-shadow:
+        0 18px 45px
+        rgba(0,0,0,0.35);
+}
+
+
+/* =========================================================
+   CONTINUE IMAGE
+========================================================= */
+
+.continue-image {
+
+    position: relative;
+
+    min-height: 145px;
 
     overflow: hidden;
-
-    z-index: 2;
-}
-
-.movie-modal.show {
-    transform:
-        translateY(0)
-        scale(1);
-
-    opacity: 1;
 }
 
 
-/* CLOSE */
+.continue-image img {
 
-.movie-modal-close {
+    width: 100%;
+    height: 100%;
+
+    object-fit: cover;
+
+    display: block;
+
+    transition:
+        transform 0.5s ease;
+}
+
+
+.continue-card:hover
+.continue-image img {
+
+    transform: scale(1.08);
+}
+
+
+.continue-image::after {
+
+    content: "";
+
     position: absolute;
 
-    top: 18px;
-    right: 18px;
+    inset: 0;
 
-    width: 44px;
-    height: 44px;
+    background:
+        linear-gradient(
+            90deg,
+            transparent 45%,
+            rgba(0,0,0,0.35)
+        );
 
-    border: 1px solid
-        rgba(255,255,255,0.15);
+    pointer-events: none;
+}
+
+
+/* =========================================================
+   CONTINUE PLAY BUTTON
+========================================================= */
+
+.continue-play {
+
+    position: absolute;
+
+    top: 50%;
+    left: 50%;
+
+    transform:
+        translate(-50%, -50%);
+
+    width: 48px;
+    height: 48px;
 
     border-radius: 50%;
+
+    border:
+        1px solid
+        rgba(255,255,255,0.45);
 
     background:
         rgba(0,0,0,0.65);
 
     color: white;
 
-    font-size: 30px;
+    cursor: pointer;
 
-    line-height: 1;
+    z-index: 3;
+
+    font-size: 16px;
+
+    backdrop-filter: blur(10px);
+
+    transition: 0.3s ease;
+}
+
+
+.continue-play:hover {
+
+    transform:
+        translate(-50%, -50%)
+        scale(1.12);
+
+    background:
+        rgba(255,255,255,0.16);
+}
+
+
+/* =========================================================
+   PROGRESS BAR
+========================================================= */
+
+.continue-progress {
+
+    position: absolute;
+
+    left: 0;
+    bottom: 0;
+
+    height: 4px;
+
+    background:
+        linear-gradient(
+            90deg,
+            #ffffff,
+            #a9a9a9
+        );
+
+    z-index: 5;
+
+    transition:
+        width 0.5s ease;
+}
+
+
+.continue-progress::after {
+
+    content: "";
+
+    position: absolute;
+
+    right: 0;
+
+    top: -1px;
+
+    width: 5px;
+    height: 6px;
+
+    border-radius: 50%;
+
+    background: #fff;
+
+    box-shadow:
+        0 0 10px rgba(255,255,255,0.8);
+}
+
+
+/* =========================================================
+   CONTINUE INFO
+========================================================= */
+
+.continue-info {
+
+    padding: 18px;
+
+    display: flex;
+    flex-direction: column;
+
+    justify-content: center;
+
+    min-width: 0;
+}
+
+
+.continue-heading {
+
+    display: flex;
+
+    justify-content: space-between;
+
+    align-items: flex-start;
+
+    gap: 10px;
+}
+
+
+.continue-heading h3 {
+
+    margin: 0;
+
+    font-size: 17px;
+
+    white-space: nowrap;
+
+    overflow: hidden;
+
+    text-overflow: ellipsis;
+}
+
+
+.continue-info p {
+
+    margin: 7px 0 14px;
+
+    font-size: 12px;
+
+    opacity: 0.55;
+}
+
+
+.continue-meta {
+
+    display: flex;
+
+    justify-content: space-between;
+
+    gap: 10px;
+
+    font-size: 11px;
+
+    opacity: 0.65;
+
+    margin-bottom: 13px;
+}
+
+
+.continue-resume {
+
+    width: 100%;
+
+    border: 1px solid
+        rgba(255,255,255,0.16);
+
+    background:
+        rgba(255,255,255,0.07);
+
+    color: #fff;
+
+    padding: 9px 12px;
+
+    border-radius: 8px;
 
     cursor: pointer;
 
-    z-index: 20;
-
-    transition: 0.3s;
-}
-
-.movie-modal-close:hover {
-    background: #e50914;
-
-    transform:
-        rotate(90deg)
-        scale(1.08);
+    transition: 0.3s ease;
 }
 
 
-/* PLAYER */
+.continue-resume:hover {
 
-.movie-modal-player {
-    position: relative;
+    background:
+        rgba(255,255,255,0.15);
 
-    width: 100%;
-
-    aspect-ratio: 16 / 9;
-
-    background: #000;
-
-    overflow: hidden;
+    border-color:
+        rgba(255,255,255,0.35);
 }
 
-.movie-modal-player iframe {
-    width: 100%;
-    height: 100%;
 
-    border: 0;
+.continue-remove {
 
-    opacity: 0;
+    width: 27px;
+    height: 27px;
 
-    transition: opacity 0.5s;
+    border-radius: 50%;
+
+    border: 1px solid
+        rgba(255,255,255,0.12);
+
+    background:
+        rgba(255,255,255,0.04);
+
+    color: #fff;
+
+    cursor: pointer;
+
+    flex-shrink: 0;
+
+    transition: 0.3s ease;
 }
 
-.movie-modal-player iframe.loaded {
+
+.continue-remove:hover {
+
+    background:
+        rgba(255,0,0,0.18);
+
+    border-color:
+        rgba(255,80,80,0.5);
+}
+
+
+/* =========================================================
+   MODAL PROGRESS
+========================================================= */
+
+.modal-progress-area {
+
+    margin-top: 25px;
+
+    padding: 16px;
+
+    border-radius: 12px;
+
+    background:
+        rgba(255,255,255,0.035);
+
+    border:
+        1px solid
+        rgba(255,255,255,0.07);
+}
+
+
+.modal-progress-header {
+
+    display: flex;
+
+    justify-content: space-between;
+
+    font-size: 12px;
+
+    margin-bottom: 10px;
+
+    opacity: 0.8;
+}
+
+
+.modal-progress-header strong {
+
+    font-size: 13px;
+
     opacity: 1;
 }
 
 
-/* PLAYER LOADER */
+#movieProgress {
 
-.player-loader {
-    position: absolute;
+    width: 100%;
 
-    inset: 0;
+    height: 5px;
 
-    display: flex;
+    appearance: none;
 
-    flex-direction: column;
+    background:
+        rgba(255,255,255,0.14);
 
-    align-items: center;
-    justify-content: center;
+    border-radius: 10px;
 
-    gap: 15px;
+    outline: none;
 
-    color: #aaa;
-
-    background: #050505;
-
-    z-index: 5;
-
-    transition: 0.3s;
+    cursor: pointer;
 }
 
-.player-loader.hidden {
-    opacity: 0;
-    visibility: hidden;
-}
 
-.player-spinner {
-    width: 45px;
-    height: 45px;
+#movieProgress::-webkit-slider-thumb {
 
-    border:
-        3px solid
-        rgba(255,255,255,0.15);
+    appearance: none;
 
-    border-top-color:
-        #e50914;
+    width: 15px;
+    height: 15px;
 
     border-radius: 50%;
 
-    animation:
-        movieSpin 0.8s linear infinite;
-}
+    background: #fff;
 
-@keyframes movieSpin {
-    to {
-        transform: rotate(360deg);
-    }
-}
+    cursor: pointer;
 
-
-/* CONTENT */
-
-.movie-modal-content {
-    padding: 30px 35px 35px;
-}
-
-.movie-modal-meta {
-    display: flex;
-
-    gap: 10px;
-
-    margin-bottom: 15px;
-}
-
-.movie-modal-meta span {
-    padding: 6px 12px;
-
-    border-radius: 20px;
-
-    background:
-        rgba(255,255,255,0.08);
-
-    color: #bbb;
-
-    font-size: 12px;
-}
-
-.movie-modal-meta span:first-child {
-    background:
-        rgba(229,9,20,0.15);
-
-    color: #ff4b55;
-}
-
-.movie-modal-content h2 {
-    font-size:
-        clamp(30px, 5vw, 52px);
-
-    margin-bottom: 12px;
-
-    line-height: 1.05;
-}
-
-.movie-modal-content p {
-    max-width: 720px;
-
-    color: #aaa;
-
-    line-height: 1.7;
-
-    font-size: 15px;
+    box-shadow:
+        0 0 12px
+        rgba(255,255,255,0.5);
 }
 
 
-/* ACTIONS */
+#movieProgress::-moz-range-thumb {
+
+    width: 15px;
+    height: 15px;
+
+    border: none;
+
+    border-radius: 50%;
+
+    background: #fff;
+
+    cursor: pointer;
+}
+
+
+/* =========================================================
+   MODAL ACTIONS
+========================================================= */
 
 .movie-modal-actions {
+
     display: flex;
 
     gap: 12px;
 
-    margin-top: 25px;
+    margin-top: 18px;
 }
 
-.movie-modal-actions button {
-    padding: 13px 20px;
 
-    border-radius: 7px;
+.modal-watch-btn,
+.modal-list-btn {
 
-    border: none;
+    border: 1px solid
+        rgba(255,255,255,0.18);
+
+    background:
+        rgba(255,255,255,0.07);
+
+    color: #fff;
+
+    padding: 11px 18px;
+
+    border-radius: 9px;
 
     cursor: pointer;
 
-    font-weight: 600;
-
-    transition: 0.3s;
+    transition: 0.3s ease;
 }
 
-.modal-play {
-    background: #e50914;
 
-    color: white;
+.modal-watch-btn:hover,
+.modal-list-btn:hover {
+
+    background:
+        rgba(255,255,255,0.16);
+
+    transform: translateY(-2px);
 }
 
-.modal-play:hover {
-    background: #ff1d28;
+
+/* =========================================================
+   TOAST
+========================================================= */
+
+#cineverseToast {
+
+    position: fixed;
+
+    left: 50%;
+
+    bottom: 30px;
 
     transform:
-        translateY(-3px);
+        translate(-50%, 20px);
 
-    box-shadow:
-        0 10px 30px
-        rgba(229,9,20,0.3);
-}
+    padding: 12px 20px;
 
-.modal-list {
+    border-radius: 10px;
+
     background:
-        rgba(255,255,255,0.1);
-
-    color: white;
+        rgba(15,15,15,0.94);
 
     border:
         1px solid
-        rgba(255,255,255,0.12) !important;
+        rgba(255,255,255,0.14);
+
+    color: #fff;
+
+    font-size: 13px;
+
+    z-index: 99999;
+
+    opacity: 0;
+
+    pointer-events: none;
+
+    transition:
+        opacity 0.3s ease,
+        transform 0.3s ease;
+
+    backdrop-filter: blur(15px);
+
+    box-shadow:
+        0 15px 40px
+        rgba(0,0,0,0.45);
 }
 
-.modal-list:hover {
-    background:
-        rgba(255,255,255,0.18);
+
+#cineverseToast.show {
+
+    opacity: 1;
 
     transform:
-        translateY(-3px);
+        translate(-50%, 0);
 }
 
 
-/* WATCHLIST BUTTONS */
+/* =========================================================
+   MOBILE
+========================================================= */
 
-.watch-button {
-    margin-right: 6px;
-}
+@media (max-width: 700px) {
 
-.remove-button {
-    background:
-        #252525 !important;
+    .continue-card {
 
-    color:
-        #ddd !important;
-}
+        grid-template-columns: 1fr;
 
-.remove-button:hover {
-    background:
-        #333 !important;
-}
-
-
-/* MOBILE */
-
-@media (max-width: 650px) {
-
-    #movieModal {
-        padding: 10px;
     }
 
-    .movie-modal {
-        width: 100%;
 
-        max-height: 94vh;
+    .continue-image {
 
-        border-radius: 12px;
+        height: 190px;
+
+        min-height: 190px;
     }
 
-    .movie-modal-content {
-        padding: 22px;
+
+    .continue-info {
+
+        padding: 15px;
     }
 
-    .movie-modal-content h2 {
-        font-size: 30px;
-    }
 
     .movie-modal-actions {
+
         flex-direction: column;
     }
 
-    .movie-modal-actions button {
+
+    .modal-watch-btn,
+    .modal-list-btn {
+
         width: 100%;
     }
 
-    .movie-modal-close {
-        width: 38px;
-        height: 38px;
 
-        font-size: 25px;
+    .continue-grid {
+
+        grid-template-columns: 1fr;
     }
-
 }

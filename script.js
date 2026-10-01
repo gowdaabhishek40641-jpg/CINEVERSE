@@ -1,45 +1,20 @@
-"use strict";
-
-/* =========================================================
-   CINEVERSE — COMMIT 5
-   MOVIE DETAILS + CINEMATIC PLAYER
-========================================================= */
-
 document.addEventListener("DOMContentLoaded", () => {
 
-    console.log("🎬 CineVerse Commit 5 started");
-
-
-    /* =====================================================
-       ELEMENTS
-    ===================================================== */
-
-    const preloader =
-        document.getElementById("preloader");
-
-    const themeButton =
-        document.getElementById("themeBtn");
-
-    const navbar =
-        document.querySelector(".navbar");
-
-    const watchlistContainer =
-        document.getElementById("watchlistItems");
-
-
-    /* =====================================================
-       MOVIE DATABASE
-    ===================================================== */
+    /* =========================================================
+       CINEVERSE DATABASE
+    ========================================================= */
 
     const movies = {
 
         "Beyond The Void": {
             title: "Beyond The Void",
             genre: "Sci-Fi",
-            year: "2026",
-            duration: "2h 18m",
+            type: "Movie",
+            year: 2026,
+            duration: "2h 08m",
+            durationMinutes: 128,
             description:
-                "A mysterious journey beyond the limits of known space begins when a forgotten signal reaches Earth.",
+                "A deep-space expedition discovers a mysterious signal beyond the known universe.",
             image:
                 "https://images.unsplash.com/photo-1446776877081-d282a0f896e2",
             trailer:
@@ -48,26 +23,30 @@ document.addEventListener("DOMContentLoaded", () => {
 
         "Lost Galaxy": {
             title: "Lost Galaxy",
-            genre: "Sci-Fi",
-            year: "2026",
-            duration: "1h 48m",
+            genre: "Adventure",
+            type: "Movie",
+            year: 2025,
+            duration: "1h 56m",
+            durationMinutes: 116,
             description:
-                "A deep-space crew discovers an abandoned galaxy hiding a dangerous secret.",
+                "A stranded crew searches for a forgotten civilization hidden inside a distant galaxy.",
             image:
-                "https://images.unsplash.com/photo-1485846234645-a62644f84728",
+                "https://images.unsplash.com/photo-1462331940025-496dfbfc7564",
             trailer:
                 "https://www.youtube.com/embed/ScMzIvxBSi4"
         },
 
         "Dark Future": {
             title: "Dark Future",
-            genre: "Series",
-            year: "2026",
-            duration: "S1 • E4",
+            genre: "Action",
+            type: "Movie",
+            year: 2026,
+            duration: "2h 14m",
+            durationMinutes: 134,
             description:
-                "In a surveillance-driven future, one hacker discovers a secret capable of changing civilization.",
+                "In a controlled future city, one hacker discovers the truth behind artificial intelligence.",
             image:
-                "https://images.unsplash.com/photo-1517604931442-7e0c8ed2963c",
+                "https://images.unsplash.com/photo-1519608487953-e999c86e7455",
             trailer:
                 "https://www.youtube.com/embed/ScMzIvxBSi4"
         },
@@ -75,25 +54,29 @@ document.addEventListener("DOMContentLoaded", () => {
         "Last Mission": {
             title: "Last Mission",
             genre: "Action",
-            year: "2026",
-            duration: "2h 05m",
+            type: "Movie",
+            year: 2024,
+            duration: "1h 49m",
+            durationMinutes: 109,
             description:
-                "One final mission. One impossible decision. A former agent returns for a dangerous rescue.",
+                "An elite operative receives one final mission that changes everything.",
             image:
-                "https://images.unsplash.com/photo-1440404653325-ab127d49abc1",
+                "https://images.unsplash.com/photo-1534796636912-3b95b3ab5986",
             trailer:
                 "https://www.youtube.com/embed/ScMzIvxBSi4"
         },
 
         "Cyber World": {
             title: "Cyber World",
-            genre: "Action",
-            year: "2026",
-            duration: "2h 02m",
+            genre: "Cyberpunk",
+            type: "Series",
+            year: 2026,
+            duration: "8 Episodes",
+            durationMinutes: 420,
             description:
-                "A digital city becomes the battlefield between a rogue AI and the last human resistance.",
+                "A futuristic cyber city hides a dangerous digital conspiracy.",
             image:
-                "https://images.unsplash.com/photo-1489599849927-2ee91cede3ba",
+                "https://images.unsplash.com/photo-1519608487953-e999c86e7455",
             trailer:
                 "https://www.youtube.com/embed/ScMzIvxBSi4"
         },
@@ -101,51 +84,59 @@ document.addEventListener("DOMContentLoaded", () => {
         "Infinity": {
             title: "Infinity",
             genre: "Sci-Fi",
-            year: "2026",
-            duration: "2h 12m",
+            type: "Series",
+            year: 2025,
+            duration: "10 Episodes",
+            durationMinutes: 500,
             description:
-                "Scientists discover a portal that may connect humanity to an infinite number of realities.",
+                "Scientists attempt to understand a mysterious force that could reshape reality.",
             image:
-                "https://images.unsplash.com/photo-1500534623283-312aade485b7",
+                "https://images.unsplash.com/photo-1444703686981-a3abbc4d4fe3",
             trailer:
                 "https://www.youtube.com/embed/ScMzIvxBSi4"
         },
 
         "Night City": {
             title: "Night City",
-            genre: "Thriller",
-            year: "2026",
-            duration: "1h 58m",
+            genre: "Crime",
+            type: "Series",
+            year: 2026,
+            duration: "12 Episodes",
+            durationMinutes: 600,
             description:
-                "A detective enters a futuristic city where every shadow hides a secret.",
+                "A detective enters the darkest parts of a futuristic city.",
             image:
-                "https://images.unsplash.com/photo-1485230405346-71acb9518d9c",
+                "https://images.unsplash.com/photo-1519501025264-65ba15a82390",
             trailer:
                 "https://www.youtube.com/embed/ScMzIvxBSi4"
         },
 
         "Space Journey": {
             title: "Space Journey",
-            genre: "Sci-Fi",
-            year: "2026",
-            duration: "2h 10m",
+            genre: "Adventure",
+            type: "Movie",
+            year: 2023,
+            duration: "2h 01m",
+            durationMinutes: 121,
             description:
-                "A crew travels beyond the solar system in search of a new home for humanity.",
+                "A crew travels across unexplored space looking for a new home.",
             image:
-                "https://images.unsplash.com/photo-1518929458119-e5bf444c30f4",
+                "https://images.unsplash.com/photo-1446776811953-b23d57bd21aa",
             trailer:
                 "https://www.youtube.com/embed/ScMzIvxBSi4"
         },
 
         "Final Code": {
             title: "Final Code",
-            genre: "Action",
-            year: "2026",
-            duration: "1h 55m",
+            genre: "Technology",
+            type: "Movie",
+            year: 2026,
+            duration: "1h 58m",
+            durationMinutes: 118,
             description:
-                "A cybersecurity specialist races against time to stop a global digital attack.",
+                "A programmer discovers a hidden code capable of controlling global infrastructure.",
             image:
-                "https://images.unsplash.com/photo-1536440136628-849c177e76a1",
+                "https://images.unsplash.com/photo-1518770660439-4636190af475",
             trailer:
                 "https://www.youtube.com/embed/ScMzIvxBSi4"
         },
@@ -153,25 +144,29 @@ document.addEventListener("DOMContentLoaded", () => {
         "Shadow": {
             title: "Shadow",
             genre: "Thriller",
-            year: "2026",
-            duration: "2h",
+            type: "Movie",
+            year: 2024,
+            duration: "1h 42m",
+            durationMinutes: 102,
             description:
-                "A mysterious figure begins appearing at crime scenes before the crimes even happen.",
+                "A mysterious stranger becomes connected to a series of unexplained events.",
             image:
-                "https://images.unsplash.com/photo-1542206395-9feb3edaa68d",
+                "https://images.unsplash.com/photo-1519681393784-d120267933ba",
             trailer:
                 "https://www.youtube.com/embed/ScMzIvxBSi4"
         },
 
         "Dark Protocol": {
             title: "Dark Protocol",
-            genre: "Series",
-            year: "2026",
-            duration: "2 Seasons",
+            genre: "Cyberpunk",
+            type: "Series",
+            year: 2026,
+            duration: "9 Episodes",
+            durationMinutes: 450,
             description:
-                "A secret intelligence program resurfaces and threatens to expose the world's hidden networks.",
+                "A secret digital protocol threatens to bring down the global network.",
             image:
-                "https://images.unsplash.com/photo-1574375927938-d5a98e8ffe85",
+                "https://images.unsplash.com/photo-1558494949-ef010cbdcc31",
             trailer:
                 "https://www.youtube.com/embed/ScMzIvxBSi4"
         },
@@ -179,52 +174,440 @@ document.addEventListener("DOMContentLoaded", () => {
         "The Unknown": {
             title: "The Unknown",
             genre: "Mystery",
-            year: "2026",
-            duration: "1 Season",
+            type: "Movie",
+            year: 2025,
+            duration: "1h 52m",
+            durationMinutes: 112,
             description:
-                "A group of strangers wake up in an unknown facility with no memory of how they arrived.",
+                "A group of explorers finds something that was never supposed to be discovered.",
             image:
-                "https://images.unsplash.com/photo-1598899134739-24c46f58b8c0",
+                "https://images.unsplash.com/photo-1534447677768-be436bb09401",
             trailer:
                 "https://www.youtube.com/embed/ScMzIvxBSi4"
         },
 
         "Future Earth": {
             title: "Future Earth",
-            genre: "Series",
-            year: "2026",
-            duration: "3 Seasons",
+            genre: "Sci-Fi",
+            type: "Movie",
+            year: 2026,
+            duration: "2h 12m",
+            durationMinutes: 132,
             description:
-                "Humanity rebuilds civilization on a transformed Earth after a global environmental collapse.",
+                "Humanity attempts to rebuild civilization after a global technological collapse.",
             image:
-                "https://images.unsplash.com/photo-1500530855697-b586d89ba3ee",
+                "https://images.unsplash.com/photo-1451187580459-43490279c0fa",
             trailer:
                 "https://www.youtube.com/embed/ScMzIvxBSi4"
         }
-
     };
 
 
-    /* =====================================================
-       PRELOADER
-    ===================================================== */
+    /* =========================================================
+       STORAGE
+    ========================================================= */
 
-    window.addEventListener("load", () => {
+    let watchlist = JSON.parse(
+        localStorage.getItem("cineverseWatchlist") || "[]"
+    );
 
-        setTimeout(() => {
-
-            if (preloader) {
-                preloader.classList.add("hide");
-            }
-
-        }, 700);
-
-    });
+    let continueWatching = JSON.parse(
+        localStorage.getItem("cineverseContinueWatching") || "{}"
+    );
 
 
-    /* =====================================================
-       CREATE MOVIE MODAL
-    ===================================================== */
+    function saveWatchlist() {
+
+        localStorage.setItem(
+            "cineverseWatchlist",
+            JSON.stringify(watchlist)
+        );
+    }
+
+
+    function saveContinueWatching() {
+
+        localStorage.setItem(
+            "cineverseContinueWatching",
+            JSON.stringify(continueWatching)
+        );
+    }
+
+
+    /* =========================================================
+       TOAST
+    ========================================================= */
+
+    function showToast(message) {
+
+        let toast = document.getElementById("cineverseToast");
+
+        if (!toast) {
+
+            toast = document.createElement("div");
+
+            toast.id = "cineverseToast";
+
+            document.body.appendChild(toast);
+        }
+
+        toast.textContent = message;
+
+        toast.classList.add("show");
+
+        clearTimeout(window.cineverseToastTimer);
+
+        window.cineverseToastTimer = setTimeout(() => {
+
+            toast.classList.remove("show");
+
+        }, 2200);
+    }
+
+
+    window.showToast = showToast;
+
+
+    /* =========================================================
+       WATCHLIST
+    ========================================================= */
+
+    window.addToWatchlist = function(movieName) {
+
+        if (!movies[movieName]) return;
+
+        if (!watchlist.includes(movieName)) {
+
+            watchlist.push(movieName);
+
+            saveWatchlist();
+
+            showToast(`❤️ ${movieName} added to My List`);
+
+        } else {
+
+            showToast(`✓ ${movieName} is already in My List`);
+        }
+
+        renderWatchlist();
+    };
+
+
+    window.removeFromWatchlist = function(movieName) {
+
+        watchlist = watchlist.filter(
+            item => item !== movieName
+        );
+
+        saveWatchlist();
+
+        renderWatchlist();
+
+        showToast(`Removed ${movieName} from My List`);
+    };
+
+
+    function renderWatchlist() {
+
+        const container =
+            document.getElementById("watchlistItems");
+
+        if (!container) return;
+
+
+        if (watchlist.length === 0) {
+
+            container.innerHTML = `
+                <div class="empty-watchlist">
+
+                    <div class="empty-icon">♡</div>
+
+                    <h3>Your List Is Empty</h3>
+
+                    <p>
+                        Add movies and series to watch them later.
+                    </p>
+
+                </div>
+            `;
+
+            return;
+        }
+
+
+        container.innerHTML = watchlist.map(movieName => {
+
+            const movie = movies[movieName];
+
+            if (!movie) return "";
+
+
+            return `
+                <article class="movie-card advanced-watch-card">
+
+                    <div class="movie-image-wrapper">
+
+                        <img
+                            src="${movie.image}"
+                            alt="${movie.title}"
+                            loading="lazy"
+                        >
+
+                        <div class="movie-overlay">
+
+                            <button
+                                class="watch-btn"
+                                onclick="playMovie('${movie.title}')"
+                            >
+                                ▶ Watch
+                            </button>
+
+                            <button
+                                class="remove-btn"
+                                onclick="removeFromWatchlist('${movie.title}')"
+                            >
+                                Remove
+                            </button>
+
+                        </div>
+
+                    </div>
+
+
+                    <div class="movie-info">
+
+                        <h3>${movie.title}</h3>
+
+                        <p>
+                            ${movie.genre}
+                            •
+                            ${movie.year}
+                        </p>
+
+                    </div>
+
+                </article>
+            `;
+
+        }).join("");
+    }
+
+
+    /* =========================================================
+       CONTINUE WATCHING
+    ========================================================= */
+
+    function addContinueWatching(movieName, progress = null) {
+
+        const movie = movies[movieName];
+
+        if (!movie) return;
+
+
+        if (progress === null) {
+
+            progress = continueWatching[movieName]?.progress || 8;
+        }
+
+
+        progress = Math.min(
+            Math.max(Number(progress), 0),
+            99
+        );
+
+
+        continueWatching[movieName] = {
+
+            title: movieName,
+
+            progress: progress,
+
+            lastWatched: Date.now(),
+
+            image: movie.image,
+
+            duration: movie.duration,
+
+            genre: movie.genre
+
+        };
+
+
+        saveContinueWatching();
+
+        renderContinueWatching();
+    }
+
+
+    window.removeContinueWatching = function(movieName) {
+
+        delete continueWatching[movieName];
+
+        saveContinueWatching();
+
+        renderContinueWatching();
+
+        showToast(`${movieName} removed from Continue Watching`);
+    };
+
+
+    window.resumeMovie = function(movieName) {
+
+        if (!movies[movieName]) return;
+
+        const saved =
+            continueWatching[movieName];
+
+        const currentProgress =
+            saved?.progress || 5;
+
+
+        openMovieModal(
+            movieName,
+            currentProgress
+        );
+    };
+
+
+    function renderContinueWatching() {
+
+        const container =
+            document.getElementById("continueWatchingItems");
+
+        if (!container) return;
+
+
+        const items =
+            Object.values(continueWatching)
+                .sort(
+                    (a, b) =>
+                        b.lastWatched - a.lastWatched
+                );
+
+
+        if (items.length === 0) {
+
+            container.innerHTML = `
+                <div class="continue-empty">
+
+                    <div class="continue-empty-icon">
+                        ▶
+                    </div>
+
+                    <h3>
+                        Nothing To Continue
+                    </h3>
+
+                    <p>
+                        Start watching something and your
+                        progress will appear here.
+                    </p>
+
+                </div>
+            `;
+
+            return;
+        }
+
+
+        container.innerHTML = items.map(item => {
+
+            const movie = movies[item.title];
+
+            if (!movie) return "";
+
+
+            return `
+                <article
+                    class="continue-card"
+                    data-movie="${movie.title}"
+                >
+
+                    <div class="continue-image">
+
+                        <img
+                            src="${movie.image}"
+                            alt="${movie.title}"
+                            loading="lazy"
+                        >
+
+                        <button
+                            class="continue-play"
+                            onclick="resumeMovie('${movie.title}')"
+                            aria-label="Resume ${movie.title}"
+                        >
+                            ▶
+                        </button>
+
+                        <div
+                            class="continue-progress"
+                            style="width:${item.progress}%"
+                        ></div>
+
+                    </div>
+
+
+                    <div class="continue-info">
+
+                        <div class="continue-heading">
+
+                            <h3>
+                                ${movie.title}
+                            </h3>
+
+                            <button
+                                class="continue-remove"
+                                onclick="removeContinueWatching('${movie.title}')"
+                                title="Remove"
+                            >
+                                ×
+                            </button>
+
+                        </div>
+
+
+                        <p>
+                            ${movie.genre}
+                            •
+                            ${movie.year}
+                        </p>
+
+
+                        <div class="continue-meta">
+
+                            <span>
+                                ${item.progress}% watched
+                            </span>
+
+                            <span>
+                                ${movie.duration}
+                            </span>
+
+                        </div>
+
+
+                        <button
+                            class="continue-resume"
+                            onclick="resumeMovie('${movie.title}')"
+                        >
+                            ▶ Continue Watching
+                        </button>
+
+                    </div>
+
+                </article>
+            `;
+
+        }).join("");
+    }
+
+
+    /* =========================================================
+       MOVIE MODAL
+    ========================================================= */
+
+    let currentMovie = null;
+
 
     function createMovieModal() {
 
@@ -232,8 +615,8 @@ document.addEventListener("DOMContentLoaded", () => {
             return;
         }
 
-        const modal =
-            document.createElement("div");
+
+        const modal = document.createElement("div");
 
         modal.id = "movieModal";
 
@@ -241,10 +624,13 @@ document.addEventListener("DOMContentLoaded", () => {
 
             <div class="movie-modal-backdrop"></div>
 
-            <div class="movie-modal">
+            <div
+                class="movie-modal"
+                role="dialog"
+                aria-modal="true"
+            >
 
                 <button
-                    type="button"
                     class="movie-modal-close"
                     id="movieModalClose"
                     aria-label="Close"
@@ -252,67 +638,103 @@ document.addEventListener("DOMContentLoaded", () => {
                     ×
                 </button>
 
-                <div class="movie-modal-player">
+
+                <div class="movie-player">
 
                     <div
-                        class="player-loader"
-                        id="playerLoader"
+                        class="movie-player-loader"
+                        id="moviePlayerLoader"
                     >
-                        <div class="player-spinner"></div>
-                        <span>Loading trailer...</span>
+                        <div class="movie-spinner"></div>
+                        <span>Loading...</span>
                     </div>
+
 
                     <iframe
                         id="movieTrailer"
                         src=""
                         title="CineVerse Trailer"
-                        frameborder="0"
                         allow="autoplay; encrypted-media; picture-in-picture"
                         allowfullscreen
                     ></iframe>
 
                 </div>
 
+
                 <div class="movie-modal-content">
 
-                    <div class="movie-modal-meta">
+                    <div class="movie-modal-top">
 
-                        <span id="modalGenre">
-                            Sci-Fi
-                        </span>
+                        <div>
 
-                        <span id="modalYear">
-                            2026
-                        </span>
+                            <span
+                                class="modal-label"
+                                id="modalType"
+                            >
+                                MOVIE
+                            </span>
 
-                        <span id="modalDuration">
-                            2h
-                        </span>
+                            <h2 id="modalTitle">
+                                Movie Title
+                            </h2>
+
+                        </div>
 
                     </div>
 
-                    <h2 id="modalTitle">
-                        Movie Title
-                    </h2>
 
-                    <p id="modalDescription">
-                        Movie description.
-                    </p>
+                    <div
+                        class="movie-modal-meta"
+                        id="modalMeta"
+                    ></div>
+
+
+                    <p
+                        class="movie-modal-description"
+                        id="modalDescription"
+                    ></p>
+
+
+                    <div class="modal-progress-area">
+
+                        <div class="modal-progress-header">
+
+                            <span>
+                                Your Progress
+                            </span>
+
+                            <strong
+                                id="modalProgressText"
+                            >
+                                0%
+                            </strong>
+
+                        </div>
+
+
+                        <input
+                            type="range"
+                            id="movieProgress"
+                            min="0"
+                            max="99"
+                            value="0"
+                        >
+
+                    </div>
+
 
                     <div class="movie-modal-actions">
 
                         <button
-                            type="button"
-                            id="modalPlayButton"
-                            class="modal-play"
+                            class="modal-watch-btn"
+                            id="modalWatchButton"
                         >
-                            ▶ Watch Trailer
+                            ▶ Watch / Resume
                         </button>
 
                         <button
-                            type="button"
+                            class="modal-list-btn"
                             id="modalListButton"
-                            class="modal-list"
                         >
                             + My List
                         </button>
@@ -324,712 +746,374 @@ document.addEventListener("DOMContentLoaded", () => {
             </div>
         `;
 
+
         document.body.appendChild(modal);
 
 
-        /* Close button */
-
-        const closeButton =
-            document.getElementById(
-                "movieModalClose"
+        document
+            .getElementById("movieModalClose")
+            .addEventListener(
+                "click",
+                closeMovieModal
             );
 
-        closeButton.addEventListener(
-            "click",
-            closeMovieModal
-        );
 
-
-        /* Backdrop */
-
-        const backdrop =
-            modal.querySelector(
-                ".movie-modal-backdrop"
+        document
+            .querySelector(".movie-modal-backdrop")
+            .addEventListener(
+                "click",
+                closeMovieModal
             );
 
-        backdrop.addEventListener(
-            "click",
-            closeMovieModal
-        );
+
+        document
+            .getElementById("movieProgress")
+            .addEventListener(
+                "input",
+                updateModalProgress
+            );
 
 
-        /* ESC */
+        document
+            .getElementById("modalWatchButton")
+            .addEventListener(
+                "click",
+                () => {
 
-        document.addEventListener(
-            "keydown",
-            event => {
+                    if (!currentMovie) return;
 
-                if (
-                    event.key === "Escape" &&
-                    modal.classList.contains("active")
-                ) {
+                    const slider =
+                        document.getElementById(
+                            "movieProgress"
+                        );
 
-                    closeMovieModal();
+                    addContinueWatching(
+                        currentMovie,
+                        Number(slider.value)
+                    );
 
+                    showToast(
+                        `▶ Resuming ${currentMovie}`
+                    );
                 }
+            );
 
-            }
-        );
 
+        document
+            .getElementById("modalListButton")
+            .addEventListener(
+                "click",
+                () => {
+
+                    if (!currentMovie) return;
+
+                    addToWatchlist(currentMovie);
+                }
+            );
     }
 
 
-    /* =====================================================
-       OPEN MOVIE
-    ===================================================== */
+    function updateModalProgress(event) {
 
-    function openMovieModal(movieName) {
+        const value =
+            Number(event.target.value);
 
-        const movie =
-            movies[movieName];
+
+        document.getElementById(
+            "modalProgressText"
+        ).textContent = `${value}%`;
+
+
+        if (currentMovie) {
+
+            continueWatching[currentMovie] = {
+
+                ...(continueWatching[currentMovie] || {}),
+
+                title: currentMovie,
+
+                progress: value,
+
+                lastWatched: Date.now(),
+
+                image: movies[currentMovie].image,
+
+                duration: movies[currentMovie].duration,
+
+                genre: movies[currentMovie].genre
+            };
+
+
+            saveContinueWatching();
+
+            renderContinueWatching();
+        }
+    }
+
+
+    function openMovieModal(movieName, progress = null) {
+
+        const movie = movies[movieName];
 
         if (!movie) {
 
-            console.warn(
-                "Movie not found:",
-                movieName
-            );
+            showToast("Movie information not found");
 
             return;
-
         }
 
 
         createMovieModal();
 
+        currentMovie = movieName;
+
 
         const modal =
-            document.getElementById(
-                "movieModal"
-            );
+            document.getElementById("movieModal");
 
-        const title =
-            document.getElementById(
-                "modalTitle"
-            );
 
-        const genre =
-            document.getElementById(
-                "modalGenre"
-            );
+        const iframe =
+            document.getElementById("movieTrailer");
 
-        const year =
-            document.getElementById(
-                "modalYear"
-            );
-
-        const duration =
-            document.getElementById(
-                "modalDuration"
-            );
-
-        const description =
-            document.getElementById(
-                "modalDescription"
-            );
-
-        const trailer =
-            document.getElementById(
-                "movieTrailer"
-            );
 
         const loader =
-            document.getElementById(
-                "playerLoader"
-            );
-
-        const listButton =
-            document.getElementById(
-                "modalListButton"
-            );
+            document.getElementById("moviePlayerLoader");
 
 
-        title.textContent =
-            movie.title;
+        const saved =
+            continueWatching[movieName];
 
-        genre.textContent =
-            movie.genre;
 
-        year.textContent =
-            movie.year;
+        const currentProgress =
+            progress !== null
+                ? progress
+                : saved?.progress || 0;
 
-        duration.textContent =
-            movie.duration;
 
-        description.textContent =
+        document.getElementById(
+            "modalTitle"
+        ).textContent = movie.title;
+
+
+        document.getElementById(
+            "modalType"
+        ).textContent = movie.type;
+
+
+        document.getElementById(
+            "modalMeta"
+        ).innerHTML = `
+            <span>${movie.genre}</span>
+            <span>${movie.year}</span>
+            <span>${movie.duration}</span>
+        `;
+
+
+        document.getElementById(
+            "modalDescription"
+        ).textContent =
             movie.description;
 
 
-        loader.classList.remove(
-            "hidden"
-        );
-
-        trailer.classList.remove(
-            "loaded"
-        );
-
-
-        trailer.src =
-            movie.trailer +
-            "?autoplay=1&rel=0";
-
-
-        trailer.onload = () => {
-
-            loader.classList.add(
-                "hidden"
+        const progressSlider =
+            document.getElementById(
+                "movieProgress"
             );
 
-            trailer.classList.add(
-                "loaded"
-            );
+
+        progressSlider.value =
+            currentProgress;
+
+
+        document.getElementById(
+            "modalProgressText"
+        ).textContent =
+            `${currentProgress}%`;
+
+
+        loader.classList.remove("hidden");
+
+
+        iframe.onload = () => {
+
+            loader.classList.add("hidden");
 
         };
 
 
-        listButton.onclick = () => {
-
-            addToWatchlist(
-                movie.title
-            );
-
-        };
+        iframe.src =
+            `${movie.trailer}?autoplay=1&rel=0`;
 
 
-        modal.classList.add(
-            "active"
-        );
-
+        modal.classList.add("show");
 
         document.body.classList.add(
             "modal-open"
         );
 
 
-        setTimeout(() => {
-
-            modal
-                .querySelector(".movie-modal")
-                ?.classList.add("show");
-
-        }, 20);
-
+        addContinueWatching(
+            movieName,
+            currentProgress || 1
+        );
     }
 
-
-    /* =====================================================
-       CLOSE MOVIE MODAL
-    ===================================================== */
 
     function closeMovieModal() {
 
         const modal =
-            document.getElementById(
-                "movieModal"
-            );
+            document.getElementById("movieModal");
 
-        if (!modal) {
-            return;
+
+        const iframe =
+            document.getElementById("movieTrailer");
+
+
+        if (!modal) return;
+
+
+        modal.classList.remove("show");
+
+        document.body.classList.remove(
+            "modal-open"
+        );
+
+
+        if (iframe) {
+
+            iframe.src = "";
         }
 
 
-        const trailer =
-            document.getElementById(
-                "movieTrailer"
-            );
-
-
-        modal
-            .querySelector(".movie-modal")
-            ?.classList.remove("show");
-
-
-        setTimeout(() => {
-
-            modal.classList.remove(
-                "active"
-            );
-
-            document.body.classList.remove(
-                "modal-open"
-            );
-
-
-            if (trailer) {
-                trailer.src = "";
-            }
-
-        }, 300);
-
+        currentMovie = null;
     }
 
-
-    /* =====================================================
-       GLOBAL PLAY FUNCTION
-    ===================================================== */
 
     window.playMovie = function(movieName) {
 
         openMovieModal(movieName);
-
     };
 
 
-    /* =====================================================
-       WATCHLIST
-    ===================================================== */
+    /* =========================================================
+       ESCAPE KEY
+    ========================================================= */
 
-    let watchlist = [];
-
-    try {
-
-        const saved =
-            localStorage.getItem(
-                "cineverseWatchlist"
-            );
-
-        if (saved) {
-
-            const parsed =
-                JSON.parse(saved);
-
-            if (Array.isArray(parsed)) {
-                watchlist = parsed;
-            }
-
-        }
-
-    } catch (error) {
-
-        console.error(
-            "Watchlist error:",
-            error
-        );
-
-    }
-
-
-    function saveWatchlist() {
-
-        localStorage.setItem(
-            "cineverseWatchlist",
-            JSON.stringify(watchlist)
-        );
-
-    }
-
-
-    window.addToWatchlist = function(movieName) {
-
-        if (!movieName) {
-            return;
-        }
-
-
-        if (
-            watchlist.some(
-                movie =>
-                    movie.toLowerCase() ===
-                    movieName.toLowerCase()
-            )
-        ) {
-
-            showToast(
-                `"${movieName}" is already in My List`
-            );
-
-            return;
-
-        }
-
-
-        watchlist.push(movieName);
-
-        saveWatchlist();
-
-        displayWatchlist();
-
-        showToast(
-            `"${movieName}" added to My List ✓`
-        );
-
-    };
-
-
-    window.removeFromWatchlist =
-        function(index) {
+    document.addEventListener(
+        "keydown",
+        event => {
 
             if (
-                index < 0 ||
-                index >= watchlist.length
+                event.key === "Escape" &&
+                document.getElementById("movieModal")
             ) {
-                return;
+
+                closeMovieModal();
             }
 
-
-            watchlist.splice(
-                index,
-                1
-            );
-
-            saveWatchlist();
-
-            displayWatchlist();
-
-            showToast(
-                "Removed from My List"
-            );
-
-        };
-
-
-    function displayWatchlist() {
-
-        if (!watchlistContainer) {
-            return;
         }
+    );
 
 
-        watchlistContainer.innerHTML = "";
-
-
-        if (watchlist.length === 0) {
-
-            watchlistContainer.innerHTML =
-                `
-                <p class="empty">
-                    Your watchlist is empty.
-                </p>
-                `;
-
-            return;
-
-        }
-
-
-        const grid =
-            document.createElement("div");
-
-        grid.className =
-            "movie-container";
-
-
-        watchlist.forEach(
-            (movieName, index) => {
-
-                const card =
-                    document.createElement(
-                        "div"
-                    );
-
-                card.className =
-                    "movie-card";
-
-
-                card.innerHTML = `
-
-                    <div class="image-wrapper">
-
-                        <img
-                            src="${movies[movieName]?.image || "https://images.unsplash.com/photo-1489599849927-2ee91cede3ba"}"
-                            alt="${movieName}"
-                        >
-
-                        <div class="image-overlay">
-                            ▶
-                        </div>
-
-                    </div>
-
-                    <div class="movie-info">
-
-                        <h3>
-                            ${movieName}
-                        </h3>
-
-                        <p>
-                            Saved to My List
-                        </p>
-
-                        <button
-                            type="button"
-                            class="watch-button"
-                        >
-                            Watch
-                        </button>
-
-                        <button
-                            type="button"
-                            class="remove-button"
-                        >
-                            Remove
-                        </button>
-
-                    </div>
-
-                `;
-
-
-                const watchButton =
-                    card.querySelector(
-                        ".watch-button"
-                    );
-
-
-                const removeButton =
-                    card.querySelector(
-                        ".remove-button"
-                    );
-
-
-                watchButton.addEventListener(
-                    "click",
-                    () => {
-
-                        openMovieModal(
-                            movieName
-                        );
-
-                    }
-                );
-
-
-                removeButton.addEventListener(
-                    "click",
-                    () => {
-
-                        removeFromWatchlist(
-                            index
-                        );
-
-                    }
-                );
-
-
-                grid.appendChild(card);
-
-            }
-        );
-
-
-        watchlistContainer.appendChild(
-            grid
-        );
-
-    }
-
-
-    /* =====================================================
-       TOAST
-    ===================================================== */
-
-    function showToast(message) {
-
-        let toast =
-            document.getElementById(
-                "cineverseToast"
-            );
-
-
-        if (!toast) {
-
-            toast =
-                document.createElement(
-                    "div"
-                );
-
-            toast.id =
-                "cineverseToast";
-
-            document.body.appendChild(
-                toast
-            );
-
-        }
-
-
-        toast.textContent =
-            message;
-
-
-        toast.classList.add(
-            "show"
-        );
-
-
-        clearTimeout(
-            toast.timer
-        );
-
-
-        toast.timer =
-            setTimeout(() => {
-
-                toast.classList.remove(
-                    "show"
-                );
-
-            }, 2800);
-
-    }
-
-
-    /* =====================================================
+    /* =========================================================
        THEME
-    ===================================================== */
+    ========================================================= */
 
-    function applyTheme(theme) {
+    const themeButton =
+        document.getElementById("themeToggle");
 
-        if (theme === "light") {
+
+    if (themeButton) {
+
+        const savedTheme =
+            localStorage.getItem(
+                "cineverseTheme"
+            );
+
+
+        if (savedTheme === "light") {
 
             document.body.classList.add(
                 "light-theme"
             );
-
-            if (themeButton) {
-                themeButton.textContent =
-                    "☀️";
-            }
-
-        } else {
-
-            document.body.classList.remove(
-                "light-theme"
-            );
-
-            if (themeButton) {
-                themeButton.textContent =
-                    "🌙";
-            }
-
         }
 
-    }
-
-
-    const savedTheme =
-        localStorage.getItem(
-            "cineverseTheme"
-        ) || "dark";
-
-
-    applyTheme(savedTheme);
-
-
-    if (themeButton) {
 
         themeButton.addEventListener(
             "click",
             () => {
 
-                const light =
+                document.body.classList.toggle(
+                    "light-theme"
+                );
+
+
+                const isLight =
                     document.body.classList.contains(
                         "light-theme"
                     );
 
 
-                const newTheme =
-                    light
-                        ? "dark"
-                        : "light";
-
-
-                applyTheme(
-                    newTheme
-                );
-
-
                 localStorage.setItem(
                     "cineverseTheme",
-                    newTheme
+                    isLight
+                        ? "light"
+                        : "dark"
                 );
-
             }
         );
-
     }
 
 
-    /* =====================================================
-       NAVBAR
-    ===================================================== */
+    /* =========================================================
+       NAVBAR SCROLL
+    ========================================================= */
 
-    function updateNavbar() {
-
-        if (!navbar) {
-            return;
-        }
-
-
-        if (window.scrollY > 50) {
-
-            navbar.style.background =
-                "rgba(0,0,0,0.96)";
-
-            navbar.style.boxShadow =
-                "0 10px 40px rgba(0,0,0,0.45)";
-
-        } else {
-
-            navbar.style.background =
-                "rgba(0,0,0,0.75)";
-
-            navbar.style.boxShadow =
-                "none";
-
-        }
-
-    }
+    const navbar =
+        document.querySelector(".navbar");
 
 
     window.addEventListener(
         "scroll",
-        updateNavbar,
-        { passive: true }
+        () => {
+
+            if (!navbar) return;
+
+
+            navbar.classList.toggle(
+                "scrolled",
+                window.scrollY > 40
+            );
+
+        }
     );
 
 
-    updateNavbar();
-
-
-    /* =====================================================
-       SCROLL REVEAL
-    ===================================================== */
+    /* =========================================================
+       REVEAL ANIMATIONS
+    ========================================================= */
 
     const revealElements =
-        document.querySelectorAll(
-            ".reveal"
-        );
+        document.querySelectorAll(".reveal");
 
 
-    if (
-        "IntersectionObserver"
-        in window
-    ) {
+    if ("IntersectionObserver" in window) {
 
         const observer =
             new IntersectionObserver(
                 entries => {
 
-                    entries.forEach(
-                        entry => {
+                    entries.forEach(entry => {
 
-                            if (
-                                entry.isIntersecting
-                            ) {
+                        if (entry.isIntersecting) {
 
-                                entry.target.classList.add(
-                                    "active"
-                                );
-
-                                observer.unobserve(
-                                    entry.target
-                                );
-
-                            }
+                            entry.target.classList.add(
+                                "active"
+                            );
 
                         }
-                    );
+
+                    });
 
                 },
                 {
@@ -1039,33 +1123,21 @@ document.addEventListener("DOMContentLoaded", () => {
 
 
         revealElements.forEach(
-            element => {
-
-                observer.observe(
-                    element
-                );
-
-            }
+            element =>
+                observer.observe(element)
         );
-
     } else {
 
         revealElements.forEach(
-            element => {
-
-                element.classList.add(
-                    "active"
-                );
-
-            }
+            element =>
+                element.classList.add("active")
         );
-
     }
 
 
-    /* =====================================================
+    /* =========================================================
        3D CARD EFFECT
-    ===================================================== */
+    ========================================================= */
 
     document
         .querySelectorAll(".movie-card")
@@ -1078,36 +1150,30 @@ document.addEventListener("DOMContentLoaded", () => {
                     const rect =
                         card.getBoundingClientRect();
 
+
                     const x =
                         event.clientX -
                         rect.left;
+
 
                     const y =
                         event.clientY -
                         rect.top;
 
+
                     const rotateX =
-                        ((y -
-                            rect.height / 2) /
-                            (rect.height / 2)) *
-                        -3;
+                        ((y / rect.height) - 0.5) * -6;
+
 
                     const rotateY =
-                        ((x -
-                            rect.width / 2) /
-                            (rect.width / 2)) *
-                        3;
+                        ((x / rect.width) - 0.5) * 6;
 
 
                     card.style.transform =
-                        `
-                        perspective(900px)
-                        rotateX(${rotateX}deg)
-                        rotateY(${rotateY}deg)
-                        translateY(-8px)
-                        scale(1.02)
-                        `;
-
+                        `perspective(900px)
+                         rotateX(${rotateX}deg)
+                         rotateY(${rotateY}deg)
+                         translateY(-6px)`;
                 }
             );
 
@@ -1116,79 +1182,163 @@ document.addEventListener("DOMContentLoaded", () => {
                 "mouseleave",
                 () => {
 
-                    card.style.transform =
-                        "";
-
+                    card.style.transform = "";
                 }
             );
 
         });
 
 
-    /* =====================================================
+    /* =========================================================
        SMOOTH NAVIGATION
-    ===================================================== */
+    ========================================================= */
 
     document
-        .querySelectorAll(
-            'nav a[href^="#"]'
-        )
+        .querySelectorAll('a[href^="#"]')
         .forEach(link => {
 
             link.addEventListener(
                 "click",
                 event => {
 
-                    const id =
-                        link.getAttribute(
-                            "href"
-                        );
+                    const targetId =
+                        link.getAttribute("href");
+
+
+                    if (
+                        !targetId ||
+                        targetId === "#"
+                    ) return;
+
 
                     const target =
                         document.querySelector(
-                            id
+                            targetId
                         );
 
 
-                    if (!target) {
-                        return;
-                    }
+                    if (!target) return;
 
 
                     event.preventDefault();
 
 
-                    const offset =
-                        navbar
-                            ? navbar.offsetHeight
-                            : 0;
-
-
-                    window.scrollTo({
-
-                        top:
-                            target.offsetTop -
-                            offset,
-
-                        behavior:
-                            "smooth"
-
+                    target.scrollIntoView({
+                        behavior: "smooth",
+                        block: "start"
                     });
+                }
+            );
+        });
 
+
+    /* =========================================================
+       IMAGE FALLBACK
+    ========================================================= */
+
+    document
+        .querySelectorAll("img")
+        .forEach(img => {
+
+            img.addEventListener(
+                "error",
+                () => {
+
+                    img.style.background =
+                        "linear-gradient(135deg,#111,#222)";
+
+                    img.removeAttribute("src");
                 }
             );
 
         });
 
 
-    /* =====================================================
+    /* =========================================================
+       CREATE CONTINUE WATCHING SECTION
+       ONLY IF IT DOES NOT ALREADY EXIST
+    ========================================================= */
+
+    function createContinueWatchingSection() {
+
+        if (
+            document.getElementById(
+                "continueWatchingSection"
+            )
+        ) {
+            return;
+        }
+
+
+        const watchlistSection =
+            document.getElementById(
+                "watchlistItems"
+            )?.closest("section");
+
+
+        if (!watchlistSection) return;
+
+
+        const section =
+            document.createElement("section");
+
+
+        section.id =
+            "continueWatchingSection";
+
+
+        section.className =
+            "content-section reveal";
+
+
+        section.innerHTML = `
+
+            <div class="section-header">
+
+                <div>
+
+                    <span class="section-kicker">
+                        KEEP WATCHING
+                    </span>
+
+                    <h2>
+                        Continue Watching
+                    </h2>
+
+                </div>
+
+                <span
+                    class="continue-live-indicator"
+                >
+                    ● LIVE PROGRESS
+                </span>
+
+            </div>
+
+
+            <div
+                id="continueWatchingItems"
+                class="continue-grid"
+            ></div>
+
+        `;
+
+
+        watchlistSection.parentNode.insertBefore(
+            section,
+            watchlistSection
+        );
+    }
+
+
+    /* =========================================================
        INITIALIZE
-    ===================================================== */
+    ========================================================= */
 
-    displayWatchlist();
+    createContinueWatchingSection();
 
-    console.log(
-        "✅ CineVerse Commit 5 initialized"
-    );
+    renderWatchlist();
+
+    renderContinueWatching();
 
 });
