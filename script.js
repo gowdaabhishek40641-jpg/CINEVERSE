@@ -1,1344 +1,802 @@
-document.addEventListener("DOMContentLoaded", () => {
+/* =========================================================
+   CINEVERSE - COMMIT 8
+   ADVANCED SEARCH + FILTERING
+   NO API / NO TMDB
+   ========================================================= */
 
-    /* =========================================================
-       CINEVERSE DATABASE
-    ========================================================= */
+const movies = [
+    {
+        id: 1,
+        title: "Beyond The Void",
+        genre: "Sci-Fi",
+        year: 2026,
+        rating: "8.7",
+        duration: "2h 18m",
+        image: "https://images.unsplash.com/photo-1534791547706-9f5e3c5f1847?auto=format&fit=crop&w=900&q=85",
+        description: "A deep-space mission discovers a mysterious signal beyond the known universe.",
+        trailer: "https://www.youtube.com/embed/ScMzIvxBSi4"
+    },
 
-    const movies = {
+    {
+        id: 2,
+        title: "Dark Future",
+        genre: "Action",
+        year: 2025,
+        rating: "8.4",
+        duration: "2h 05m",
+        image: "https://images.unsplash.com/photo-1519608487953-e999c86e7455?auto=format&fit=crop&w=900&q=85",
+        description: "A soldier enters a future ruled by machines and fights to restore humanity.",
+        trailer: "https://www.youtube.com/embed/ScMzIvxBSi4"
+    },
 
-        "Beyond The Void": {
-            title: "Beyond The Void",
-            genre: "Sci-Fi",
-            type: "Movie",
-            year: 2026,
-            duration: "2h 08m",
-            durationMinutes: 128,
-            description:
-                "A deep-space expedition discovers a mysterious signal beyond the known universe.",
-            image:
-                "https://images.unsplash.com/photo-1446776877081-d282a0f896e2",
-            trailer:
-                "https://www.youtube.com/embed/ScMzIvxBSi4"
-        },
+    {
+        id: 3,
+        title: "Lost Galaxy",
+        genre: "Sci-Fi",
+        year: 2025,
+        rating: "9.0",
+        duration: "2h 25m",
+        image: "https://images.unsplash.com/photo-1462331940025-496dfbfc7564?auto=format&fit=crop&w=900&q=85",
+        description: "A crew searches for a lost civilization hidden inside a distant galaxy.",
+        trailer: "https://www.youtube.com/embed/ScMzIvxBSi4"
+    },
 
-        "Lost Galaxy": {
-            title: "Lost Galaxy",
-            genre: "Adventure",
-            type: "Movie",
-            year: 2025,
-            duration: "1h 56m",
-            durationMinutes: 116,
-            description:
-                "A stranded crew searches for a forgotten civilization hidden inside a distant galaxy.",
-            image:
-                "https://images.unsplash.com/photo-1462331940025-496dfbfc7564",
-            trailer:
-                "https://www.youtube.com/embed/ScMzIvxBSi4"
-        },
+    {
+        id: 4,
+        title: "Night City",
+        genre: "Thriller",
+        year: 2026,
+        rating: "8.2",
+        duration: "1h 58m",
+        image: "https://images.unsplash.com/photo-1519608487953-e999c86e7455?auto=format&fit=crop&w=900&q=85",
+        description: "A detective follows a mysterious trail through a city that never sleeps.",
+        trailer: "https://www.youtube.com/embed/ScMzIvxBSi4"
+    },
 
-        "Dark Future": {
-            title: "Dark Future",
-            genre: "Action",
-            type: "Movie",
-            year: 2026,
-            duration: "2h 14m",
-            durationMinutes: 134,
-            description:
-                "In a controlled future city, one hacker discovers the truth behind artificial intelligence.",
-            image:
-                "https://images.unsplash.com/photo-1519608487953-e999c86e7455",
-            trailer:
-                "https://www.youtube.com/embed/ScMzIvxBSi4"
-        },
+    {
+        id: 5,
+        title: "Final Mission",
+        genre: "Action",
+        year: 2024,
+        rating: "8.1",
+        duration: "2h 12m",
+        image: "https://images.unsplash.com/photo-1534447677768-be436bb09401?auto=format&fit=crop&w=900&q=85",
+        description: "One final mission stands between a special forces team and global disaster.",
+        trailer: "https://www.youtube.com/embed/ScMzIvxBSi4"
+    },
 
-        "Last Mission": {
-            title: "Last Mission",
-            genre: "Action",
-            type: "Movie",
-            year: 2024,
-            duration: "1h 49m",
-            durationMinutes: 109,
-            description:
-                "An elite operative receives one final mission that changes everything.",
-            image:
-                "https://images.unsplash.com/photo-1534796636912-3b95b3ab5986",
-            trailer:
-                "https://www.youtube.com/embed/ScMzIvxBSi4"
-        },
+    {
+        id: 6,
+        title: "Cyber World",
+        genre: "Technology",
+        year: 2026,
+        rating: "8.8",
+        duration: "2h 10m",
+        image: "https://images.unsplash.com/photo-1518770660439-4636190af475?auto=format&fit=crop&w=900&q=85",
+        description: "A hacker discovers a digital world hidden beneath the modern internet.",
+        trailer: "https://www.youtube.com/embed/ScMzIvxBSi4"
+    },
 
-        "Cyber World": {
-            title: "Cyber World",
-            genre: "Cyberpunk",
-            type: "Series",
-            year: 2026,
-            duration: "8 Episodes",
-            durationMinutes: 420,
-            description:
-                "A futuristic cyber city hides a dangerous digital conspiracy.",
-            image:
-                "https://images.unsplash.com/photo-1519608487953-e999c86e7455",
-            trailer:
-                "https://www.youtube.com/embed/ScMzIvxBSi4"
-        },
+    {
+        id: 7,
+        title: "Shadow Protocol",
+        genre: "Thriller",
+        year: 2025,
+        rating: "8.6",
+        duration: "2h 02m",
+        image: "https://images.unsplash.com/photo-1481627834876-b7833e8f5570?auto=format&fit=crop&w=900&q=85",
+        description: "An intelligence agent uncovers a secret protocol capable of changing the world.",
+        trailer: "https://www.youtube.com/embed/ScMzIvxBSi4"
+    },
 
-        "Infinity": {
-            title: "Infinity",
-            genre: "Sci-Fi",
-            type: "Series",
-            year: 2025,
-            duration: "10 Episodes",
-            durationMinutes: 500,
-            description:
-                "Scientists attempt to understand a mysterious force that could reshape reality.",
-            image:
-                "https://images.unsplash.com/photo-1444703686981-a3abbc4d4fe3",
-            trailer:
-                "https://www.youtube.com/embed/ScMzIvxBSi4"
-        },
+    {
+        id: 8,
+        title: "Future Earth",
+        genre: "Adventure",
+        year: 2027,
+        rating: "8.9",
+        duration: "2h 30m",
+        image: "https://images.unsplash.com/photo-1500530855697-b586d89ba3ee?auto=format&fit=crop&w=900&q=85",
+        description: "Humanity returns to Earth after decades away to rebuild civilization.",
+        trailer: "https://www.youtube.com/embed/ScMzIvxBSi4"
+    },
 
-        "Night City": {
-            title: "Night City",
-            genre: "Crime",
-            type: "Series",
-            year: 2026,
-            duration: "12 Episodes",
-            durationMinutes: 600,
-            description:
-                "A detective enters the darkest parts of a futuristic city.",
-            image:
-                "https://images.unsplash.com/photo-1519501025264-65ba15a82390",
-            trailer:
-                "https://www.youtube.com/embed/ScMzIvxBSi4"
-        },
+    {
+        id: 9,
+        title: "The Unknown",
+        genre: "Mystery",
+        year: 2025,
+        rating: "8.3",
+        duration: "1h 55m",
+        image: "https://images.unsplash.com/photo-1500534623283-312aade485b7?auto=format&fit=crop&w=900&q=85",
+        description: "A mysterious disappearance reveals secrets buried for generations.",
+        trailer: "https://www.youtube.com/embed/ScMzIvxBSi4"
+    },
 
-        "Space Journey": {
-            title: "Space Journey",
-            genre: "Adventure",
-            type: "Movie",
-            year: 2023,
-            duration: "2h 01m",
-            durationMinutes: 121,
-            description:
-                "A crew travels across unexplored space looking for a new home.",
-            image:
-                "https://images.unsplash.com/photo-1446776811953-b23d57bd21aa",
-            trailer:
-                "https://www.youtube.com/embed/ScMzIvxBSi4"
-        },
+    {
+        id: 10,
+        title: "Infinity",
+        genre: "Sci-Fi",
+        year: 2026,
+        rating: "9.1",
+        duration: "2h 35m",
+        image: "https://images.unsplash.com/photo-1446776877081-d282a0f896e2?auto=format&fit=crop&w=900&q=85",
+        description: "A scientist discovers a way to cross the boundaries of time and space.",
+        trailer: "https://www.youtube.com/embed/ScMzIvxBSi4"
+    },
 
-        "Final Code": {
-            title: "Final Code",
-            genre: "Technology",
-            type: "Movie",
-            year: 2026,
-            duration: "1h 58m",
-            durationMinutes: 118,
-            description:
-                "A programmer discovers a hidden code capable of controlling global infrastructure.",
-            image:
-                "https://images.unsplash.com/photo-1518770660439-4636190af475",
-            trailer:
-                "https://www.youtube.com/embed/ScMzIvxBSi4"
-        },
+    {
+        id: 11,
+        title: "Last Code",
+        genre: "Technology",
+        year: 2025,
+        rating: "8.5",
+        duration: "2h 08m",
+        image: "https://images.unsplash.com/photo-1515879218367-8466d910aaa4?auto=format&fit=crop&w=900&q=85",
+        description: "A programmer races against time after discovering the world's most dangerous code.",
+        trailer: "https://www.youtube.com/embed/ScMzIvxBSi4"
+    },
 
-        "Shadow": {
-            title: "Shadow",
-            genre: "Thriller",
-            type: "Movie",
-            year: 2024,
-            duration: "1h 42m",
-            durationMinutes: 102,
-            description:
-                "A mysterious stranger becomes connected to a series of unexplained events.",
-            image:
-                "https://images.unsplash.com/photo-1519681393784-d120267933ba",
-            trailer:
-                "https://www.youtube.com/embed/ScMzIvxBSi4"
-        },
-
-        "Dark Protocol": {
-            title: "Dark Protocol",
-            genre: "Cyberpunk",
-            type: "Series",
-            year: 2026,
-            duration: "9 Episodes",
-            durationMinutes: 450,
-            description:
-                "A secret digital protocol threatens to bring down the global network.",
-            image:
-                "https://images.unsplash.com/photo-1558494949-ef010cbdcc31",
-            trailer:
-                "https://www.youtube.com/embed/ScMzIvxBSi4"
-        },
-
-        "The Unknown": {
-            title: "The Unknown",
-            genre: "Mystery",
-            type: "Movie",
-            year: 2025,
-            duration: "1h 52m",
-            durationMinutes: 112,
-            description:
-                "A group of explorers finds something that was never supposed to be discovered.",
-            image:
-                "https://images.unsplash.com/photo-1534447677768-be436bb09401",
-            trailer:
-                "https://www.youtube.com/embed/ScMzIvxBSi4"
-        },
-
-        "Future Earth": {
-            title: "Future Earth",
-            genre: "Sci-Fi",
-            type: "Movie",
-            year: 2026,
-            duration: "2h 12m",
-            durationMinutes: 132,
-            description:
-                "Humanity attempts to rebuild civilization after a global technological collapse.",
-            image:
-                "https://images.unsplash.com/photo-1451187580459-43490279c0fa",
-            trailer:
-                "https://www.youtube.com/embed/ScMzIvxBSi4"
-        }
-    };
+    {
+        id: 12,
+        title: "Silent Night",
+        genre: "Horror",
+        year: 2024,
+        rating: "7.9",
+        duration: "1h 48m",
+        image: "https://images.unsplash.com/photo-1505635552518-3448f4b0d8f4?auto=format&fit=crop&w=900&q=85",
+        description: "A quiet town faces a mysterious event that happens every midnight.",
+        trailer: "https://www.youtube.com/embed/ScMzIvxBSi4"
+    }
+];
 
 
-    /* =========================================================
-       STORAGE
-    ========================================================= */
+/* =========================================================
+   LOCAL STORAGE
+   ========================================================= */
 
-    let watchlist = JSON.parse(
-        localStorage.getItem("cineverseWatchlist") || "[]"
+const WATCHLIST_KEY = "cineverseWatchlist";
+const CONTINUE_KEY = "cineverseContinueWatching";
+
+let currentGenre = "All";
+let currentSearch = "";
+
+
+/* =========================================================
+   STORAGE HELPERS
+   ========================================================= */
+
+function getWatchlist() {
+    return JSON.parse(localStorage.getItem(WATCHLIST_KEY)) || [];
+}
+
+function saveWatchlist(list) {
+    localStorage.setItem(WATCHLIST_KEY, JSON.stringify(list));
+}
+
+function getContinueWatching() {
+    return JSON.parse(localStorage.getItem(CONTINUE_KEY)) || [];
+}
+
+function saveContinueWatching(list) {
+    localStorage.setItem(CONTINUE_KEY, JSON.stringify(list));
+}
+
+
+/* =========================================================
+   FILTER MOVIES
+   ========================================================= */
+
+function getFilteredMovies() {
+
+    return movies.filter(movie => {
+
+        const matchesGenre =
+            currentGenre === "All" ||
+            movie.genre === currentGenre;
+
+        const searchText = currentSearch.toLowerCase().trim();
+
+        const matchesSearch =
+            movie.title.toLowerCase().includes(searchText) ||
+            movie.genre.toLowerCase().includes(searchText) ||
+            movie.description.toLowerCase().includes(searchText);
+
+        return matchesGenre && matchesSearch;
+    });
+}
+
+
+/* =========================================================
+   MOVIE CARD
+   ========================================================= */
+
+function createMovieCard(movie) {
+
+    return `
+        <article class="movie-card"
+                 data-id="${movie.id}"
+                 onclick="openMovieModal(${movie.id})">
+
+            <img
+                src="${movie.image}"
+                alt="${movie.title}"
+                loading="lazy"
+                onerror="this.style.display='none'"
+            >
+
+            <div class="movie-info">
+
+                <div class="movie-title">
+                    ${movie.title}
+                </div>
+
+                <div class="movie-meta">
+                    ${movie.genre}
+                    •
+                    ${movie.year}
+                    •
+                    ⭐ ${movie.rating}
+                </div>
+
+            </div>
+
+        </article>
+    `;
+}
+
+
+/* =========================================================
+   RENDER MOVIES
+   ========================================================= */
+
+function renderMovies(list = getFilteredMovies()) {
+
+    const containers = document.querySelectorAll(
+        ".movie-grid, .movies-grid"
     );
 
-    let continueWatching = JSON.parse(
-        localStorage.getItem("cineverseContinueWatching") || "{}"
-    );
+    if (!containers.length) return;
 
+    containers.forEach(container => {
 
-    function saveWatchlist() {
+        container.innerHTML = "";
 
-        localStorage.setItem(
-            "cineverseWatchlist",
-            JSON.stringify(watchlist)
-        );
-    }
+        list.forEach(movie => {
+            container.insertAdjacentHTML(
+                "beforeend",
+                createMovieCard(movie)
+            );
+        });
 
+        if (!list.length) {
 
-    function saveContinueWatching() {
-
-        localStorage.setItem(
-            "cineverseContinueWatching",
-            JSON.stringify(continueWatching)
-        );
-    }
-
-
-    /* =========================================================
-       TOAST
-    ========================================================= */
-
-    function showToast(message) {
-
-        let toast = document.getElementById("cineverseToast");
-
-        if (!toast) {
-
-            toast = document.createElement("div");
-
-            toast.id = "cineverseToast";
-
-            document.body.appendChild(toast);
+            container.innerHTML = `
+                <div class="empty-state">
+                    <div>
+                        <h3>No movies found</h3>
+                        <p>Try another search or genre.</p>
+                    </div>
+                </div>
+            `;
         }
+    });
+}
 
-        toast.textContent = message;
 
-        toast.classList.add("show");
+/* =========================================================
+   SEARCH
+   ========================================================= */
 
-        clearTimeout(window.cineverseToastTimer);
+function searchMovies(value) {
 
-        window.cineverseToastTimer = setTimeout(() => {
+    currentSearch = value;
+
+    const filtered = getFilteredMovies();
+
+    renderMovies(filtered);
+}
+
+
+/* =========================================================
+   GENRE FILTER
+   ========================================================= */
+
+function filterByGenre(genre) {
+
+    currentGenre = genre;
+
+    document.querySelectorAll(".filter-btn").forEach(button => {
+        button.classList.remove("active");
+
+        if (button.dataset.genre === genre) {
+            button.classList.add("active");
+        }
+    });
+
+    renderMovies();
+}
+
+
+/* =========================================================
+   CREATE FILTER BUTTONS
+   ========================================================= */
+
+function createGenreFilters() {
+
+    const container =
+        document.querySelector(".filter-container");
+
+    if (!container) return;
+
+    const genres = [
+        "All",
+        ...new Set(movies.map(movie => movie.genre))
+    ];
+
+    container.innerHTML = "";
+
+    genres.forEach(genre => {
+
+        const button = document.createElement("button");
+
+        button.className =
+            `filter-btn ${genre === "All" ? "active" : ""}`;
+
+        button.dataset.genre = genre;
+
+        button.textContent = genre;
+
+        button.addEventListener("click", () => {
+            filterByGenre(genre);
+        });
+
+        container.appendChild(button);
+    });
+}
+
+
+/* =========================================================
+   MOVIE MODAL
+   ========================================================= */
+
+function openMovieModal(id) {
+
+    const movie = movies.find(item => item.id === id);
+
+    if (!movie) return;
+
+    let modal = document.querySelector("#movieModal");
+
+    if (!modal) {
+
+        modal = document.createElement("div");
+
+        modal.id = "movieModal";
+        modal.className = "modal";
+
+        document.body.appendChild(modal);
+    }
+
+    const watchlist = getWatchlist();
+
+    const isSaved = watchlist.includes(movie.id);
+
+    modal.innerHTML = `
+
+        <div class="modal-content">
+
+            <button
+                class="modal-close"
+                onclick="closeMovieModal()">
+                ×
+            </button>
+
+            <iframe
+                class="modal-video"
+                src="${movie.trailer}"
+                title="${movie.title} Trailer"
+                allowfullscreen>
+            </iframe>
+
+            <div class="modal-body">
+
+                <h2>${movie.title}</h2>
+
+                <p style="margin-bottom:15px;">
+                    ${movie.genre}
+                    • ${movie.year}
+                    • ${movie.duration}
+                    • ⭐ ${movie.rating}
+                </p>
+
+                <p>
+                    ${movie.description}
+                </p>
+
+                <div style="
+                    display:flex;
+                    gap:12px;
+                    margin-top:25px;
+                    flex-wrap:wrap;
+                ">
+
+                    <button
+                        class="btn btn-primary"
+                        onclick="toggleWatchlist(${movie.id})">
+
+                        ${isSaved
+                            ? "✓ Remove from My List"
+                            : "+ Add to My List"}
+
+                    </button>
+
+                    <button
+                        class="btn btn-secondary"
+                        onclick="startWatching(${movie.id})">
+
+                        ▶ Start Watching
+
+                    </button>
+
+                </div>
+
+            </div>
+
+        </div>
+    `;
+
+    modal.classList.add("active");
+
+    document.body.style.overflow = "hidden";
+}
+
+
+/* =========================================================
+   CLOSE MODAL
+   ========================================================= */
+
+function closeMovieModal() {
+
+    const modal = document.querySelector("#movieModal");
+
+    if (!modal) return;
+
+    modal.classList.remove("active");
+
+    const iframe = modal.querySelector("iframe");
+
+    if (iframe) {
+        iframe.src = "";
+    }
+
+    document.body.style.overflow = "";
+}
+
+
+/* =========================================================
+   WATCHLIST
+   ========================================================= */
+
+function toggleWatchlist(id) {
+
+    let list = getWatchlist();
+
+    if (list.includes(id)) {
+
+        list = list.filter(movieId => movieId !== id);
+
+        showToast("Removed from My List");
+
+    } else {
+
+        list.push(id);
+
+        showToast("Added to My List");
+    }
+
+    saveWatchlist(list);
+
+    renderWatchlist();
+
+    openMovieModal(id);
+}
+
+
+function renderWatchlist() {
+
+    const container =
+        document.querySelector("#watchlistGrid");
+
+    if (!container) return;
+
+    const list = getWatchlist();
+
+    const selectedMovies =
+        movies.filter(movie => list.includes(movie.id));
+
+    container.innerHTML = "";
+
+    if (!selectedMovies.length) {
+
+        container.innerHTML = `
+            <div class="empty-state">
+                <div>
+                    <h3>Your list is empty</h3>
+                    <p>Add movies to watch later.</p>
+                </div>
+            </div>
+        `;
+
+        return;
+    }
+
+    selectedMovies.forEach(movie => {
+
+        container.insertAdjacentHTML(
+            "beforeend",
+            createMovieCard(movie)
+        );
+    });
+}
+
+
+/* =========================================================
+   CONTINUE WATCHING
+   ========================================================= */
+
+function startWatching(id) {
+
+    const movie = movies.find(item => item.id === id);
+
+    if (!movie) return;
+
+    let list = getContinueWatching();
+
+    const existing =
+        list.find(item => item.id === id);
+
+    if (!existing) {
+
+        list.push({
+            id: id,
+            progress: 5
+        });
+
+    } else {
+
+        existing.progress =
+            Math.min(existing.progress + 5, 95);
+    }
+
+    saveContinueWatching(list);
+
+    renderContinueWatching();
+
+    closeMovieModal();
+
+    showToast(`Continuing ${movie.title}`);
+}
+
+
+function renderContinueWatching() {
+
+    const container =
+        document.querySelector("#continueGrid");
+
+    if (!container) return;
+
+    const list = getContinueWatching();
+
+    container.innerHTML = "";
+
+    if (!list.length) {
+
+        container.innerHTML = `
+            <div class="empty-state">
+                <div>
+                    <h3>No movies started yet</h3>
+                    <p>Your progress will appear here.</p>
+                </div>
+            </div>
+        `;
+
+        return;
+    }
+
+    list.forEach(item => {
+
+        const movie =
+            movies.find(m => m.id === item.id);
+
+        if (!movie) return;
+
+        container.insertAdjacentHTML(
+            "beforeend",
+
+            `
+            <article
+                class="movie-card continue-card"
+                onclick="openMovieModal(${movie.id})">
+
+                <img
+                    src="${movie.image}"
+                    alt="${movie.title}"
+                    onerror="this.style.display='none'"
+                >
+
+                <div class="movie-info">
+
+                    <div class="movie-title">
+                        ${movie.title}
+                    </div>
+
+                    <div class="movie-meta">
+                        ${item.progress}% watched
+                    </div>
+
+                </div>
+
+                <div class="progress-container">
+
+                    <div
+                        class="progress-bar"
+                        style="width:${item.progress}%">
+                    </div>
+
+                </div>
+
+            </article>
+            `
+        );
+    });
+}
+
+
+/* =========================================================
+   TOAST
+   ========================================================= */
+
+function showToast(message) {
+
+    let toast =
+        document.querySelector("#cineToast");
+
+    if (!toast) {
+
+        toast = document.createElement("div");
+
+        toast.id = "cineToast";
+
+        toast.className = "toast";
+
+        document.body.appendChild(toast);
+    }
+
+    toast.textContent = message;
+
+    toast.classList.add("show");
+
+    clearTimeout(window.cineToastTimer);
+
+    window.cineToastTimer =
+        setTimeout(() => {
 
             toast.classList.remove("show");
 
         }, 2200);
-    }
+}
 
 
-    window.showToast = showToast;
+/* =========================================================
+   NAVIGATION
+   ========================================================= */
 
+function setupNavigation() {
 
-    /* =========================================================
-       WATCHLIST
-    ========================================================= */
+    document.querySelectorAll("[data-scroll]").forEach(link => {
 
-    window.addToWatchlist = function(movieName) {
+        link.addEventListener("click", event => {
 
-        if (!movies[movieName]) return;
+            event.preventDefault();
 
-        if (!watchlist.includes(movieName)) {
-
-            watchlist.push(movieName);
-
-            saveWatchlist();
-
-            showToast(`❤️ ${movieName} added to My List`);
-
-        } else {
-
-            showToast(`✓ ${movieName} is already in My List`);
-        }
-
-        renderWatchlist();
-    };
-
-
-    window.removeFromWatchlist = function(movieName) {
-
-        watchlist = watchlist.filter(
-            item => item !== movieName
-        );
-
-        saveWatchlist();
-
-        renderWatchlist();
-
-        showToast(`Removed ${movieName} from My List`);
-    };
-
-
-    function renderWatchlist() {
-
-        const container =
-            document.getElementById("watchlistItems");
-
-        if (!container) return;
-
-
-        if (watchlist.length === 0) {
-
-            container.innerHTML = `
-                <div class="empty-watchlist">
-
-                    <div class="empty-icon">♡</div>
-
-                    <h3>Your List Is Empty</h3>
-
-                    <p>
-                        Add movies and series to watch them later.
-                    </p>
-
-                </div>
-            `;
-
-            return;
-        }
-
-
-        container.innerHTML = watchlist.map(movieName => {
-
-            const movie = movies[movieName];
-
-            if (!movie) return "";
-
-
-            return `
-                <article class="movie-card advanced-watch-card">
-
-                    <div class="movie-image-wrapper">
-
-                        <img
-                            src="${movie.image}"
-                            alt="${movie.title}"
-                            loading="lazy"
-                        >
-
-                        <div class="movie-overlay">
-
-                            <button
-                                class="watch-btn"
-                                onclick="playMovie('${movie.title}')"
-                            >
-                                ▶ Watch
-                            </button>
-
-                            <button
-                                class="remove-btn"
-                                onclick="removeFromWatchlist('${movie.title}')"
-                            >
-                                Remove
-                            </button>
-
-                        </div>
-
-                    </div>
-
-
-                    <div class="movie-info">
-
-                        <h3>${movie.title}</h3>
-
-                        <p>
-                            ${movie.genre}
-                            •
-                            ${movie.year}
-                        </p>
-
-                    </div>
-
-                </article>
-            `;
-
-        }).join("");
-    }
-
-
-    /* =========================================================
-       CONTINUE WATCHING
-    ========================================================= */
-
-    function addContinueWatching(movieName, progress = null) {
-
-        const movie = movies[movieName];
-
-        if (!movie) return;
-
-
-        if (progress === null) {
-
-            progress = continueWatching[movieName]?.progress || 8;
-        }
-
-
-        progress = Math.min(
-            Math.max(Number(progress), 0),
-            99
-        );
-
-
-        continueWatching[movieName] = {
-
-            title: movieName,
-
-            progress: progress,
-
-            lastWatched: Date.now(),
-
-            image: movie.image,
-
-            duration: movie.duration,
-
-            genre: movie.genre
-
-        };
-
-
-        saveContinueWatching();
-
-        renderContinueWatching();
-    }
-
-
-    window.removeContinueWatching = function(movieName) {
-
-        delete continueWatching[movieName];
-
-        saveContinueWatching();
-
-        renderContinueWatching();
-
-        showToast(`${movieName} removed from Continue Watching`);
-    };
-
-
-    window.resumeMovie = function(movieName) {
-
-        if (!movies[movieName]) return;
-
-        const saved =
-            continueWatching[movieName];
-
-        const currentProgress =
-            saved?.progress || 5;
-
-
-        openMovieModal(
-            movieName,
-            currentProgress
-        );
-    };
-
-
-    function renderContinueWatching() {
-
-        const container =
-            document.getElementById("continueWatchingItems");
-
-        if (!container) return;
-
-
-        const items =
-            Object.values(continueWatching)
-                .sort(
-                    (a, b) =>
-                        b.lastWatched - a.lastWatched
+            const target =
+                document.querySelector(
+                    link.dataset.scroll
                 );
 
-
-        if (items.length === 0) {
-
-            container.innerHTML = `
-                <div class="continue-empty">
-
-                    <div class="continue-empty-icon">
-                        ▶
-                    </div>
-
-                    <h3>
-                        Nothing To Continue
-                    </h3>
-
-                    <p>
-                        Start watching something and your
-                        progress will appear here.
-                    </p>
-
-                </div>
-            `;
-
-            return;
-        }
-
-
-        container.innerHTML = items.map(item => {
-
-            const movie = movies[item.title];
-
-            if (!movie) return "";
-
-
-            return `
-                <article
-                    class="continue-card"
-                    data-movie="${movie.title}"
-                >
-
-                    <div class="continue-image">
-
-                        <img
-                            src="${movie.image}"
-                            alt="${movie.title}"
-                            loading="lazy"
-                        >
-
-                        <button
-                            class="continue-play"
-                            onclick="resumeMovie('${movie.title}')"
-                            aria-label="Resume ${movie.title}"
-                        >
-                            ▶
-                        </button>
-
-                        <div
-                            class="continue-progress"
-                            style="width:${item.progress}%"
-                        ></div>
-
-                    </div>
-
-
-                    <div class="continue-info">
-
-                        <div class="continue-heading">
-
-                            <h3>
-                                ${movie.title}
-                            </h3>
-
-                            <button
-                                class="continue-remove"
-                                onclick="removeContinueWatching('${movie.title}')"
-                                title="Remove"
-                            >
-                                ×
-                            </button>
-
-                        </div>
-
-
-                        <p>
-                            ${movie.genre}
-                            •
-                            ${movie.year}
-                        </p>
-
-
-                        <div class="continue-meta">
-
-                            <span>
-                                ${item.progress}% watched
-                            </span>
-
-                            <span>
-                                ${movie.duration}
-                            </span>
-
-                        </div>
-
-
-                        <button
-                            class="continue-resume"
-                            onclick="resumeMovie('${movie.title}')"
-                        >
-                            ▶ Continue Watching
-                        </button>
-
-                    </div>
-
-                </article>
-            `;
-
-        }).join("");
-    }
-
-
-    /* =========================================================
-       MOVIE MODAL
-    ========================================================= */
-
-    let currentMovie = null;
-
-
-    function createMovieModal() {
-
-        if (document.getElementById("movieModal")) {
-            return;
-        }
-
-
-        const modal = document.createElement("div");
-
-        modal.id = "movieModal";
-
-        modal.innerHTML = `
-
-            <div class="movie-modal-backdrop"></div>
-
-            <div
-                class="movie-modal"
-                role="dialog"
-                aria-modal="true"
-            >
-
-                <button
-                    class="movie-modal-close"
-                    id="movieModalClose"
-                    aria-label="Close"
-                >
-                    ×
-                </button>
-
-
-                <div class="movie-player">
-
-                    <div
-                        class="movie-player-loader"
-                        id="moviePlayerLoader"
-                    >
-                        <div class="movie-spinner"></div>
-                        <span>Loading...</span>
-                    </div>
-
-
-                    <iframe
-                        id="movieTrailer"
-                        src=""
-                        title="CineVerse Trailer"
-                        allow="autoplay; encrypted-media; picture-in-picture"
-                        allowfullscreen
-                    ></iframe>
-
-                </div>
-
-
-                <div class="movie-modal-content">
-
-                    <div class="movie-modal-top">
-
-                        <div>
-
-                            <span
-                                class="modal-label"
-                                id="modalType"
-                            >
-                                MOVIE
-                            </span>
-
-                            <h2 id="modalTitle">
-                                Movie Title
-                            </h2>
-
-                        </div>
-
-                    </div>
-
-
-                    <div
-                        class="movie-modal-meta"
-                        id="modalMeta"
-                    ></div>
-
-
-                    <p
-                        class="movie-modal-description"
-                        id="modalDescription"
-                    ></p>
-
-
-                    <div class="modal-progress-area">
-
-                        <div class="modal-progress-header">
-
-                            <span>
-                                Your Progress
-                            </span>
-
-                            <strong
-                                id="modalProgressText"
-                            >
-                                0%
-                            </strong>
-
-                        </div>
-
-
-                        <input
-                            type="range"
-                            id="movieProgress"
-                            min="0"
-                            max="99"
-                            value="0"
-                        >
-
-                    </div>
-
-
-                    <div class="movie-modal-actions">
-
-                        <button
-                            class="modal-watch-btn"
-                            id="modalWatchButton"
-                        >
-                            ▶ Watch / Resume
-                        </button>
-
-                        <button
-                            class="modal-list-btn"
-                            id="modalListButton"
-                        >
-                            + My List
-                        </button>
-
-                    </div>
-
-                </div>
-
-            </div>
-        `;
-
-
-        document.body.appendChild(modal);
-
-
-        document
-            .getElementById("movieModalClose")
-            .addEventListener(
-                "click",
-                closeMovieModal
-            );
-
-
-        document
-            .querySelector(".movie-modal-backdrop")
-            .addEventListener(
-                "click",
-                closeMovieModal
-            );
-
-
-        document
-            .getElementById("movieProgress")
-            .addEventListener(
-                "input",
-                updateModalProgress
-            );
-
-
-        document
-            .getElementById("modalWatchButton")
-            .addEventListener(
-                "click",
-                () => {
-
-                    if (!currentMovie) return;
-
-                    const slider =
-                        document.getElementById(
-                            "movieProgress"
-                        );
-
-                    addContinueWatching(
-                        currentMovie,
-                        Number(slider.value)
-                    );
-
-                    showToast(
-                        `▶ Resuming ${currentMovie}`
-                    );
-                }
-            );
-
-
-        document
-            .getElementById("modalListButton")
-            .addEventListener(
-                "click",
-                () => {
-
-                    if (!currentMovie) return;
-
-                    addToWatchlist(currentMovie);
-                }
-            );
-    }
-
-
-    function updateModalProgress(event) {
-
-        const value =
-            Number(event.target.value);
-
-
-        document.getElementById(
-            "modalProgressText"
-        ).textContent = `${value}%`;
-
-
-        if (currentMovie) {
-
-            continueWatching[currentMovie] = {
-
-                ...(continueWatching[currentMovie] || {}),
-
-                title: currentMovie,
-
-                progress: value,
-
-                lastWatched: Date.now(),
-
-                image: movies[currentMovie].image,
-
-                duration: movies[currentMovie].duration,
-
-                genre: movies[currentMovie].genre
-            };
-
-
-            saveContinueWatching();
-
-            renderContinueWatching();
-        }
-    }
-
-
-    function openMovieModal(movieName, progress = null) {
-
-        const movie = movies[movieName];
-
-        if (!movie) {
-
-            showToast("Movie information not found");
-
-            return;
-        }
-
-
-        createMovieModal();
-
-        currentMovie = movieName;
-
-
-        const modal =
-            document.getElementById("movieModal");
-
-
-        const iframe =
-            document.getElementById("movieTrailer");
-
-
-        const loader =
-            document.getElementById("moviePlayerLoader");
-
-
-        const saved =
-            continueWatching[movieName];
-
-
-        const currentProgress =
-            progress !== null
-                ? progress
-                : saved?.progress || 0;
-
-
-        document.getElementById(
-            "modalTitle"
-        ).textContent = movie.title;
-
-
-        document.getElementById(
-            "modalType"
-        ).textContent = movie.type;
-
-
-        document.getElementById(
-            "modalMeta"
-        ).innerHTML = `
-            <span>${movie.genre}</span>
-            <span>${movie.year}</span>
-            <span>${movie.duration}</span>
-        `;
-
-
-        document.getElementById(
-            "modalDescription"
-        ).textContent =
-            movie.description;
-
-
-        const progressSlider =
-            document.getElementById(
-                "movieProgress"
-            );
-
-
-        progressSlider.value =
-            currentProgress;
-
-
-        document.getElementById(
-            "modalProgressText"
-        ).textContent =
-            `${currentProgress}%`;
-
-
-        loader.classList.remove("hidden");
-
-
-        iframe.onload = () => {
-
-            loader.classList.add("hidden");
-
-        };
-
-
-        iframe.src =
-            `${movie.trailer}?autoplay=1&rel=0`;
-
-
-        modal.classList.add("show");
-
-        document.body.classList.add(
-            "modal-open"
-        );
-
-
-        addContinueWatching(
-            movieName,
-            currentProgress || 1
-        );
-    }
-
-
-    function closeMovieModal() {
-
-        const modal =
-            document.getElementById("movieModal");
-
-
-        const iframe =
-            document.getElementById("movieTrailer");
-
-
-        if (!modal) return;
-
-
-        modal.classList.remove("show");
-
-        document.body.classList.remove(
-            "modal-open"
-        );
-
-
-        if (iframe) {
-
-            iframe.src = "";
-        }
-
-
-        currentMovie = null;
-    }
-
-
-    window.playMovie = function(movieName) {
-
-        openMovieModal(movieName);
-    };
-
-
-    /* =========================================================
-       ESCAPE KEY
-    ========================================================= */
-
-    document.addEventListener(
-        "keydown",
-        event => {
-
-            if (
-                event.key === "Escape" &&
-                document.getElementById("movieModal")
-            ) {
-
-                closeMovieModal();
+            if (target) {
+
+                target.scrollIntoView({
+                    behavior: "smooth"
+                });
             }
-
-        }
-    );
-
-
-    /* =========================================================
-       THEME
-    ========================================================= */
-
-    const themeButton =
-        document.getElementById("themeToggle");
+        });
+    });
+}
 
 
-    if (themeButton) {
+/* =========================================================
+   SEARCH INPUT AUTO DETECTION
+   ========================================================= */
 
-        const savedTheme =
-            localStorage.getItem(
-                "cineverseTheme"
-            );
+function setupSearch() {
 
-
-        if (savedTheme === "light") {
-
-            document.body.classList.add(
-                "light-theme"
-            );
-        }
-
-
-        themeButton.addEventListener(
-            "click",
-            () => {
-
-                document.body.classList.toggle(
-                    "light-theme"
-                );
-
-
-                const isLight =
-                    document.body.classList.contains(
-                        "light-theme"
-                    );
-
-
-                localStorage.setItem(
-                    "cineverseTheme",
-                    isLight
-                        ? "light"
-                        : "dark"
-                );
-            }
+    const input =
+        document.querySelector(
+            "#movieSearch, .search-input"
         );
+
+    if (!input) return;
+
+    input.addEventListener("input", event => {
+
+        searchMovies(event.target.value);
+    });
+}
+
+
+/* =========================================================
+   ESC KEY
+   ========================================================= */
+
+document.addEventListener("keydown", event => {
+
+    if (event.key === "Escape") {
+        closeMovieModal();
+    }
+});
+
+
+/* =========================================================
+   MODAL BACKGROUND CLICK
+   ========================================================= */
+
+document.addEventListener("click", event => {
+
+    if (event.target.classList.contains("modal")) {
+        closeMovieModal();
+    }
+});
+
+
+/* =========================================================
+   IMAGE FALLBACK
+   ========================================================= */
+
+document.addEventListener("error", event => {
+
+    if (
+        event.target.tagName === "IMG" &&
+        event.target.classList.contains("movie-image")
+    ) {
+
+        event.target.style.display = "none";
     }
 
+}, true);
 
-    /* =========================================================
-       NAVBAR SCROLL
-    ========================================================= */
 
-    const navbar =
-        document.querySelector(".navbar");
+/* =========================================================
+   INITIALIZE
+   ========================================================= */
 
+document.addEventListener("DOMContentLoaded", () => {
 
-    window.addEventListener(
-        "scroll",
-        () => {
+    createGenreFilters();
 
-            if (!navbar) return;
-
-
-            navbar.classList.toggle(
-                "scrolled",
-                window.scrollY > 40
-            );
-
-        }
-    );
-
-
-    /* =========================================================
-       REVEAL ANIMATIONS
-    ========================================================= */
-
-    const revealElements =
-        document.querySelectorAll(".reveal");
-
-
-    if ("IntersectionObserver" in window) {
-
-        const observer =
-            new IntersectionObserver(
-                entries => {
-
-                    entries.forEach(entry => {
-
-                        if (entry.isIntersecting) {
-
-                            entry.target.classList.add(
-                                "active"
-                            );
-
-                        }
-
-                    });
-
-                },
-                {
-                    threshold: 0.12
-                }
-            );
-
-
-        revealElements.forEach(
-            element =>
-                observer.observe(element)
-        );
-    } else {
-
-        revealElements.forEach(
-            element =>
-                element.classList.add("active")
-        );
-    }
-
-
-    /* =========================================================
-       3D CARD EFFECT
-    ========================================================= */
-
-    document
-        .querySelectorAll(".movie-card")
-        .forEach(card => {
-
-            card.addEventListener(
-                "mousemove",
-                event => {
-
-                    const rect =
-                        card.getBoundingClientRect();
-
-
-                    const x =
-                        event.clientX -
-                        rect.left;
-
-
-                    const y =
-                        event.clientY -
-                        rect.top;
-
-
-                    const rotateX =
-                        ((y / rect.height) - 0.5) * -6;
-
-
-                    const rotateY =
-                        ((x / rect.width) - 0.5) * 6;
-
-
-                    card.style.transform =
-                        `perspective(900px)
-                         rotateX(${rotateX}deg)
-                         rotateY(${rotateY}deg)
-                         translateY(-6px)`;
-                }
-            );
-
-
-            card.addEventListener(
-                "mouseleave",
-                () => {
-
-                    card.style.transform = "";
-                }
-            );
-
-        });
-
-
-    /* =========================================================
-       SMOOTH NAVIGATION
-    ========================================================= */
-
-    document
-        .querySelectorAll('a[href^="#"]')
-        .forEach(link => {
-
-            link.addEventListener(
-                "click",
-                event => {
-
-                    const targetId =
-                        link.getAttribute("href");
-
-
-                    if (
-                        !targetId ||
-                        targetId === "#"
-                    ) return;
-
-
-                    const target =
-                        document.querySelector(
-                            targetId
-                        );
-
-
-                    if (!target) return;
-
-
-                    event.preventDefault();
-
-
-                    target.scrollIntoView({
-                        behavior: "smooth",
-                        block: "start"
-                    });
-                }
-            );
-        });
-
-
-    /* =========================================================
-       IMAGE FALLBACK
-    ========================================================= */
-
-    document
-        .querySelectorAll("img")
-        .forEach(img => {
-
-            img.addEventListener(
-                "error",
-                () => {
-
-                    img.style.background =
-                        "linear-gradient(135deg,#111,#222)";
-
-                    img.removeAttribute("src");
-                }
-            );
-
-        });
-
-
-    /* =========================================================
-       CREATE CONTINUE WATCHING SECTION
-       ONLY IF IT DOES NOT ALREADY EXIST
-    ========================================================= */
-
-    function createContinueWatchingSection() {
-
-        if (
-            document.getElementById(
-                "continueWatchingSection"
-            )
-        ) {
-            return;
-        }
-
-
-        const watchlistSection =
-            document.getElementById(
-                "watchlistItems"
-            )?.closest("section");
-
-
-        if (!watchlistSection) return;
-
-
-        const section =
-            document.createElement("section");
-
-
-        section.id =
-            "continueWatchingSection";
-
-
-        section.className =
-            "content-section reveal";
-
-
-        section.innerHTML = `
-
-            <div class="section-header">
-
-                <div>
-
-                    <span class="section-kicker">
-                        KEEP WATCHING
-                    </span>
-
-                    <h2>
-                        Continue Watching
-                    </h2>
-
-                </div>
-
-                <span
-                    class="continue-live-indicator"
-                >
-                    ● LIVE PROGRESS
-                </span>
-
-            </div>
-
-
-            <div
-                id="continueWatchingItems"
-                class="continue-grid"
-            ></div>
-
-        `;
-
-
-        watchlistSection.parentNode.insertBefore(
-            section,
-            watchlistSection
-        );
-    }
-
-
-    /* =========================================================
-       INITIALIZE
-    ========================================================= */
-
-    createContinueWatchingSection();
+    renderMovies();
 
     renderWatchlist();
 
     renderContinueWatching();
+
+    setupSearch();
+
+    setupNavigation();
+
+    console.log(
+        "CineVerse loaded successfully."
+    );
 
 });

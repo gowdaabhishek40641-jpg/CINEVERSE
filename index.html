@@ -1,735 +1,494 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="theme-color" content="#080808">
-    <title>CineVerse — OTT Streaming</title>
-    <link rel="stylesheet" href="style.css">
+
+    <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1.0">
+
+    <meta
+        name="description"
+        content="CineVerse — A cinematic movie discovery experience.">
+
+    <meta
+        name="theme-color"
+        content="#080808">
+
+    <title>CineVerse — Enter The Story</title>
+
+    <!-- Google Font -->
+    <link
+        rel="preconnect"
+        href="https://fonts.googleapis.com">
+
+    <link
+        rel="preconnect"
+        href="https://fonts.gstatic.com"
+        crossorigin>
+
+    <link
+        href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Playfair+Display:wght@500;600;700&display=swap"
+        rel="stylesheet">
+
+    <!-- Main CSS -->
+    <link
+        rel="stylesheet"
+        href="style.css">
 </head>
 
 <body>
 
-<div id="preloader">
-    <div class="loader">
-        <div class="loader-orbit"><span></span><span></span><span></span></div>
-        <div class="loader-circle"></div>
-        <h2>Cine<span>Verse</span></h2>
-        <p>ENTERING YOUR ENTERTAINMENT UNIVERSE</p>
-        <div class="loading-bar"><span></span></div>
-    </div>
-</div>
+    <!-- =====================================================
+         PAGE LOADER
+    ====================================================== -->
 
-<div class="background-effects" aria-hidden="true">
-    <span></span><span></span><span></span><span></span><span></span>
-    <i></i><i></i><i></i>
-</div>
+    <div
+        id="pageLoader"
+        class="page-loader">
 
-<header class="navbar" id="navbar">
+        <div class="loader-content">
 
-    <a class="logo" href="#home">Cine<span>Verse</span></a>
+            <div class="loader-logo">
+                CINE<span>VERSE</span>
+            </div>
 
-    <nav>
-        <a href="#home">Home</a>
-        <a href="#trending">Trending</a>
-        <a href="#movies">Movies</a>
-        <a href="#series">Series</a>
-        <a href="#watchlist">My List</a>
-    </nav>
+            <div class="loader-line">
+                <span></span>
+            </div>
 
-    <div class="nav-actions">
-        <button id="searchBtn" class="icon-btn" aria-label="Search">⌕</button>
-        <button id="themeBtn" class="theme-btn">🌙</button>
-        <button id="menuBtn" class="menu-btn">☰</button>
-    </div>
-</header>
-
-<!-- SEARCH PANEL -->
-
-<div class="search-panel" id="searchPanel">
-
-    <div class="search-box">
-
-        <div class="search-input-wrapper">
-            <span>⌕</span>
-
-            <input
-                type="search"
-                id="searchInput"
-                placeholder="Search movies, series or genres..."
-                autocomplete="off"
-            >
-
-            <button id="closeSearch">✕</button>
-        </div>
-
-        <div class="search-meta">
-            <span id="searchResultCount">Browse the CineVerse</span>
-            <button id="clearSearch">Clear</button>
-        </div>
-
-    </div>
-
-</div>
-
-<main>
-
-<section class="hero" id="home">
-
-    <div class="hero-overlay"></div>
-
-    <div class="hero-content">
-
-        <p class="eyebrow">
-            <span></span>
-            CINEVERSE ORIGINAL
-        </p>
-
-        <h1>
-            Beyond<br>
-            <em>The Void</em>
-        </h1>
-
-        <p class="hero-description">
-            Enter a world beyond imagination.
-            Discover movies, series and entertainment
-            from across the universe.
-        </p>
-
-        <div class="hero-meta">
-            <span>2026</span>
-            <b>•</b>
-            <span>16+</span>
-            <b>•</b>
-            <span>Sci-Fi</span>
-            <b>•</b>
-            <span>2h 18m</span>
-        </div>
-
-        <div class="hero-buttons">
-
-            <button
-                class="primary-btn magnetic"
-                onclick="playMovie('Beyond The Void')">
-                ▶ Play Now
-            </button>
-
-            <button
-                class="secondary-btn magnetic"
-                onclick="addToWatchlist('Beyond The Void')">
-                ＋ My List
-            </button>
+            <p>
+                ENTER THE STORY
+            </p>
 
         </div>
 
     </div>
 
-    <div class="hero-side-label">
-        STREAM / DISCOVER / REPEAT
-    </div>
 
-    <div class="scroll-indicator">
-        <span>Scroll to explore</span>
-        <div>↓</div>
-    </div>
+    <!-- =====================================================
+         NAVIGATION
+    ====================================================== -->
 
-</section>
+    <header
+        class="navbar"
+        id="navbar">
 
+        <div class="nav-container">
 
-<!-- DISCOVER -->
+            <a
+                href="#home"
+                class="brand">
 
-<section class="section discover-section reveal">
-
-    <div class="section-title">
-
-        <span class="section-line"></span>
-
-        <div>
-            <p class="section-kicker">DISCOVER</p>
-            <h2>Find Your Next Story</h2>
-        </div>
-
-    </div>
-
-    <div class="filter-bar">
-
-        <button class="filter-btn active" data-filter="all">
-            All
-        </button>
-
-        <button class="filter-btn" data-filter="action">
-            Action
-        </button>
-
-        <button class="filter-btn" data-filter="sci-fi">
-            Sci-Fi
-        </button>
-
-        <button class="filter-btn" data-filter="thriller">
-            Thriller
-        </button>
-
-        <button class="filter-btn" data-filter="series">
-            Series
-        </button>
-
-        <button class="filter-btn" data-filter="movie">
-            Movies
-        </button>
-
-    </div>
-
-</section>
-
-
-<!-- CONTINUE -->
-
-<section class="section reveal" id="continue">
-
-    <div class="section-title">
-
-        <span class="section-line"></span>
-
-        <div>
-            <p class="section-kicker">YOUR JOURNEY</p>
-            <h2>Continue Watching</h2>
-        </div>
-
-    </div>
-
-    <div class="movie-container">
-
-        <article
-            class="movie-card tilt-card searchable-card"
-            data-title="Lost Galaxy"
-            data-genre="sci-fi movie"
-            data-type="movie">
-
-            <div class="image-wrapper">
-
-                <img
-                    src="https://images.unsplash.com/photo-1485846234645-a62644f84728?auto=format&fit=crop&w=900&q=85"
-                    alt="Lost Galaxy">
-
-                <div class="image-overlay">
-                    <button onclick="playMovie('Lost Galaxy')">
-                        ▶
-                    </button>
-                </div>
-
-                <span class="card-badge">
-                    65% WATCHED
+                <span class="brand-main">
+                    CINE
                 </span>
 
-            </div>
-
-            <div class="movie-info">
-
-                <h3>Lost Galaxy</h3>
-
-                <p>Sci-Fi • Movie • 1h 48m</p>
-
-                <div class="progress">
-                    <span style="width:65%"></span>
-                </div>
-
-                <button onclick="playMovie('Lost Galaxy')">
-                    Continue <span>→</span>
-                </button>
-
-            </div>
-
-        </article>
-
-
-        <article
-            class="movie-card tilt-card searchable-card"
-            data-title="Dark Future"
-            data-genre="thriller series"
-            data-type="series">
-
-            <div class="image-wrapper">
-
-                <img
-                    src="https://images.unsplash.com/photo-1517604931442-7e0c8ed2963c?auto=format&fit=crop&w=900&q=85"
-                    alt="Dark Future">
-
-                <div class="image-overlay">
-                    <button onclick="playMovie('Dark Future')">
-                        ▶
-                    </button>
-                </div>
-
-                <span class="card-badge">
-                    45% WATCHED
+                <span class="brand-accent">
+                    VERSE
                 </span>
 
-            </div>
+            </a>
 
-            <div class="movie-info">
 
-                <h3>Dark Future</h3>
+            <nav class="nav-links">
 
-                <p>Thriller • Series • S1 E4</p>
+                <a href="#home">
+                    Home
+                </a>
 
-                <div class="progress">
-                    <span style="width:45%"></span>
-                </div>
+                <a href="#discovery-section">
+                    Discover
+                </a>
 
-                <button onclick="playMovie('Dark Future')">
-                    Continue <span>→</span>
+                <a href="#cineverse-continue">
+                    Continue
+                </a>
+
+                <a href="#cineverse-watchlist">
+                    My List
+                </a>
+
+            </nav>
+
+
+            <div class="nav-actions">
+
+                <button
+                    class="nav-icon theme-toggle"
+                    id="themeToggle"
+                    aria-label="Toggle theme">
+
+                    ◐
+
+                </button>
+
+                <button
+                    class="profile-button"
+                    aria-label="Profile">
+
+                    <span>
+                        A
+                    </span>
+
                 </button>
 
             </div>
 
-        </article>
+        </div>
+
+    </header>
 
 
-        <article
-            class="movie-card tilt-card searchable-card"
-            data-title="Last Mission"
-            data-genre="action movie"
-            data-type="movie">
+    <!-- =====================================================
+         HERO
+    ====================================================== -->
 
-            <div class="image-wrapper">
+    <main>
 
-                <img
-                    src="https://images.unsplash.com/photo-1440404653325-ab127d49abc1?auto=format&fit=crop&w=900&q=85"
-                    alt="Last Mission">
+        <section
+            id="home"
+            class="hero">
 
-                <div class="image-overlay">
-                    <button onclick="playMovie('Last Mission')">
-                        ▶
-                    </button>
-                </div>
+            <div class="hero-background">
 
-                <span class="card-badge">
-                    30% WATCHED
+                <div class="hero-image"></div>
+
+                <div class="hero-gradient"></div>
+
+                <div class="hero-grid"></div>
+
+            </div>
+
+
+            <div class="hero-content">
+
+                <span class="hero-kicker">
+                    CINEVERSE ORIGINAL
                 </span>
 
-            </div>
+                <h1>
+                    ENTER
+                    <br>
+                    <span>THE STORY.</span>
+                </h1>
 
-            <div class="movie-info">
+                <p class="hero-description">
+                    Discover cinematic worlds, unforgettable
+                    characters and stories that stay with you.
+                </p>
 
-                <h3>Last Mission</h3>
 
-                <p>Action • Movie • 2h 05m</p>
+                <div class="hero-actions">
 
-                <div class="progress">
-                    <span style="width:30%"></span>
+                    <a
+                        href="#discovery-section"
+                        class="hero-primary">
+
+                        EXPLORE MOVIES
+                        <span>→</span>
+
+                    </a>
+
+                    <button
+                        class="hero-secondary"
+                        onclick="openMovie(1)">
+
+                        ▶ WATCH FEATURED
+
+                    </button>
+
                 </div>
 
-                <button onclick="playMovie('Last Mission')">
-                    Continue <span>→</span>
-                </button>
+
+                <div class="hero-meta">
+
+                    <div>
+                        <strong>
+                            13+
+                        </strong>
+
+                        <span>
+                            Titles
+                        </span>
+                    </div>
+
+                    <div>
+                        <strong>
+                            4K
+                        </strong>
+
+                        <span>
+                            Experience
+                        </span>
+                    </div>
+
+                    <div>
+                        <strong>
+                            ∞
+                        </strong>
+
+                        <span>
+                            Stories
+                        </span>
+                    </div>
+
+                </div>
 
             </div>
 
-        </article>
 
-    </div>
+            <div class="hero-scroll">
 
-</section>
+                <span>
+                    SCROLL TO DISCOVER
+                </span>
+
+                <div class="scroll-line"></div>
+
+            </div>
+
+        </section>
 
 
-<!-- TRENDING -->
+        <!-- =================================================
+             FEATURED STRIP
+        ================================================== -->
 
-<section class="section reveal" id="trending">
+        <section
+            class="featured-strip">
 
-    <div class="section-title">
+            <div class="featured-item">
 
-        <span class="section-line"></span>
+                <span class="featured-number">
+                    01
+                </span>
 
-        <div>
-            <p class="section-kicker">WHAT'S HOT</p>
-            <h2>🔥 Trending Now</h2>
+                <div>
+                    <small>
+                        FEATURED
+                    </small>
+
+                    <strong>
+                        Beyond The Void
+                    </strong>
+                </div>
+
+            </div>
+
+
+            <div class="featured-item">
+
+                <span class="featured-number">
+                    02
+                </span>
+
+                <div>
+                    <small>
+                        TRENDING
+                    </small>
+
+                    <strong>
+                        Final Code
+                    </strong>
+                </div>
+
+            </div>
+
+
+            <div class="featured-item">
+
+                <span class="featured-number">
+                    03
+                </span>
+
+                <div>
+                    <small>
+                        TOP RATED
+                    </small>
+
+                    <strong>
+                        Dark Protocol
+                    </strong>
+                </div>
+
+            </div>
+
+        </section>
+
+
+        <!-- =================================================
+             DISCOVERY
+             script.js creates the full section here
+        ================================================== -->
+
+        <div id="discovery-container"></div>
+
+
+        <!-- =================================================
+             CONTINUE WATCHING
+             script.js creates this section
+        ================================================== -->
+
+        <div id="continue-container"></div>
+
+
+        <!-- =================================================
+             WATCHLIST
+             script.js creates this section
+        ================================================== -->
+
+        <div id="watchlist-container"></div>
+
+
+        <!-- =================================================
+             CINEMATIC CTA
+        ================================================== -->
+
+        <section
+            class="cinematic-cta">
+
+            <div class="cta-glow"></div>
+
+            <div class="cta-content">
+
+                <span class="section-kicker">
+                    YOUR NEXT STORY
+                </span>
+
+                <h2>
+                    THERE IS ALWAYS
+                    <br>
+                    <span>ANOTHER WORLD.</span>
+                </h2>
+
+                <p>
+                    Search. Discover. Watch.
+                    Build your own cinematic universe.
+                </p>
+
+                <a
+                    href="#discovery-section"
+                    class="cta-button">
+
+                    START EXPLORING
+                    <span>→</span>
+
+                </a>
+
+            </div>
+
+        </section>
+
+    </main>
+
+
+    <!-- =====================================================
+         FOOTER
+    ====================================================== -->
+
+    <footer class="footer">
+
+        <div class="footer-top">
+
+            <div class="footer-brand">
+
+                <div class="brand">
+
+                    <span class="brand-main">
+                        CINE
+                    </span>
+
+                    <span class="brand-accent">
+                        VERSE
+                    </span>
+
+                </div>
+
+                <p>
+                    Your cinematic universe.
+                </p>
+
+            </div>
+
+
+            <div class="footer-links">
+
+                <div>
+
+                    <h4>
+                        EXPLORE
+                    </h4>
+
+                    <a href="#home">
+                        Home
+                    </a>
+
+                    <a href="#discovery-section">
+                        Discover
+                    </a>
+
+                    <a href="#cineverse-continue">
+                        Continue Watching
+                    </a>
+
+                    <a href="#cineverse-watchlist">
+                        My List
+                    </a>
+
+                </div>
+
+
+                <div>
+
+                    <h4>
+                        CINEVERSE
+                    </h4>
+
+                    <a href="#home">
+                        About
+                    </a>
+
+                    <a href="#home">
+                        Features
+                    </a>
+
+                    <a href="#home">
+                        Contact
+                    </a>
+
+                </div>
+
+            </div>
+
         </div>
 
-    </div>
 
-    <div class="movie-container">
+        <div class="footer-bottom">
 
-        <article
-            class="movie-card tilt-card searchable-card"
-            data-title="Cyber World"
-            data-genre="action movie"
-            data-type="movie">
+            <span>
+                © 2026 CineVerse
+            </span>
 
-            <div class="image-wrapper">
+            <span>
+                ENTER THE STORY.
+            </span>
 
-                <img
-                    src="https://images.unsplash.com/photo-1489599849927-2ee91cede3ba?auto=format&fit=crop&w=900&q=85"
-                    alt="Cyber World">
-
-                <div class="image-overlay">
-                    <button onclick="playMovie('Cyber World')">▶</button>
-                </div>
-
-                <span class="rank">01</span>
-
-            </div>
-
-            <div class="movie-info">
-
-                <h3>Cyber World</h3>
-
-                <p>Action • Movie • 2026</p>
-
-                <button onclick="playMovie('Cyber World')">
-                    Watch <span>→</span>
-                </button>
-
-            </div>
-
-        </article>
-
-
-        <article
-            class="movie-card tilt-card searchable-card"
-            data-title="Infinity"
-            data-genre="sci-fi movie"
-            data-type="movie">
-
-            <div class="image-wrapper">
-
-                <img
-                    src="https://images.unsplash.com/photo-1500534623283-312aade485b7?auto=format&fit=crop&w=900&q=85"
-                    alt="Infinity">
-
-                <div class="image-overlay">
-                    <button onclick="playMovie('Infinity')">▶</button>
-                </div>
-
-                <span class="rank">02</span>
-
-            </div>
-
-            <div class="movie-info">
-
-                <h3>Infinity</h3>
-
-                <p>Sci-Fi • Movie • 2026</p>
-
-                <button onclick="playMovie('Infinity')">
-                    Watch <span>→</span>
-                </button>
-
-            </div>
-
-        </article>
-
-
-        <article
-            class="movie-card tilt-card searchable-card"
-            data-title="Night City"
-            data-genre="thriller movie"
-            data-type="movie">
-
-            <div class="image-wrapper">
-
-                <img
-                    src="https://images.unsplash.com/photo-1485230405346-71acb9518d9c?auto=format&fit=crop&w=900&q=85"
-                    alt="Night City">
-
-                <div class="image-overlay">
-                    <button onclick="playMovie('Night City')">▶</button>
-                </div>
-
-                <span class="rank">03</span>
-
-            </div>
-
-            <div class="movie-info">
-
-                <h3>Night City</h3>
-
-                <p>Thriller • Movie • 2026</p>
-
-                <button onclick="playMovie('Night City')">
-                    Watch <span>→</span>
-                </button>
-
-            </div>
-
-        </article>
-
-    </div>
-
-</section>
-
-
-<!-- MOVIES -->
-
-<section class="section reveal" id="movies">
-
-    <div class="section-title">
-
-        <span class="section-line"></span>
-
-        <div>
-            <p class="section-kicker">FEATURED COLLECTION</p>
-            <h2>🎬 Popular Movies</h2>
         </div>
 
-    </div>
+    </footer>
 
-    <div class="movie-container">
 
-        <article
-            class="movie-card tilt-card searchable-card"
-            data-title="Space Journey"
-            data-genre="sci-fi movie"
-            data-type="movie">
+    <!-- =====================================================
+         JAVASCRIPT
+         IMPORTANT:
+         NO config.js
+         NO TMDB
+    ====================================================== -->
 
-            <div class="image-wrapper">
-                <img
-                    src="https://images.unsplash.com/photo-1518929458119-e5bf444c30f4?auto=format&fit=crop&w=900&q=85"
-                    alt="Space Journey">
-
-                <div class="image-overlay">
-                    <button onclick="playMovie('Space Journey')">▶</button>
-                </div>
-            </div>
-
-            <div class="movie-info">
-                <h3>Space Journey</h3>
-                <p>Sci-Fi • Movie • 2h 10m</p>
-
-                <button onclick="playMovie('Space Journey')">
-                    Watch <span>→</span>
-                </button>
-            </div>
-
-        </article>
-
-
-        <article
-            class="movie-card tilt-card searchable-card"
-            data-title="Final Code"
-            data-genre="action movie"
-            data-type="movie">
-
-            <div class="image-wrapper">
-
-                <img
-                    src="https://images.unsplash.com/photo-1536440136628-849c177e76a1?auto=format&fit=crop&w=900&q=85"
-                    alt="Final Code">
-
-                <div class="image-overlay">
-                    <button onclick="playMovie('Final Code')">▶</button>
-                </div>
-
-            </div>
-
-            <div class="movie-info">
-
-                <h3>Final Code</h3>
-                <p>Action • Movie • 1h 55m</p>
-
-                <button onclick="playMovie('Final Code')">
-                    Watch <span>→</span>
-                </button>
-
-            </div>
-
-        </article>
-
-
-        <article
-            class="movie-card tilt-card searchable-card"
-            data-title="Shadow"
-            data-genre="thriller movie"
-            data-type="movie">
-
-            <div class="image-wrapper">
-
-                <img
-                    src="https://images.unsplash.com/photo-1542206395-9feb3edaa68d?auto=format&fit=crop&w=900&q=85"
-                    alt="Shadow">
-
-                <div class="image-overlay">
-                    <button onclick="playMovie('Shadow')">▶</button>
-                </div>
-
-            </div>
-
-            <div class="movie-info">
-
-                <h3>Shadow</h3>
-                <p>Thriller • Movie • 2h</p>
-
-                <button onclick="playMovie('Shadow')">
-                    Watch <span>→</span>
-                </button>
-
-            </div>
-
-        </article>
-
-    </div>
-
-</section>
-
-
-<!-- SERIES -->
-
-<section class="section reveal" id="series">
-
-    <div class="section-title">
-
-        <span class="section-line"></span>
-
-        <div>
-            <p class="section-kicker">BINGE-WORTHY</p>
-            <h2>📺 Popular Series</h2>
-        </div>
-
-    </div>
-
-    <div class="movie-container">
-
-        <article
-            class="movie-card tilt-card searchable-card"
-            data-title="Dark Protocol"
-            data-genre="thriller series"
-            data-type="series">
-
-            <div class="image-wrapper">
-
-                <img
-                    src="https://images.unsplash.com/photo-1574375927938-d5a98e8ffe85?auto=format&fit=crop&w=900&q=85"
-                    alt="Dark Protocol">
-
-                <div class="image-overlay">
-                    <button onclick="playMovie('Dark Protocol')">▶</button>
-                </div>
-
-            </div>
-
-            <div class="movie-info">
-
-                <h3>Dark Protocol</h3>
-                <p>Thriller • Series • 2 Seasons</p>
-
-                <button onclick="playMovie('Dark Protocol')">
-                    Watch <span>→</span>
-                </button>
-
-            </div>
-
-        </article>
-
-
-        <article
-            class="movie-card tilt-card searchable-card"
-            data-title="The Unknown"
-            data-genre="sci-fi series"
-            data-type="series">
-
-            <div class="image-wrapper">
-
-                <img
-                    src="https://images.unsplash.com/photo-1598899134739-24c46f58b8c0?auto=format&fit=crop&w=900&q=85"
-                    alt="The Unknown">
-
-                <div class="image-overlay">
-                    <button onclick="playMovie('The Unknown')">▶</button>
-                </div>
-
-            </div>
-
-            <div class="movie-info">
-
-                <h3>The Unknown</h3>
-                <p>Sci-Fi • Series • 1 Season</p>
-
-                <button onclick="playMovie('The Unknown')">
-                    Watch <span>→</span>
-                </button>
-
-            </div>
-
-        </article>
-
-
-        <article
-            class="movie-card tilt-card searchable-card"
-            data-title="Future Earth"
-            data-genre="sci-fi series"
-            data-type="series">
-
-            <div class="image-wrapper">
-
-                <img
-                    src="https://images.unsplash.com/photo-1500530855697-b586d89ba3ee?auto=format&fit=crop&w=900&q=85"
-                    alt="Future Earth">
-
-                <div class="image-overlay">
-                    <button onclick="playMovie('Future Earth')">▶</button>
-                </div>
-
-            </div>
-
-            <div class="movie-info">
-
-                <h3>Future Earth</h3>
-                <p>Sci-Fi • Series • 3 Seasons</p>
-
-                <button onclick="playMovie('Future Earth')">
-                    Watch <span>→</span>
-                </button>
-
-            </div>
-
-        </article>
-
-    </div>
-
-</section>
-
-
-<!-- WATCHLIST -->
-
-<section class="section reveal" id="watchlist">
-
-    <div class="section-title">
-
-        <span class="section-line"></span>
-
-        <div>
-            <p class="section-kicker">SAVED FOR LATER</p>
-            <h2>❤️ My Watchlist</h2>
-        </div>
-
-    </div>
-
-    <div id="watchlistItems">
-        <p class="empty">
-            Your watchlist is empty.
-        </p>
-    </div>
-
-</section>
-
-</main>
-
-<footer>
-
-    <div class="footer-logo">
-        Cine<span>Verse</span>
-    </div>
-
-    <p>Your entertainment universe.</p>
-
-    <div class="footer-line"></div>
-
-    <p>© 2026 CineVerse. All rights reserved.</p>
-
-</footer>
-
-<div class="toast" id="toast"></div>
-
-<script src="script.js"></script>
+    <script src="script.js"></script>
 
 </body>
+
 </html>
