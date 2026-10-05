@@ -6,144 +6,57 @@
 
     <meta
         name="viewport"
-        content="width=device-width, initial-scale=1.0">
+        content="width=device-width, initial-scale=1.0"
+    >
 
     <meta
         name="description"
-        content="CineVerse — A cinematic movie discovery experience.">
+        content="CineVerse - Cinematic Movie Streaming Experience"
+    >
 
-    <meta
-        name="theme-color"
-        content="#080808">
+    <title>CineVerse | Movie Experience</title>
 
-    <title>CineVerse — Enter The Story</title>
-
-    <!-- Google Font -->
-    <link
-        rel="preconnect"
-        href="https://fonts.googleapis.com">
-
-    <link
-        rel="preconnect"
-        href="https://fonts.gstatic.com"
-        crossorigin>
-
-    <link
-        href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Playfair+Display:wght@500;600;700&display=swap"
-        rel="stylesheet">
-
-    <!-- Main CSS -->
-    <link
-        rel="stylesheet"
-        href="style.css">
+    <link rel="stylesheet" href="style.css">
 </head>
 
 <body>
 
     <!-- =====================================================
-         PAGE LOADER
-    ====================================================== -->
+         NAVBAR
+         ===================================================== -->
 
-    <div
-        id="pageLoader"
-        class="page-loader">
+    <header class="navbar">
 
-        <div class="loader-content">
+        <a href="#home" class="logo">
+            CINE<span>VERSE</span>
+        </a>
 
-            <div class="loader-logo">
-                CINE<span>VERSE</span>
-            </div>
+        <nav class="nav-links">
 
-            <div class="loader-line">
-                <span></span>
-            </div>
+            <a href="#home">Home</a>
 
-            <p>
-                ENTER THE STORY
-            </p>
+            <a href="#movies">Movies</a>
 
-        </div>
+            <a href="#continue">Continue</a>
 
-    </div>
+            <a href="#watchlist">My List</a>
 
+        </nav>
 
-    <!-- =====================================================
-         NAVIGATION
-    ====================================================== -->
-
-    <header
-        class="navbar"
-        id="navbar">
-
-        <div class="nav-container">
-
-            <a
-                href="#home"
-                class="brand">
-
-                <span class="brand-main">
-                    CINE
-                </span>
-
-                <span class="brand-accent">
-                    VERSE
-                </span>
-
-            </a>
-
-
-            <nav class="nav-links">
-
-                <a href="#home">
-                    Home
-                </a>
-
-                <a href="#discovery-section">
-                    Discover
-                </a>
-
-                <a href="#cineverse-continue">
-                    Continue
-                </a>
-
-                <a href="#cineverse-watchlist">
-                    My List
-                </a>
-
-            </nav>
-
-
-            <div class="nav-actions">
-
-                <button
-                    class="nav-icon theme-toggle"
-                    id="themeToggle"
-                    aria-label="Toggle theme">
-
-                    ◐
-
-                </button>
-
-                <button
-                    class="profile-button"
-                    aria-label="Profile">
-
-                    <span>
-                        A
-                    </span>
-
-                </button>
-
-            </div>
-
-        </div>
+        <button
+            class="nav-search-btn"
+            id="focusSearch"
+            type="button"
+            aria-label="Search">
+            🔍
+        </button>
 
     </header>
 
 
     <!-- =====================================================
          HERO
-    ====================================================== -->
+         ===================================================== -->
 
     <main>
 
@@ -151,101 +64,89 @@
             id="home"
             class="hero">
 
-            <div class="hero-background">
+            <div class="hero-background"></div>
 
-                <div class="hero-image"></div>
-
-                <div class="hero-gradient"></div>
-
-                <div class="hero-grid"></div>
-
-            </div>
-
+            <div class="hero-overlay"></div>
 
             <div class="hero-content">
 
-                <span class="hero-kicker">
+                <span class="hero-label">
                     CINEVERSE ORIGINAL
                 </span>
 
                 <h1>
-                    ENTER
-                    <br>
-                    <span>THE STORY.</span>
+                    BEYOND<br>
+                    THE VOID
                 </h1>
 
-                <p class="hero-description">
-                    Discover cinematic worlds, unforgettable
-                    characters and stories that stay with you.
+                <div class="hero-meta">
+
+                    <span>2026</span>
+                    <span>2h 18m</span>
+                    <span>⭐ 8.7</span>
+                    <span>Sci-Fi</span>
+
+                </div>
+
+                <p>
+                    A deep-space mission discovers a mysterious
+                    signal beyond the known universe.
                 </p>
 
-
-                <div class="hero-actions">
-
-                    <a
-                        href="#discovery-section"
-                        class="hero-primary">
-
-                        EXPLORE MOVIES
-                        <span>→</span>
-
-                    </a>
+                <div class="hero-buttons">
 
                     <button
-                        class="hero-secondary"
-                        onclick="openMovie(1)">
+                        class="btn btn-primary"
+                        id="heroPlay"
+                        type="button">
 
-                        ▶ WATCH FEATURED
+                        ▶ Watch Trailer
+
+                    </button>
+
+                    <button
+                        class="btn btn-secondary"
+                        id="heroDetails"
+                        type="button">
+
+                        More Info
 
                     </button>
 
                 </div>
 
-
-                <div class="hero-meta">
-
-                    <div>
-                        <strong>
-                            13+
-                        </strong>
-
-                        <span>
-                            Titles
-                        </span>
-                    </div>
-
-                    <div>
-                        <strong>
-                            4K
-                        </strong>
-
-                        <span>
-                            Experience
-                        </span>
-                    </div>
-
-                    <div>
-                        <strong>
-                            ∞
-                        </strong>
-
-                        <span>
-                            Stories
-                        </span>
-                    </div>
-
-                </div>
-
             </div>
 
-
-            <div class="hero-scroll">
-
-                <span>
-                    SCROLL TO DISCOVER
-                </span>
-
+            <div class="scroll-indicator">
+                <span>SCROLL TO EXPLORE</span>
                 <div class="scroll-line"></div>
+            </div>
+
+        </section>
+
+
+        <!-- =================================================
+             SEARCH
+             ================================================= -->
+
+        <section class="search-section">
+
+            <div class="search-box">
+
+                <span>⌕</span>
+
+                <input
+                    type="text"
+                    id="movieSearch"
+                    placeholder="Search movies, genres..."
+                    autocomplete="off"
+                >
+
+                <button
+                    id="clearSearch"
+                    type="button">
+                    ×
+                </button>
 
             </div>
 
@@ -253,130 +154,113 @@
 
 
         <!-- =================================================
-             FEATURED STRIP
-        ================================================== -->
+             MOVIES
+             ================================================= -->
 
         <section
-            class="featured-strip">
+            id="movies"
+            class="section">
 
-            <div class="featured-item">
-
-                <span class="featured-number">
-                    01
-                </span>
+            <div class="section-header">
 
                 <div>
-                    <small>
-                        FEATURED
-                    </small>
 
-                    <strong>
-                        Beyond The Void
-                    </strong>
+                    <span class="section-label">
+                        DISCOVER
+                    </span>
+
+                    <h2>
+                        Explore Movies
+                    </h2>
+
                 </div>
+
+                <span
+                    id="movieCount"
+                    class="movie-count">
+                    0 movies
+                </span>
 
             </div>
 
 
-            <div class="featured-item">
+            <!-- FILTERS -->
 
-                <span class="featured-number">
-                    02
-                </span>
-
-                <div>
-                    <small>
-                        TRENDING
-                    </small>
-
-                    <strong>
-                        Final Code
-                    </strong>
-                </div>
-
+            <div
+                id="filterContainer"
+                class="filter-container">
             </div>
 
 
-            <div class="featured-item">
+            <!-- MOVIE GRID -->
 
-                <span class="featured-number">
-                    03
-                </span>
-
-                <div>
-                    <small>
-                        TOP RATED
-                    </small>
-
-                    <strong>
-                        Dark Protocol
-                    </strong>
-                </div>
-
+            <div
+                id="movieGrid"
+                class="movie-grid">
             </div>
 
         </section>
-
-
-        <!-- =================================================
-             DISCOVERY
-             script.js creates the full section here
-        ================================================== -->
-
-        <div id="discovery-container"></div>
 
 
         <!-- =================================================
              CONTINUE WATCHING
-             script.js creates this section
-        ================================================== -->
+             ================================================= -->
 
-        <div id="continue-container"></div>
+        <section
+            id="continue"
+            class="section continue-section">
+
+            <div class="section-header">
+
+                <div>
+
+                    <span class="section-label">
+                        YOUR JOURNEY
+                    </span>
+
+                    <h2>
+                        Continue Watching
+                    </h2>
+
+                </div>
+
+            </div>
+
+            <div
+                id="continueGrid"
+                class="movie-grid">
+            </div>
+
+        </section>
 
 
         <!-- =================================================
              WATCHLIST
-             script.js creates this section
-        ================================================== -->
-
-        <div id="watchlist-container"></div>
-
-
-        <!-- =================================================
-             CINEMATIC CTA
-        ================================================== -->
+             ================================================= -->
 
         <section
-            class="cinematic-cta">
+            id="watchlist"
+            class="section watchlist-section">
 
-            <div class="cta-glow"></div>
+            <div class="section-header">
 
-            <div class="cta-content">
+                <div>
 
-                <span class="section-kicker">
-                    YOUR NEXT STORY
-                </span>
+                    <span class="section-label">
+                        SAVED
+                    </span>
 
-                <h2>
-                    THERE IS ALWAYS
-                    <br>
-                    <span>ANOTHER WORLD.</span>
-                </h2>
+                    <h2>
+                        My List
+                    </h2>
 
-                <p>
-                    Search. Discover. Watch.
-                    Build your own cinematic universe.
-                </p>
+                </div>
 
-                <a
-                    href="#discovery-section"
-                    class="cta-button">
+            </div>
 
-                    START EXPLORING
-                    <span>→</span>
-
-                </a>
-
+            <div
+                id="watchlistGrid"
+                class="movie-grid">
             </div>
 
         </section>
@@ -385,78 +269,109 @@
 
 
     <!-- =====================================================
-         FOOTER
-    ====================================================== -->
+         MOVIE DETAILS DIALOG
+         ===================================================== -->
 
-    <footer class="footer">
+    <dialog id="movieDialog">
 
-        <div class="footer-top">
+        <div class="dialog-content">
 
-            <div class="footer-brand">
+            <button
+                class="dialog-close"
+                id="closeMovieDialog"
+                type="button">
+                ×
+            </button>
 
-                <div class="brand">
+            <div class="details-image">
 
-                    <span class="brand-main">
-                        CINE
-                    </span>
+                <img
+                    id="detailsImage"
+                    src=""
+                    alt="">
 
-                    <span class="brand-accent">
-                        VERSE
-                    </span>
+                <div class="details-image-gradient"></div>
 
+            </div>
+
+            <div class="details-content">
+
+                <span
+                    id="detailsGenre"
+                    class="details-label">
+                </span>
+
+                <h2 id="detailsTitle">
+                </h2>
+
+                <div
+                    id="detailsMeta"
+                    class="details-meta">
                 </div>
 
-                <p>
-                    Your cinematic universe.
+                <p
+                    id="detailsDescription"
+                    class="details-description">
                 </p>
 
-            </div>
 
+                <!-- PROGRESS -->
 
-            <div class="footer-links">
+                <div class="progress-area">
 
-                <div>
+                    <div class="progress-top">
 
-                    <h4>
-                        EXPLORE
-                    </h4>
+                        <span>
+                            Your Progress
+                        </span>
 
-                    <a href="#home">
-                        Home
-                    </a>
+                        <strong id="progressText">
+                            0%
+                        </strong>
 
-                    <a href="#discovery-section">
-                        Discover
-                    </a>
+                    </div>
 
-                    <a href="#cineverse-continue">
-                        Continue Watching
-                    </a>
-
-                    <a href="#cineverse-watchlist">
-                        My List
-                    </a>
+                    <input
+                        id="progressSlider"
+                        type="range"
+                        min="0"
+                        max="100"
+                        value="0"
+                    >
 
                 </div>
 
 
-                <div>
+                <!-- ACTIONS -->
 
-                    <h4>
-                        CINEVERSE
-                    </h4>
+                <div class="details-actions">
 
-                    <a href="#home">
-                        About
-                    </a>
+                    <button
+                        id="watchTrailer"
+                        class="btn btn-primary"
+                        type="button">
 
-                    <a href="#home">
-                        Features
-                    </a>
+                        ▶ Watch Trailer
 
-                    <a href="#home">
-                        Contact
-                    </a>
+                    </button>
+
+                    <button
+                        id="watchNow"
+                        class="btn btn-secondary"
+                        type="button">
+
+                        ▶ Continue Watching
+
+                    </button>
+
+                    <button
+                        id="watchlistButton"
+                        class="btn btn-outline"
+                        type="button">
+
+                        + Add to My List
+
+                    </button>
 
                 </div>
 
@@ -464,28 +379,81 @@
 
         </div>
 
-
-        <div class="footer-bottom">
-
-            <span>
-                © 2026 CineVerse
-            </span>
-
-            <span>
-                ENTER THE STORY.
-            </span>
-
-        </div>
-
-    </footer>
+    </dialog>
 
 
     <!-- =====================================================
-         JAVASCRIPT
-         IMPORTANT:
-         NO config.js
-         NO TMDB
-    ====================================================== -->
+         TRAILER DIALOG
+         ===================================================== -->
+
+    <dialog id="trailerDialog">
+
+        <div class="player">
+
+            <button
+                id="closeTrailer"
+                class="dialog-close player-close"
+                type="button">
+
+                ×
+
+            </button>
+
+            <iframe
+                id="trailerFrame"
+                src=""
+                title="Movie Trailer"
+                allow="autoplay; fullscreen"
+                allowfullscreen>
+            </iframe>
+
+            <div class="player-info">
+
+                <strong id="playerTitle">
+                    Movie Trailer
+                </strong>
+
+                <span>
+                    CineVerse Preview
+                </span>
+
+            </div>
+
+        </div>
+
+    </dialog>
+
+
+    <!-- =====================================================
+         TOAST
+         ===================================================== -->
+
+    <div
+        id="toast"
+        class="toast">
+    </div>
+
+
+    <!-- =====================================================
+         FOOTER
+         ===================================================== -->
+
+    <footer>
+
+        <div class="footer-logo">
+            CINE<span>VERSE</span>
+        </div>
+
+        <p>
+            Your cinematic universe.
+        </p>
+
+        <small>
+            CineVerse portfolio project
+        </small>
+
+    </footer>
+
 
     <script src="script.js"></script>
 
