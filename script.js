@@ -1,7 +1,7 @@
 /* =========================================================
    CINEVERSE
-   COMMIT 9
-   COMPLETE MOVIE EXPERIENCE
+   COMMIT 10
+   PROFILE + WATCH HISTORY + RATINGS
    ========================================================= */
 
 
@@ -195,7 +195,7 @@ const movies = [
 
 
 /* =========================================================
-   STORAGE
+   STORAGE KEYS
    ========================================================= */
 
 const WATCHLIST_KEY =
@@ -204,29 +204,59 @@ const WATCHLIST_KEY =
 const CONTINUE_KEY =
     "cineverse_continue_v2";
 
+const HISTORY_KEY =
+    "cineverse_history_v1";
 
-function getWatchlist() {
+const RATINGS_KEY =
+    "cineverse_ratings_v1";
+
+
+/* =========================================================
+   STORAGE HELPERS
+   ========================================================= */
+
+function getStorage(key, fallback = []) {
 
     try {
 
         return JSON.parse(
-            localStorage.getItem(WATCHLIST_KEY)
-        ) || [];
+            localStorage.getItem(key)
+        ) || fallback;
 
     } catch {
 
-        return [];
+        return fallback;
 
     }
 
 }
 
 
-function saveWatchlist(list) {
+function setStorage(key, value) {
 
     localStorage.setItem(
+        key,
+        JSON.stringify(value)
+    );
+
+}
+
+
+function getWatchlist() {
+
+    return getStorage(
         WATCHLIST_KEY,
-        JSON.stringify(list)
+        []
+    );
+
+}
+
+
+function saveWatchlist(list) {
+
+    setStorage(
+        WATCHLIST_KEY,
+        list
     );
 
 }
@@ -234,26 +264,59 @@ function saveWatchlist(list) {
 
 function getContinue() {
 
-    try {
-
-        return JSON.parse(
-            localStorage.getItem(CONTINUE_KEY)
-        ) || [];
-
-    } catch {
-
-        return [];
-
-    }
+    return getStorage(
+        CONTINUE_KEY,
+        []
+    );
 
 }
 
 
 function saveContinue(list) {
 
-    localStorage.setItem(
+    setStorage(
         CONTINUE_KEY,
-        JSON.stringify(list)
+        list
+    );
+
+}
+
+
+function getHistory() {
+
+    return getStorage(
+        HISTORY_KEY,
+        []
+    );
+
+}
+
+
+function saveHistory(list) {
+
+    setStorage(
+        HISTORY_KEY,
+        list
+    );
+
+}
+
+
+function getRatings() {
+
+    return getStorage(
+        RATINGS_KEY,
+        {}
+    );
+
+}
+
+
+function saveRatings(ratings) {
+
+    setStorage(
+        RATINGS_KEY,
+        ratings
     );
 
 }
@@ -275,28 +338,54 @@ let searchTerm = "";
    ========================================================= */
 
 const movieGrid =
-    document.getElementById("movieGrid");
+    document.getElementById(
+        "movieGrid"
+    );
 
 const continueGrid =
-    document.getElementById("continueGrid");
+    document.getElementById(
+        "continueGrid"
+    );
 
 const watchlistGrid =
-    document.getElementById("watchlistGrid");
+    document.getElementById(
+        "watchlistGrid"
+    );
+
+const historyGrid =
+    document.getElementById(
+        "historyGrid"
+    );
 
 const filterContainer =
-    document.getElementById("filterContainer");
+    document.getElementById(
+        "filterContainer"
+    );
 
 const searchInput =
-    document.getElementById("movieSearch");
+    document.getElementById(
+        "movieSearch"
+    );
 
 const movieCount =
-    document.getElementById("movieCount");
+    document.getElementById(
+        "movieCount"
+    );
 
 const movieDialog =
-    document.getElementById("movieDialog");
+    document.getElementById(
+        "movieDialog"
+    );
 
 const trailerDialog =
-    document.getElementById("trailerDialog");
+    document.getElementById(
+        "trailerDialog"
+    );
+
+const profileDialog =
+    document.getElementById(
+        "profileDialog"
+    );
 
 
 /* =========================================================
@@ -332,10 +421,13 @@ function getFilteredMovies() {
 
 
 /* =========================================================
-   CARD
+   MOVIE CARD
    ========================================================= */
 
-function movieCard(movie, progress = null) {
+function movieCard(
+    movie,
+    progress = null
+) {
 
     return `
 
@@ -368,7 +460,8 @@ function movieCard(movie, progress = null) {
             ${
                 progress !== null
                     ? `
-                        <div class="card-progress">
+                        <div
+                            class="card-progress">
 
                             <div
                                 class="card-progress-fill"
@@ -403,6 +496,7 @@ function renderMovies() {
     movieCount.textContent =
         `${filtered.length} movies`;
 
+
     if (!filtered.length) {
 
         movieGrid.innerHTML = `
@@ -429,6 +523,7 @@ function renderMovies() {
 
     }
 
+
     filtered.forEach(movie => {
 
         movieGrid.insertAdjacentHTML(
@@ -448,10 +543,15 @@ function renderMovies() {
 function createFilters() {
 
     const genres = [
+
         "All",
+
         ...new Set(
-            movies.map(movie => movie.genre)
+            movies.map(
+                movie => movie.genre
+            )
         )
+
     ];
 
     filterContainer.innerHTML = "";
@@ -459,7 +559,9 @@ function createFilters() {
     genres.forEach(genre => {
 
         const button =
-            document.createElement("button");
+            document.createElement(
+                "button"
+            );
 
         button.type = "button";
 
@@ -471,30 +573,75 @@ function createFilters() {
                     : ""
             );
 
-        button.textContent = genre;
+        button.textContent =
+            genre;
 
         button.addEventListener(
             "click",
             () => {
 
-                activeGenre = genre;
+                activeGenre =
+                    genre;
 
                 document
-                    .querySelectorAll(".filter-btn")
+                    .querySelectorAll(
+                        ".filter-btn"
+                    )
                     .forEach(btn =>
-                        btn.classList.remove("active")
+                        btn.classList
+                            .remove("active")
                     );
 
-                button.classList.add("active");
+                button.classList.add(
+                    "active"
+                );
 
                 renderMovies();
 
             }
         );
 
-        filterContainer.appendChild(button);
+        filterContainer.appendChild(
+            button
+        );
 
     });
+
+}
+
+
+/* =========================================================
+   ADD HISTORY
+   ========================================================= */
+
+function addToHistory(movie) {
+
+    let history =
+        getHistory();
+
+    history =
+        history.filter(
+            item =>
+                item.id !== movie.id
+        );
+
+    history.unshift({
+
+        id: movie.id,
+
+        watchedAt:
+            Date.now()
+
+    });
+
+    history =
+        history.slice(0, 10);
+
+    saveHistory(history);
+
+    renderHistory();
+
+    updateProfile();
 
 }
 
@@ -507,25 +654,40 @@ function openMovieDetails(id) {
 
     const movie =
         movies.find(
-            item => item.id === Number(id)
+            item =>
+                item.id === Number(id)
         );
 
     if (!movie) return;
 
     currentMovie = movie;
 
+
+    /* HISTORY */
+
+    addToHistory(movie);
+
+
+    /* WATCHLIST */
+
     const watchlist =
         getWatchlist();
+
+    const saved =
+        watchlist.includes(
+            movie.id
+        );
+
+
+    /* CONTINUE */
 
     const continueList =
         getContinue();
 
-    const saved =
-        watchlist.includes(movie.id);
-
     const progressItem =
         continueList.find(
-            item => item.id === movie.id
+            item =>
+                item.id === movie.id
         );
 
     const progress =
@@ -534,14 +696,27 @@ function openMovieDetails(id) {
             : 0;
 
 
+    /* RATINGS */
+
+    const ratings =
+        getRatings();
+
+    const userRating =
+        ratings[movie.id] || 0;
+
+
+    /* DETAILS */
+
     document.getElementById(
         "detailsImage"
-    ).src = movie.image;
+    ).src =
+        movie.image;
 
 
     document.getElementById(
         "detailsImage"
-    ).alt = movie.title;
+    ).alt =
+        movie.title;
 
 
     document.getElementById(
@@ -585,12 +760,15 @@ function openMovieDetails(id) {
         movie.description;
 
 
+    /* PROGRESS */
+
     const slider =
         document.getElementById(
             "progressSlider"
         );
 
-    slider.value = progress;
+    slider.value =
+        progress;
 
 
     document.getElementById(
@@ -598,6 +776,8 @@ function openMovieDetails(id) {
     ).textContent =
         `${progress}%`;
 
+
+    /* WATCHLIST */
 
     document.getElementById(
         "watchlistButton"
@@ -607,17 +787,26 @@ function openMovieDetails(id) {
             : "+ Add to My List";
 
 
+    /* RATING */
+
+    updateRatingUI(
+        userRating
+    );
+
+
     movieDialog.showModal();
 
 }
 
 
 /* =========================================================
-   CLOSE DETAILS
+   CLOSE MOVIE DIALOG
    ========================================================= */
 
 document
-    .getElementById("closeMovieDialog")
+    .getElementById(
+        "closeMovieDialog"
+    )
     .addEventListener(
         "click",
         () => {
@@ -629,10 +818,79 @@ document
 
 
 /* =========================================================
-   CARD CLICK
+   MOVIE CARD CLICK
    ========================================================= */
 
 movieGrid.addEventListener(
+    "click",
+    event => {
+
+        const card =
+            event.target.closest(
+                ".movie-card"
+            );
+
+        if (!card) return;
+
+        openMovieDetails(
+            card.dataset.id
+        );
+
+    }
+);
+
+
+/* =========================================================
+   CONTINUE CARD CLICK
+   ========================================================= */
+
+continueGrid.addEventListener(
+    "click",
+    event => {
+
+        const card =
+            event.target.closest(
+                ".movie-card"
+            );
+
+        if (!card) return;
+
+        openMovieDetails(
+            card.dataset.id
+        );
+
+    }
+);
+
+
+/* =========================================================
+   WATCHLIST CARD CLICK
+   ========================================================= */
+
+watchlistGrid.addEventListener(
+    "click",
+    event => {
+
+        const card =
+            event.target.closest(
+                ".movie-card"
+            );
+
+        if (!card) return;
+
+        openMovieDetails(
+            card.dataset.id
+        );
+
+    }
+);
+
+
+/* =========================================================
+   HISTORY CARD CLICK
+   ========================================================= */
+
+historyGrid.addEventListener(
     "click",
     event => {
 
@@ -656,29 +914,52 @@ movieGrid.addEventListener(
    ========================================================= */
 
 document
-    .getElementById("watchTrailer")
+    .getElementById(
+        "watchTrailer"
+    )
     .addEventListener(
         "click",
         () => {
 
             if (!currentMovie) return;
 
-            document.getElementById(
-                "trailerFrame"
-            ).src =
-                `${currentMovie.trailer}?autoplay=1`;
-
-            document.getElementById(
-                "playerTitle"
-            ).textContent =
-                currentMovie.title;
-
-            movieDialog.close();
-
-            trailerDialog.showModal();
+            playTrailer();
 
         }
     );
+
+
+/* =========================================================
+   PLAY TRAILER
+   ========================================================= */
+
+function playTrailer() {
+
+    if (!currentMovie) return;
+
+
+    addToHistory(
+        currentMovie
+    );
+
+
+    document.getElementById(
+        "trailerFrame"
+    ).src =
+        `${currentMovie.trailer}?autoplay=1`;
+
+
+    document.getElementById(
+        "playerTitle"
+    ).textContent =
+        currentMovie.title;
+
+
+    movieDialog.close();
+
+    trailerDialog.showModal();
+
+}
 
 
 /* =========================================================
@@ -686,7 +967,9 @@ document
    ========================================================= */
 
 document
-    .getElementById("closeTrailer")
+    .getElementById(
+        "closeTrailer"
+    )
     .addEventListener(
         "click",
         closeTrailer
@@ -705,19 +988,93 @@ function closeTrailer() {
 
 
 /* =========================================================
-   ADD / REMOVE WATCHLIST
+   WATCH NOW
    ========================================================= */
 
 document
-    .getElementById("watchlistButton")
+    .getElementById(
+        "watchNow"
+    )
     .addEventListener(
         "click",
         () => {
 
             if (!currentMovie) return;
 
+
+            let list =
+                getContinue();
+
+
+            const existing =
+                list.find(
+                    item =>
+                        item.id ===
+                        currentMovie.id
+                );
+
+
+            if (existing) {
+
+                existing.progress =
+                    Math.min(
+                        existing.progress + 5,
+                        100
+                    );
+
+            } else {
+
+                list.push({
+
+                    id:
+                        currentMovie.id,
+
+                    progress:
+                        5
+
+                });
+
+            }
+
+
+            saveContinue(list);
+
+            renderContinue();
+
+            addToHistory(
+                currentMovie
+            );
+
+            updateProfile();
+
+            showToast(
+                "Added to Continue Watching"
+            );
+
+            playTrailer();
+
+        }
+    );
+
+
+/* =========================================================
+   WATCHLIST
+   ========================================================= */
+
+document
+    .getElementById(
+        "watchlistButton"
+    )
+    .addEventListener(
+        "click",
+        () => {
+
+            if (!currentMovie) return;
+
+
             let list =
                 getWatchlist();
+
 
             if (
                 list.includes(
@@ -748,9 +1105,12 @@ document
 
             }
 
+
             saveWatchlist(list);
 
             renderWatchlist();
+
+            updateProfile();
 
             openMovieDetails(
                 currentMovie.id
@@ -761,11 +1121,13 @@ document
 
 
 /* =========================================================
-   PROGRESS SLIDER
+   PROGRESS
    ========================================================= */
 
 document
-    .getElementById("progressSlider")
+    .getElementById(
+        "progressSlider"
+    )
     .addEventListener(
         "input",
         event => {
@@ -780,20 +1142,25 @@ document
 
 
 document
-    .getElementById("progressSlider")
+    .getElementById(
+        "progressSlider"
+    )
     .addEventListener(
         "change",
         event => {
 
             if (!currentMovie) return;
 
+
             let list =
                 getContinue();
+
 
             const progress =
                 Number(
                     event.target.value
                 );
+
 
             const existing =
                 list.find(
@@ -801,6 +1168,7 @@ document
                         item.id ===
                         currentMovie.id
                 );
+
 
             if (existing) {
 
@@ -821,9 +1189,12 @@ document
 
             }
 
+
             saveContinue(list);
 
             renderContinue();
+
+            updateProfile();
 
             showToast(
                 "Progress saved"
@@ -834,84 +1205,89 @@ document
 
 
 /* =========================================================
-   WATCH / CONTINUE BUTTON
+   RATING SYSTEM
    ========================================================= */
 
 document
-    .getElementById("watchNow")
-    .addEventListener(
-        "click",
-        () => {
+    .querySelectorAll(
+        "#ratingStars button"
+    )
+    .forEach(button => {
 
-            if (!currentMovie) return;
+        button.addEventListener(
+            "click",
+            () => {
 
-            let list =
-                getContinue();
+                if (!currentMovie)
+                    return;
 
-            const existing =
-                list.find(
-                    item =>
-                        item.id ===
-                        currentMovie.id
-                );
 
-            if (existing) {
-
-                existing.progress =
-                    Math.min(
-                        existing.progress + 5,
-                        100
+                const rating =
+                    Number(
+                        button.dataset.rating
                     );
 
-            } else {
 
-                list.push({
+                const ratings =
+                    getRatings();
 
-                    id:
-                        currentMovie.id,
 
-                    progress:
-                        5
+                ratings[currentMovie.id] =
+                    rating;
 
-                });
+
+                saveRatings(
+                    ratings
+                );
+
+
+                updateRatingUI(
+                    rating
+                );
+
+
+                updateProfile();
+
+
+                showToast(
+                    `Rated ${rating}/5`
+                );
 
             }
+        );
 
-            saveContinue(list);
+    });
 
-            renderContinue();
 
-            showToast(
-                "Added to Continue Watching"
+function updateRatingUI(rating) {
+
+    const buttons =
+        document.querySelectorAll(
+            "#ratingStars button"
+        );
+
+
+    buttons.forEach(button => {
+
+        const value =
+            Number(
+                button.dataset.rating
             );
 
-            playTrailer();
+        button.classList.toggle(
+            "active",
+            value <= rating
+        );
 
-        }
-    );
+    });
 
-
-/* =========================================================
-   PLAY TRAILER FUNCTION
-   ========================================================= */
-
-function playTrailer() {
-
-    if (!currentMovie) return;
 
     document.getElementById(
-        "trailerFrame"
-    ).src =
-        `${currentMovie.trailer}?autoplay=1`;
-
-    document.getElementById(
-        "playerTitle"
+        "ratingText"
     ).textContent =
-        currentMovie.title;
-
-    movieDialog.close();
-
-    trailerDialog.showModal();
+        rating
+            ? `${rating}/5 stars`
+            : "Not rated";
 
 }
 
@@ -925,7 +1301,9 @@ function renderContinue() {
     const list =
         getContinue();
 
+
     continueGrid.innerHTML = "";
+
 
     if (!list.length) {
 
@@ -959,10 +1337,13 @@ function renderContinue() {
 
         const movie =
             movies.find(
-                m => m.id === item.id
+                m =>
+                    m.id === item.id
             );
 
+
         if (!movie) return;
+
 
         continueGrid.insertAdjacentHTML(
             "beforeend",
@@ -980,29 +1361,6 @@ function renderContinue() {
 
 
 /* =========================================================
-   CONTINUE CARD CLICK
-   ========================================================= */
-
-continueGrid.addEventListener(
-    "click",
-    event => {
-
-        const card =
-            event.target.closest(
-                ".movie-card"
-            );
-
-        if (!card) return;
-
-        openMovieDetails(
-            card.dataset.id
-        );
-
-    }
-);
-
-
-/* =========================================================
    WATCHLIST
    ========================================================= */
 
@@ -1011,7 +1369,9 @@ function renderWatchlist() {
     const list =
         getWatchlist();
 
+
     watchlistGrid.innerHTML = "";
+
 
     const selected =
         movies.filter(
@@ -1065,26 +1425,135 @@ function renderWatchlist() {
 
 
 /* =========================================================
-   WATCHLIST CARD CLICK
+   HISTORY
    ========================================================= */
 
-watchlistGrid.addEventListener(
-    "click",
-    event => {
+function renderHistory() {
 
-        const card =
-            event.target.closest(
-                ".movie-card"
-            );
+    const history =
+        getHistory();
 
-        if (!card) return;
 
-        openMovieDetails(
-            card.dataset.id
-        );
+    historyGrid.innerHTML = "";
+
+
+    if (!history.length) {
+
+        historyGrid.innerHTML = `
+
+            <div class="empty-state">
+
+                <div>
+
+                    <h3>
+                        No watch history
+                    </h3>
+
+                    <p>
+                        Movies you open or watch
+                        will appear here.
+                    </p>
+
+                </div>
+
+            </div>
+
+        `;
+
+        return;
 
     }
-);
+
+
+    history.forEach(item => {
+
+        const movie =
+            movies.find(
+                m =>
+                    m.id === item.id
+            );
+
+
+        if (!movie) return;
+
+
+        historyGrid.insertAdjacentHTML(
+            "beforeend",
+
+            movieCard(movie)
+
+        );
+
+    });
+
+}
+
+
+/* =========================================================
+   CLEAR HISTORY
+   ========================================================= */
+
+document
+    .getElementById(
+        "clearHistory"
+    )
+    .addEventListener(
+        "click",
+        clearHistory
+    );
+
+
+document
+    .getElementById(
+        "profileClearHistory"
+    )
+    .addEventListener(
+        "click",
+        clearHistory
+    );
+
+
+function clearHistory() {
+
+    const history =
+        getHistory();
+
+
+    if (!history.length) {
+
+        showToast(
+            "Watch history is already empty"
+        );
+
+        return;
+
+    }
+
+
+    const confirmed =
+        confirm(
+            "Clear your complete watch history?"
+        );
+
+
+    if (!confirmed) return;
+
+
+    localStorage.removeItem(
+        HISTORY_KEY
+    );
+
+
+    renderHistory();
+
+    updateProfile();
+
+
+    showToast(
+        "Watch history cleared"
+    );
+
+}
 
 
 /* =========================================================
@@ -1111,7 +1580,9 @@ searchInput.addEventListener(
    ========================================================= */
 
 document
-    .getElementById("clearSearch")
+    .getElementById(
+        "clearSearch"
+    )
     .addEventListener(
         "click",
         () => {
@@ -1133,7 +1604,9 @@ document
    ========================================================= */
 
 document
-    .getElementById("focusSearch")
+    .getElementById(
+        "focusSearch"
+    )
     .addEventListener(
         "click",
         () => {
@@ -1146,8 +1619,10 @@ document
                     behavior: "smooth"
                 });
 
+
             setTimeout(
-                () => searchInput.focus(),
+                () =>
+                    searchInput.focus(),
                 500
             );
 
@@ -1156,11 +1631,317 @@ document
 
 
 /* =========================================================
-   HERO BUTTONS
+   PROFILE
    ========================================================= */
 
 document
-    .getElementById("heroPlay")
+    .getElementById(
+        "openProfile"
+    )
+    .addEventListener(
+        "click",
+        () => {
+
+            updateProfile();
+
+            profileDialog.showModal();
+
+        }
+    );
+
+
+document
+    .getElementById(
+        "closeProfile"
+    )
+    .addEventListener(
+        "click",
+        () => {
+
+            profileDialog.close();
+
+        }
+    );
+
+
+/* =========================================================
+   UPDATE PROFILE
+   ========================================================= */
+
+function updateProfile() {
+
+    const watchlist =
+        getWatchlist();
+
+    const continueList =
+        getContinue();
+
+    const history =
+        getHistory();
+
+    const ratings =
+        getRatings();
+
+
+    document.getElementById(
+        "profileListCount"
+    ).textContent =
+        watchlist.length;
+
+
+    document.getElementById(
+        "profileContinueCount"
+    ).textContent =
+        continueList.length;
+
+
+    document.getElementById(
+        "profileHistoryCount"
+    ).textContent =
+        history.length;
+
+
+    document.getElementById(
+        "profileRatedCount"
+    ).textContent =
+        Object.keys(
+            ratings
+        ).length;
+
+
+    renderProfileRecent();
+
+    renderProfileRatings();
+
+}
+
+
+/* =========================================================
+   PROFILE RECENT
+   ========================================================= */
+
+function renderProfileRecent() {
+
+    const container =
+        document.getElementById(
+            "profileRecent"
+        );
+
+
+    const history =
+        getHistory();
+
+
+    container.innerHTML = "";
+
+
+    if (!history.length) {
+
+        container.innerHTML = `
+
+            <div class="profile-item">
+
+                <span class="profile-item-subtitle">
+                    No recent activity yet.
+                </span>
+
+            </div>
+
+        `;
+
+        return;
+
+    }
+
+
+    history
+        .slice(0, 5)
+        .forEach(item => {
+
+            const movie =
+                movies.find(
+                    m =>
+                        m.id === item.id
+                );
+
+
+            if (!movie) return;
+
+
+            const date =
+                new Date(
+                    item.watchedAt
+                );
+
+
+            container.insertAdjacentHTML(
+                "beforeend",
+
+                `
+
+                <div class="profile-item">
+
+                    <div
+                        class="profile-item-left">
+
+                        <img
+                            src="${movie.image}"
+                            alt="${movie.title}"
+                        >
+
+                        <div>
+
+                            <div
+                                class="profile-item-title">
+
+                                ${movie.title}
+
+                            </div>
+
+                            <div
+                                class="profile-item-subtitle">
+
+                                ${movie.genre}
+                                •
+                                ${date.toLocaleDateString()}
+
+                            </div>
+
+                        </div>
+
+                    </div>
+
+                    <span>
+                        ▶
+                    </span>
+
+                </div>
+
+                `
+
+            );
+
+        });
+
+}
+
+
+/* =========================================================
+   PROFILE RATINGS
+   ========================================================= */
+
+function renderProfileRatings() {
+
+    const container =
+        document.getElementById(
+            "profileRatings"
+        );
+
+
+    const ratings =
+        getRatings();
+
+
+    container.innerHTML = "";
+
+
+    const ratedMovies =
+        movies.filter(
+            movie =>
+                ratings[movie.id]
+        );
+
+
+    if (!ratedMovies.length) {
+
+        container.innerHTML = `
+
+            <div class="profile-item">
+
+                <span
+                    class="profile-item-subtitle">
+
+                    You haven't rated any movies yet.
+
+                </span>
+
+            </div>
+
+        `;
+
+        return;
+
+    }
+
+
+    ratedMovies.forEach(movie => {
+
+        const rating =
+            ratings[movie.id];
+
+
+        container.insertAdjacentHTML(
+            "beforeend",
+
+            `
+
+            <div class="profile-item">
+
+                <div
+                    class="profile-item-left">
+
+                    <img
+                        src="${movie.image}"
+                        alt="${movie.title}"
+                    >
+
+                    <div>
+
+                        <div
+                            class="profile-item-title">
+
+                            ${movie.title}
+
+                        </div>
+
+                        <div
+                            class="profile-item-subtitle">
+
+                            Your rating
+
+                        </div>
+
+                    </div>
+
+                </div>
+
+                <div
+                    class="profile-item-rating">
+
+                    ${"★".repeat(rating)}
+                    ${"☆".repeat(5 - rating)}
+
+                </div>
+
+            </div>
+
+            `
+
+        );
+
+    });
+
+}
+
+
+/* =========================================================
+   HERO
+   ========================================================= */
+
+document
+    .getElementById(
+        "heroPlay"
+    )
     .addEventListener(
         "click",
         () => {
@@ -1175,7 +1956,9 @@ document
 
 
 document
-    .getElementById("heroDetails")
+    .getElementById(
+        "heroDetails"
+    )
     .addEventListener(
         "click",
         () => {
@@ -1197,16 +1980,20 @@ function showToast(message) {
             "toast"
         );
 
+
     toast.textContent =
         message;
+
 
     toast.classList.add(
         "show"
     );
 
+
     clearTimeout(
         window.toastTimer
     );
+
 
     window.toastTimer =
         setTimeout(
@@ -1224,7 +2011,7 @@ function showToast(message) {
 
 
 /* =========================================================
-   ESCAPE
+   ESCAPE KEY
    ========================================================= */
 
 document.addEventListener(
@@ -1232,16 +2019,20 @@ document.addEventListener(
     event => {
 
         if (
-            event.key === "Escape"
+            event.key !==
+            "Escape"
         ) {
 
-            if (
-                trailerDialog.open
-            ) {
+            return;
 
-                closeTrailer();
+        }
 
-            }
+
+        if (
+            trailerDialog.open
+        ) {
+
+            closeTrailer();
 
         }
 
@@ -1250,7 +2041,7 @@ document.addEventListener(
 
 
 /* =========================================================
-   INITIAL LOAD
+   INITIALIZE
    ========================================================= */
 
 createFilters();
@@ -1261,6 +2052,11 @@ renderContinue();
 
 renderWatchlist();
 
+renderHistory();
+
+updateProfile();
+
+
 console.log(
-    "CineVerse Commit 9 ready."
+    "CineVerse Commit 10 loaded successfully."
 );

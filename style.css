@@ -1,6 +1,7 @@
 /* =========================================================
    CINEVERSE
-   COMMIT 9 - COMPLETE CINEMATIC EXPERIENCE
+   COMMIT 10
+   PROFILE + HISTORY + RATINGS
    ========================================================= */
 
 * {
@@ -16,13 +17,17 @@ html {
 
 body {
     min-height: 100vh;
+
     background: #050505;
+
     color: #fff;
+
     font-family:
         Inter,
         Arial,
         Helvetica,
         sans-serif;
+
     overflow-x: hidden;
 }
 
@@ -33,14 +38,17 @@ body {
 
 .navbar {
     position: fixed;
+
     top: 0;
     left: 0;
+
     width: 100%;
     height: 76px;
 
     padding: 0 5%;
 
     display: flex;
+
     align-items: center;
     justify-content: space-between;
 
@@ -49,8 +57,8 @@ body {
     background:
         linear-gradient(
             to bottom,
-            rgba(0,0,0,.9),
-            rgba(0,0,0,.2)
+            rgba(0,0,0,.92),
+            rgba(0,0,0,.25)
         );
 
     backdrop-filter: blur(14px);
@@ -61,9 +69,11 @@ body {
 
 .logo {
     color: #fff;
+
     text-decoration: none;
 
     font-size: 25px;
+
     font-weight: 900;
 
     letter-spacing: 3px;
@@ -76,14 +86,17 @@ body {
 
 .nav-links {
     display: flex;
+
     gap: 32px;
 }
 
 .nav-links a {
     color: #aaa;
+
     text-decoration: none;
 
     font-size: 13px;
+
     font-weight: 700;
 
     transition: .3s;
@@ -93,14 +106,21 @@ body {
     color: #fff;
 }
 
-.nav-search-btn {
-    width: 42px;
-    height: 42px;
+.nav-actions {
+    display: flex;
 
-    border: 1px solid rgba(255,255,255,.12);
-    border-radius: 50%;
+    align-items: center;
 
-    background: rgba(255,255,255,.05);
+    gap: 10px;
+}
+
+.nav-search-btn,
+.profile-btn {
+    border: 1px solid
+        rgba(255,255,255,.12);
+
+    background:
+        rgba(255,255,255,.05);
 
     color: #fff;
 
@@ -109,9 +129,50 @@ body {
     transition: .3s;
 }
 
-.nav-search-btn:hover {
+.nav-search-btn {
+    width: 42px;
+    height: 42px;
+
+    border-radius: 50%;
+
+    font-size: 17px;
+}
+
+.profile-btn {
+    width: 42px;
+    height: 42px;
+
+    border-radius: 50%;
+
+    display: flex;
+
+    align-items: center;
+    justify-content: center;
+}
+
+.profile-btn span {
+    width: 30px;
+    height: 30px;
+
+    border-radius: 50%;
+
+    display: flex;
+
+    align-items: center;
+    justify-content: center;
+
     background: #e50914;
+
+    font-size: 10px;
+
+    font-weight: 900;
+}
+
+.nav-search-btn:hover,
+.profile-btn:hover {
     transform: scale(1.08);
+
+    border-color: #e50914;
 }
 
 
@@ -123,9 +184,11 @@ body {
     position: relative;
 
     width: 100%;
+
     min-height: 100vh;
 
     display: flex;
+
     align-items: center;
 
     overflow: hidden;
@@ -133,12 +196,16 @@ body {
 
 .hero-background {
     position: absolute;
+
     inset: 0;
 
     background-image:
-        url("https://images.unsplash.com/photo-1534791547706-9f5e3c5f1847?auto=format&fit=crop&w=2000&q=90");
+        url(
+            "https://images.unsplash.com/photo-1534791547706-9f5e3c5f1847?auto=format&fit=crop&w=2000&q=90"
+        );
 
     background-size: cover;
+
     background-position: center;
 
     transform: scale(1.04);
@@ -146,6 +213,7 @@ body {
 
 .hero-overlay {
     position: absolute;
+
     inset: 0;
 
     background:
@@ -162,6 +230,7 @@ body {
     content: "";
 
     position: absolute;
+
     inset: 0;
 
     background:
@@ -174,11 +243,13 @@ body {
 
 .hero-content {
     position: relative;
+
     z-index: 5;
 
     width: min(650px, 90%);
 
     margin-left: 7%;
+
     padding-top: 70px;
 }
 
@@ -188,6 +259,7 @@ body {
     color: #e50914;
 
     font-size: 11px;
+
     font-weight: 900;
 
     letter-spacing: 3px;
@@ -208,6 +280,7 @@ body {
 
 .hero-meta {
     display: flex;
+
     gap: 18px;
 
     margin-top: 28px;
@@ -225,11 +298,13 @@ body {
     color: #aaa;
 
     font-size: 16px;
+
     line-height: 1.8;
 }
 
 .hero-buttons {
     display: flex;
+
     gap: 12px;
 
     margin-top: 30px;
@@ -242,17 +317,21 @@ body {
     left: 7%;
 
     display: flex;
+
     align-items: center;
+
     gap: 15px;
 
     color: #666;
 
     font-size: 9px;
+
     letter-spacing: 3px;
 }
 
 .scroll-line {
     width: 55px;
+
     height: 1px;
 
     background: #555;
@@ -288,6 +367,7 @@ body {
 
 .btn-primary {
     background: #e50914;
+
     color: #fff;
 }
 
@@ -296,26 +376,34 @@ body {
 }
 
 .btn-secondary {
-    background: rgba(255,255,255,.12);
+    background:
+        rgba(255,255,255,.12);
+
     color: #fff;
 
-    border: 1px solid rgba(255,255,255,.15);
+    border:
+        1px solid rgba(255,255,255,.15);
 }
 
 .btn-secondary:hover {
-    background: rgba(255,255,255,.2);
+    background:
+        rgba(255,255,255,.2);
 }
 
 .btn-outline {
     background: transparent;
+
     color: #fff;
 
-    border: 1px solid rgba(255,255,255,.25);
+    border:
+        1px solid rgba(255,255,255,.25);
 }
 
 .btn-outline:hover {
     border-color: #e50914;
-    background: rgba(229,9,20,.1);
+
+    background:
+        rgba(229,9,20,.1);
 }
 
 
@@ -324,8 +412,6 @@ body {
    ========================================================= */
 
 .search-section {
-    position: relative;
-
     padding: 65px 5% 25px;
 
     background: #050505;
@@ -333,9 +419,11 @@ body {
 
 .search-box {
     width: min(750px, 100%);
+
     margin: auto;
 
     display: flex;
+
     align-items: center;
 
     height: 58px;
@@ -344,7 +432,8 @@ body {
 
     background: #101010;
 
-    border: 1px solid #242424;
+    border:
+        1px solid #242424;
 
     border-radius: 10px;
 
@@ -355,7 +444,8 @@ body {
     border-color: #e50914;
 
     box-shadow:
-        0 0 0 3px rgba(229,9,20,.08);
+        0 0 0 3px
+        rgba(229,9,20,.08);
 }
 
 .search-box span {
@@ -374,6 +464,7 @@ body {
     background: transparent;
 
     border: none;
+
     outline: none;
 
     color: #fff;
@@ -387,6 +478,7 @@ body {
 
 .search-box button {
     border: none;
+
     background: transparent;
 
     color: #666;
@@ -419,10 +511,15 @@ body {
     background: #050505;
 }
 
+.history-section {
+    background: #080808;
+}
+
 .section-header {
     display: flex;
 
     align-items: end;
+
     justify-content: space-between;
 
     margin-bottom: 30px;
@@ -431,13 +528,15 @@ body {
 .section-header h2 {
     margin-top: 8px;
 
-    font-size: clamp(28px, 4vw, 45px);
+    font-size:
+        clamp(28px, 4vw, 45px);
 
     letter-spacing: -1.5px;
 }
 
 .movie-count {
     color: #666;
+
     font-size: 13px;
 }
 
@@ -514,7 +613,8 @@ body {
 
     background: #111;
 
-    border: 1px solid rgba(255,255,255,.06);
+    border:
+        1px solid rgba(255,255,255,.06);
 
     cursor: pointer;
 
@@ -593,12 +693,8 @@ body {
 
 
 /* =========================================================
-   PROGRESS CARD
+   PROGRESS
    ========================================================= */
-
-.continue-card {
-    height: 290px;
-}
 
 .card-progress {
     position: absolute;
@@ -609,7 +705,8 @@ body {
 
     height: 4px;
 
-    background: rgba(255,255,255,.15);
+    background:
+        rgba(255,255,255,.15);
 
     z-index: 5;
 }
@@ -622,7 +719,7 @@ body {
 
 
 /* =========================================================
-   EMPTY
+   EMPTY STATE
    ========================================================= */
 
 .empty-state {
@@ -637,7 +734,8 @@ body {
 
     text-align: center;
 
-    border: 1px dashed #222;
+    border:
+        1px dashed #222;
 
     border-radius: 12px;
 }
@@ -652,7 +750,35 @@ body {
 
 
 /* =========================================================
-   NATIVE DIALOG
+   CLEAR HISTORY
+   ========================================================= */
+
+.clear-history-btn {
+    padding: 9px 15px;
+
+    border:
+        1px solid #292929;
+
+    border-radius: 7px;
+
+    background: transparent;
+
+    color: #777;
+
+    cursor: pointer;
+
+    transition: .25s;
+}
+
+.clear-history-btn:hover {
+    color: #fff;
+
+    border-color: #e50914;
+}
+
+
+/* =========================================================
+   DIALOG
    ========================================================= */
 
 dialog {
@@ -674,9 +800,11 @@ dialog {
 }
 
 dialog::backdrop {
-    background: rgba(0,0,0,.88);
+    background:
+        rgba(0,0,0,.88);
 
-    backdrop-filter: blur(12px);
+    backdrop-filter:
+        blur(12px);
 }
 
 .dialog-content {
@@ -700,9 +828,11 @@ dialog::backdrop {
 
     border-radius: 50%;
 
-    border: 1px solid rgba(255,255,255,.15);
+    border:
+        1px solid rgba(255,255,255,.15);
 
-    background: rgba(0,0,0,.65);
+    background:
+        rgba(0,0,0,.65);
 
     color: #fff;
 
@@ -765,7 +895,8 @@ dialog::backdrop {
 .details-content h2 {
     margin-top: 12px;
 
-    font-size: clamp(38px, 6vw, 70px);
+    font-size:
+        clamp(38px, 6vw, 70px);
 
     line-height: .95;
 
@@ -796,15 +927,85 @@ dialog::backdrop {
     line-height: 1.8;
 }
 
-.progress-area {
+
+/* =========================================================
+   RATING
+   ========================================================= */
+
+.rating-area {
     max-width: 700px;
 
-    margin-top: 35px;
+    margin-top: 30px;
 
-    padding-top: 22px;
+    padding: 20px 0;
 
     border-top:
         1px solid rgba(255,255,255,.08);
+
+    border-bottom:
+        1px solid rgba(255,255,255,.08);
+}
+
+.rating-area > span:first-child {
+    display: block;
+
+    margin-bottom: 10px;
+
+    color: #777;
+
+    font-size: 12px;
+
+    text-transform: uppercase;
+
+    letter-spacing: 2px;
+}
+
+.rating-stars {
+    display: flex;
+
+    gap: 4px;
+}
+
+.rating-stars button {
+    border: none;
+
+    background: transparent;
+
+    color: #333;
+
+    font-size: 30px;
+
+    cursor: pointer;
+
+    transition: .2s;
+}
+
+.rating-stars button:hover,
+.rating-stars button.active {
+    color: #ffc400;
+
+    transform: scale(1.1);
+}
+
+.rating-text {
+    display: block;
+
+    margin-top: 5px;
+
+    color: #666;
+
+    font-size: 12px;
+}
+
+
+/* =========================================================
+   PROGRESS
+   ========================================================= */
+
+.progress-area {
+    max-width: 700px;
+
+    margin-top: 25px;
 }
 
 .progress-top {
@@ -843,7 +1044,7 @@ dialog::backdrop {
 
 
 /* =========================================================
-   TRAILER PLAYER
+   PLAYER
    ========================================================= */
 
 #trailerDialog {
@@ -880,8 +1081,244 @@ dialog::backdrop {
     color: #666;
 }
 
-.player-close {
-    z-index: 50;
+
+/* =========================================================
+   PROFILE
+   ========================================================= */
+
+#profileDialog {
+    width: min(850px, 94vw);
+
+    max-height: 90vh;
+}
+
+.profile-panel {
+    position: relative;
+
+    padding: 45px;
+}
+
+.profile-header {
+    display: flex;
+
+    align-items: center;
+
+    gap: 22px;
+
+    padding-bottom: 35px;
+
+    border-bottom:
+        1px solid rgba(255,255,255,.08);
+}
+
+.profile-avatar {
+    width: 86px;
+    height: 86px;
+
+    flex-shrink: 0;
+
+    display: flex;
+
+    align-items: center;
+    justify-content: center;
+
+    border-radius: 50%;
+
+    background:
+        linear-gradient(
+            135deg,
+            #e50914,
+            #6d0007
+        );
+
+    font-size: 22px;
+
+    font-weight: 900;
+
+    box-shadow:
+        0 15px 40px
+        rgba(229,9,20,.2);
+}
+
+.profile-header h2 {
+    margin-top: 5px;
+
+    font-size: 35px;
+}
+
+.profile-header p {
+    margin-top: 5px;
+
+    color: #666;
+}
+
+
+/* =========================================================
+   PROFILE STATS
+   ========================================================= */
+
+.profile-stats {
+    display: grid;
+
+    grid-template-columns:
+        repeat(4, 1fr);
+
+    gap: 12px;
+
+    margin-top: 25px;
+}
+
+.stat-card {
+    padding: 22px;
+
+    background: #111;
+
+    border:
+        1px solid #202020;
+
+    border-radius: 10px;
+
+    text-align: center;
+}
+
+.stat-card strong {
+    display: block;
+
+    font-size: 30px;
+}
+
+.stat-card span {
+    display: block;
+
+    margin-top: 5px;
+
+    color: #666;
+
+    font-size: 11px;
+
+    text-transform: uppercase;
+
+    letter-spacing: 1px;
+}
+
+
+/* =========================================================
+   PROFILE SECTIONS
+   ========================================================= */
+
+.profile-section {
+    margin-top: 35px;
+}
+
+.profile-section-title {
+    margin-bottom: 15px;
+
+    color: #777;
+
+    font-size: 10px;
+
+    letter-spacing: 2px;
+
+    font-weight: 800;
+}
+
+.profile-recent,
+.profile-ratings {
+    display: flex;
+
+    flex-direction: column;
+
+    gap: 9px;
+}
+
+.profile-item {
+    display: flex;
+
+    align-items: center;
+
+    justify-content: space-between;
+
+    gap: 15px;
+
+    padding: 13px 15px;
+
+    background: #111;
+
+    border:
+        1px solid #1d1d1d;
+
+    border-radius: 8px;
+}
+
+.profile-item-left {
+    display: flex;
+
+    align-items: center;
+
+    gap: 12px;
+}
+
+.profile-item img {
+    width: 45px;
+    height: 58px;
+
+    object-fit: cover;
+
+    border-radius: 5px;
+}
+
+.profile-item-title {
+    font-size: 13px;
+
+    font-weight: 700;
+}
+
+.profile-item-subtitle {
+    margin-top: 4px;
+
+    color: #666;
+
+    font-size: 11px;
+}
+
+.profile-item-rating {
+    color: #ffc400;
+
+    font-size: 14px;
+}
+
+
+/* =========================================================
+   PROFILE DANGER
+   ========================================================= */
+
+.profile-danger-btn {
+    width: 100%;
+
+    margin-top: 35px;
+
+    padding: 14px;
+
+    border:
+        1px solid rgba(229,9,20,.3);
+
+    border-radius: 8px;
+
+    background:
+        rgba(229,9,20,.05);
+
+    color: #e50914;
+
+    cursor: pointer;
+
+    font-weight: 700;
+
+    transition: .25s;
+}
+
+.profile-danger-btn:hover {
+    background:
+        rgba(229,9,20,.15);
 }
 
 
@@ -919,7 +1356,8 @@ dialog::backdrop {
 }
 
 .toast.show {
-    transform: translateY(0);
+    transform:
+        translateY(0);
 
     opacity: 1;
 }
@@ -1000,7 +1438,17 @@ footer small {
         padding: 25px;
     }
 
+    .profile-panel {
+        padding: 30px 20px;
+    }
+
+    .profile-stats {
+        grid-template-columns:
+            repeat(2, 1fr);
+    }
+
 }
+
 
 @media (max-width: 500px) {
 
@@ -1036,8 +1484,31 @@ footer small {
         font-size: 42px;
     }
 
-    .player-info {
-        flex-direction: column;
+    .profile-header {
+        align-items: flex-start;
+    }
+
+    .profile-avatar {
+        width: 65px;
+        height: 65px;
+    }
+
+    .profile-header h2 {
+        font-size: 27px;
+    }
+
+    .profile-stats {
+        grid-template-columns: 1fr 1fr;
+    }
+
+    .section-header {
+        align-items: flex-start;
+
+        gap: 15px;
+    }
+
+    .clear-history-btn {
+        font-size: 10px;
     }
 
 }

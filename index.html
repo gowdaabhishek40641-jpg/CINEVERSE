@@ -11,10 +11,10 @@
 
     <meta
         name="description"
-        content="CineVerse - Cinematic Movie Streaming Experience"
+        content="CineVerse - Premium Cinematic Movie Experience"
     >
 
-    <title>CineVerse | Movie Experience</title>
+    <title>CineVerse | Cinematic Universe</title>
 
     <link rel="stylesheet" href="style.css">
 </head>
@@ -43,13 +43,29 @@
 
         </nav>
 
-        <button
-            class="nav-search-btn"
-            id="focusSearch"
-            type="button"
-            aria-label="Search">
-            🔍
-        </button>
+        <div class="nav-actions">
+
+            <button
+                class="nav-search-btn"
+                id="focusSearch"
+                type="button"
+                aria-label="Search">
+
+                🔍
+
+            </button>
+
+            <button
+                class="profile-btn"
+                id="openProfile"
+                type="button"
+                aria-label="Open profile">
+
+                <span>AG</span>
+
+            </button>
+
+        </div>
 
     </header>
 
@@ -82,8 +98,11 @@
                 <div class="hero-meta">
 
                     <span>2026</span>
+
                     <span>2h 18m</span>
+
                     <span>⭐ 8.7</span>
+
                     <span>Sci-Fi</span>
 
                 </div>
@@ -118,8 +137,13 @@
             </div>
 
             <div class="scroll-indicator">
-                <span>SCROLL TO EXPLORE</span>
+
+                <span>
+                    SCROLL TO EXPLORE
+                </span>
+
                 <div class="scroll-line"></div>
+
             </div>
 
         </section>
@@ -145,7 +169,9 @@
                 <button
                     id="clearSearch"
                     type="button">
+
                     ×
+
                 </button>
 
             </div>
@@ -178,21 +204,17 @@
                 <span
                     id="movieCount"
                     class="movie-count">
+
                     0 movies
+
                 </span>
 
             </div>
-
-
-            <!-- FILTERS -->
 
             <div
                 id="filterContainer"
                 class="filter-container">
             </div>
-
-
-            <!-- MOVIE GRID -->
 
             <div
                 id="movieGrid"
@@ -235,7 +257,7 @@
 
 
         <!-- =================================================
-             WATCHLIST
+             MY LIST
              ================================================= -->
 
         <section
@@ -265,6 +287,47 @@
 
         </section>
 
+
+        <!-- =================================================
+             RECENTLY WATCHED
+             ================================================= -->
+
+        <section
+            id="history"
+            class="section history-section">
+
+            <div class="section-header">
+
+                <div>
+
+                    <span class="section-label">
+                        ACTIVITY
+                    </span>
+
+                    <h2>
+                        Recently Watched
+                    </h2>
+
+                </div>
+
+                <button
+                    id="clearHistory"
+                    class="clear-history-btn"
+                    type="button">
+
+                    Clear History
+
+                </button>
+
+            </div>
+
+            <div
+                id="historyGrid"
+                class="movie-grid">
+            </div>
+
+        </section>
+
     </main>
 
 
@@ -280,7 +343,9 @@
                 class="dialog-close"
                 id="closeMovieDialog"
                 type="button">
+
                 ×
+
             </button>
 
             <div class="details-image">
@@ -288,9 +353,12 @@
                 <img
                     id="detailsImage"
                     src=""
-                    alt="">
+                    alt=""
+                >
 
-                <div class="details-image-gradient"></div>
+                <div
+                    class="details-image-gradient">
+                </div>
 
             </div>
 
@@ -301,8 +369,7 @@
                     class="details-label">
                 </span>
 
-                <h2 id="detailsTitle">
-                </h2>
+                <h2 id="detailsTitle"></h2>
 
                 <div
                     id="detailsMeta"
@@ -315,6 +382,61 @@
                 </p>
 
 
+                <!-- PERSONAL RATING -->
+
+                <div class="rating-area">
+
+                    <span>
+                        Your Rating
+                    </span>
+
+                    <div
+                        id="ratingStars"
+                        class="rating-stars">
+
+                        <button
+                            type="button"
+                            data-rating="1">
+                            ★
+                        </button>
+
+                        <button
+                            type="button"
+                            data-rating="2">
+                            ★
+                        </button>
+
+                        <button
+                            type="button"
+                            data-rating="3">
+                            ★
+                        </button>
+
+                        <button
+                            type="button"
+                            data-rating="4">
+                            ★
+                        </button>
+
+                        <button
+                            type="button"
+                            data-rating="5">
+                            ★
+                        </button>
+
+                    </div>
+
+                    <span
+                        id="ratingText"
+                        class="rating-text">
+
+                        Not rated
+
+                    </span>
+
+                </div>
+
+
                 <!-- PROGRESS -->
 
                 <div class="progress-area">
@@ -325,8 +447,11 @@
                             Your Progress
                         </span>
 
-                        <strong id="progressText">
+                        <strong
+                            id="progressText">
+
                             0%
+
                         </strong>
 
                     </div>
@@ -383,7 +508,7 @@
 
 
     <!-- =====================================================
-         TRAILER DIALOG
+         TRAILER PLAYER
          ===================================================== -->
 
     <dialog id="trailerDialog">
@@ -418,6 +543,162 @@
                 </span>
 
             </div>
+
+        </div>
+
+    </dialog>
+
+
+    <!-- =====================================================
+         PROFILE DIALOG
+         ===================================================== -->
+
+    <dialog id="profileDialog">
+
+        <div class="profile-panel">
+
+            <button
+                id="closeProfile"
+                class="dialog-close"
+                type="button">
+
+                ×
+
+            </button>
+
+
+            <!-- PROFILE HEADER -->
+
+            <div class="profile-header">
+
+                <div class="profile-avatar">
+                    AG
+                </div>
+
+                <div>
+
+                    <span class="section-label">
+                        CINEVERSE MEMBER
+                    </span>
+
+                    <h2>
+                        Abhishek
+                    </h2>
+
+                    <p>
+                        Your cinematic journey
+                    </p>
+
+                </div>
+
+            </div>
+
+
+            <!-- STATS -->
+
+            <div class="profile-stats">
+
+                <div class="stat-card">
+
+                    <strong
+                        id="profileListCount">
+                        0
+                    </strong>
+
+                    <span>
+                        My List
+                    </span>
+
+                </div>
+
+                <div class="stat-card">
+
+                    <strong
+                        id="profileContinueCount">
+                        0
+                    </strong>
+
+                    <span>
+                        Watching
+                    </span>
+
+                </div>
+
+                <div class="stat-card">
+
+                    <strong
+                        id="profileHistoryCount">
+                        0
+                    </strong>
+
+                    <span>
+                        Watched
+                    </span>
+
+                </div>
+
+                <div class="stat-card">
+
+                    <strong
+                        id="profileRatedCount">
+                        0
+                    </strong>
+
+                    <span>
+                        Rated
+                    </span>
+
+                </div>
+
+            </div>
+
+
+            <!-- PROFILE SECTIONS -->
+
+            <div class="profile-section">
+
+                <div class="profile-section-title">
+
+                    <span>
+                        WATCHING ACTIVITY
+                    </span>
+
+                </div>
+
+                <div
+                    id="profileRecent"
+                    class="profile-recent">
+                </div>
+
+            </div>
+
+
+            <div class="profile-section">
+
+                <div class="profile-section-title">
+
+                    <span>
+                        YOUR RATINGS
+                    </span>
+
+                </div>
+
+                <div
+                    id="profileRatings"
+                    class="profile-ratings">
+                </div>
+
+            </div>
+
+
+            <button
+                id="profileClearHistory"
+                class="profile-danger-btn"
+                type="button">
+
+                Clear Watch History
+
+            </button>
 
         </div>
 
