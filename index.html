@@ -2,6 +2,7 @@
 <html lang="en">
 
 <head>
+
     <meta charset="UTF-8">
 
     <meta
@@ -17,726 +18,863 @@
     <title>CineVerse | Cinematic Universe</title>
 
     <link rel="stylesheet" href="style.css">
+
 </head>
 
 <body>
 
-    <!-- =====================================================
-         NAVBAR
-         ===================================================== -->
 
-    <header class="navbar">
+<!-- =====================================================
+     NAVBAR
+===================================================== -->
 
-        <a href="#home" class="logo">
-            CINE<span>VERSE</span>
-        </a>
+<header class="navbar">
 
-        <nav class="nav-links">
+    <a href="#home" class="logo">
+        CINE<span>VERSE</span>
+    </a>
 
-            <a href="#home">Home</a>
+    <nav class="nav-links">
 
-            <a href="#movies">Movies</a>
+        <a href="#home">Home</a>
 
-            <a href="#continue">Continue</a>
+        <a href="#trending">Trending</a>
 
-            <a href="#watchlist">My List</a>
+        <a href="#movies">Movies</a>
 
-        </nav>
+        <a href="#continue">Continue</a>
 
-        <div class="nav-actions">
+        <a href="#watchlist">My List</a>
 
-            <button
-                class="nav-search-btn"
-                id="focusSearch"
-                type="button"
-                aria-label="Search">
+    </nav>
 
-                🔍
+    <div class="nav-actions">
 
-            </button>
+        <button
+            id="focusSearch"
+            class="nav-search-btn"
+            type="button"
+            aria-label="Search">
 
-            <button
-                class="profile-btn"
-                id="openProfile"
-                type="button"
-                aria-label="Open profile">
+            🔍
 
-                <span>AG</span>
+        </button>
 
-            </button>
+        <button
+            id="openProfile"
+            class="profile-btn"
+            type="button"
+            aria-label="Open profile">
 
-        </div>
+            <span>AG</span>
 
-    </header>
+        </button>
 
-
-    <!-- =====================================================
-         HERO
-         ===================================================== -->
-
-    <main>
-
-        <section
-            id="home"
-            class="hero">
-
-            <div class="hero-background"></div>
-
-            <div class="hero-overlay"></div>
-
-            <div class="hero-content">
-
-                <span class="hero-label">
-                    CINEVERSE ORIGINAL
-                </span>
-
-                <h1>
-                    BEYOND<br>
-                    THE VOID
-                </h1>
-
-                <div class="hero-meta">
-
-                    <span>2026</span>
-
-                    <span>2h 18m</span>
-
-                    <span>⭐ 8.7</span>
-
-                    <span>Sci-Fi</span>
-
-                </div>
-
-                <p>
-                    A deep-space mission discovers a mysterious
-                    signal beyond the known universe.
-                </p>
-
-                <div class="hero-buttons">
-
-                    <button
-                        class="btn btn-primary"
-                        id="heroPlay"
-                        type="button">
-
-                        ▶ Watch Trailer
-
-                    </button>
-
-                    <button
-                        class="btn btn-secondary"
-                        id="heroDetails"
-                        type="button">
-
-                        More Info
-
-                    </button>
-
-                </div>
-
-            </div>
-
-            <div class="scroll-indicator">
-
-                <span>
-                    SCROLL TO EXPLORE
-                </span>
-
-                <div class="scroll-line"></div>
-
-            </div>
-
-        </section>
-
-
-        <!-- =================================================
-             SEARCH
-             ================================================= -->
-
-        <section class="search-section">
-
-            <div class="search-box">
-
-                <span>⌕</span>
-
-                <input
-                    type="text"
-                    id="movieSearch"
-                    placeholder="Search movies, genres..."
-                    autocomplete="off"
-                >
-
-                <button
-                    id="clearSearch"
-                    type="button">
-
-                    ×
-
-                </button>
-
-            </div>
-
-        </section>
-
-
-        <!-- =================================================
-             MOVIES
-             ================================================= -->
-
-        <section
-            id="movies"
-            class="section">
-
-            <div class="section-header">
-
-                <div>
-
-                    <span class="section-label">
-                        DISCOVER
-                    </span>
-
-                    <h2>
-                        Explore Movies
-                    </h2>
-
-                </div>
-
-                <span
-                    id="movieCount"
-                    class="movie-count">
-
-                    0 movies
-
-                </span>
-
-            </div>
-
-            <div
-                id="filterContainer"
-                class="filter-container">
-            </div>
-
-            <div
-                id="movieGrid"
-                class="movie-grid">
-            </div>
-
-        </section>
-
-
-        <!-- =================================================
-             CONTINUE WATCHING
-             ================================================= -->
-
-        <section
-            id="continue"
-            class="section continue-section">
-
-            <div class="section-header">
-
-                <div>
-
-                    <span class="section-label">
-                        YOUR JOURNEY
-                    </span>
-
-                    <h2>
-                        Continue Watching
-                    </h2>
-
-                </div>
-
-            </div>
-
-            <div
-                id="continueGrid"
-                class="movie-grid">
-            </div>
-
-        </section>
-
-
-        <!-- =================================================
-             MY LIST
-             ================================================= -->
-
-        <section
-            id="watchlist"
-            class="section watchlist-section">
-
-            <div class="section-header">
-
-                <div>
-
-                    <span class="section-label">
-                        SAVED
-                    </span>
-
-                    <h2>
-                        My List
-                    </h2>
-
-                </div>
-
-            </div>
-
-            <div
-                id="watchlistGrid"
-                class="movie-grid">
-            </div>
-
-        </section>
-
-
-        <!-- =================================================
-             RECENTLY WATCHED
-             ================================================= -->
-
-        <section
-            id="history"
-            class="section history-section">
-
-            <div class="section-header">
-
-                <div>
-
-                    <span class="section-label">
-                        ACTIVITY
-                    </span>
-
-                    <h2>
-                        Recently Watched
-                    </h2>
-
-                </div>
-
-                <button
-                    id="clearHistory"
-                    class="clear-history-btn"
-                    type="button">
-
-                    Clear History
-
-                </button>
-
-            </div>
-
-            <div
-                id="historyGrid"
-                class="movie-grid">
-            </div>
-
-        </section>
-
-    </main>
-
-
-    <!-- =====================================================
-         MOVIE DETAILS DIALOG
-         ===================================================== -->
-
-    <dialog id="movieDialog">
-
-        <div class="dialog-content">
-
-            <button
-                class="dialog-close"
-                id="closeMovieDialog"
-                type="button">
-
-                ×
-
-            </button>
-
-            <div class="details-image">
-
-                <img
-                    id="detailsImage"
-                    src=""
-                    alt=""
-                >
-
-                <div
-                    class="details-image-gradient">
-                </div>
-
-            </div>
-
-            <div class="details-content">
-
-                <span
-                    id="detailsGenre"
-                    class="details-label">
-                </span>
-
-                <h2 id="detailsTitle"></h2>
-
-                <div
-                    id="detailsMeta"
-                    class="details-meta">
-                </div>
-
-                <p
-                    id="detailsDescription"
-                    class="details-description">
-                </p>
-
-
-                <!-- PERSONAL RATING -->
-
-                <div class="rating-area">
-
-                    <span>
-                        Your Rating
-                    </span>
-
-                    <div
-                        id="ratingStars"
-                        class="rating-stars">
-
-                        <button
-                            type="button"
-                            data-rating="1">
-                            ★
-                        </button>
-
-                        <button
-                            type="button"
-                            data-rating="2">
-                            ★
-                        </button>
-
-                        <button
-                            type="button"
-                            data-rating="3">
-                            ★
-                        </button>
-
-                        <button
-                            type="button"
-                            data-rating="4">
-                            ★
-                        </button>
-
-                        <button
-                            type="button"
-                            data-rating="5">
-                            ★
-                        </button>
-
-                    </div>
-
-                    <span
-                        id="ratingText"
-                        class="rating-text">
-
-                        Not rated
-
-                    </span>
-
-                </div>
-
-
-                <!-- PROGRESS -->
-
-                <div class="progress-area">
-
-                    <div class="progress-top">
-
-                        <span>
-                            Your Progress
-                        </span>
-
-                        <strong
-                            id="progressText">
-
-                            0%
-
-                        </strong>
-
-                    </div>
-
-                    <input
-                        id="progressSlider"
-                        type="range"
-                        min="0"
-                        max="100"
-                        value="0"
-                    >
-
-                </div>
-
-
-                <!-- ACTIONS -->
-
-                <div class="details-actions">
-
-                    <button
-                        id="watchTrailer"
-                        class="btn btn-primary"
-                        type="button">
-
-                        ▶ Watch Trailer
-
-                    </button>
-
-                    <button
-                        id="watchNow"
-                        class="btn btn-secondary"
-                        type="button">
-
-                        ▶ Continue Watching
-
-                    </button>
-
-                    <button
-                        id="watchlistButton"
-                        class="btn btn-outline"
-                        type="button">
-
-                        + Add to My List
-
-                    </button>
-
-                </div>
-
-            </div>
-
-        </div>
-
-    </dialog>
-
-
-    <!-- =====================================================
-         TRAILER PLAYER
-         ===================================================== -->
-
-    <dialog id="trailerDialog">
-
-        <div class="player">
-
-            <button
-                id="closeTrailer"
-                class="dialog-close player-close"
-                type="button">
-
-                ×
-
-            </button>
-
-            <iframe
-                id="trailerFrame"
-                src=""
-                title="Movie Trailer"
-                allow="autoplay; fullscreen"
-                allowfullscreen>
-            </iframe>
-
-            <div class="player-info">
-
-                <strong id="playerTitle">
-                    Movie Trailer
-                </strong>
-
-                <span>
-                    CineVerse Preview
-                </span>
-
-            </div>
-
-        </div>
-
-    </dialog>
-
-
-    <!-- =====================================================
-         PROFILE DIALOG
-         ===================================================== -->
-
-    <dialog id="profileDialog">
-
-        <div class="profile-panel">
-
-            <button
-                id="closeProfile"
-                class="dialog-close"
-                type="button">
-
-                ×
-
-            </button>
-
-
-            <!-- PROFILE HEADER -->
-
-            <div class="profile-header">
-
-                <div class="profile-avatar">
-                    AG
-                </div>
-
-                <div>
-
-                    <span class="section-label">
-                        CINEVERSE MEMBER
-                    </span>
-
-                    <h2>
-                        Abhishek
-                    </h2>
-
-                    <p>
-                        Your cinematic journey
-                    </p>
-
-                </div>
-
-            </div>
-
-
-            <!-- STATS -->
-
-            <div class="profile-stats">
-
-                <div class="stat-card">
-
-                    <strong
-                        id="profileListCount">
-                        0
-                    </strong>
-
-                    <span>
-                        My List
-                    </span>
-
-                </div>
-
-                <div class="stat-card">
-
-                    <strong
-                        id="profileContinueCount">
-                        0
-                    </strong>
-
-                    <span>
-                        Watching
-                    </span>
-
-                </div>
-
-                <div class="stat-card">
-
-                    <strong
-                        id="profileHistoryCount">
-                        0
-                    </strong>
-
-                    <span>
-                        Watched
-                    </span>
-
-                </div>
-
-                <div class="stat-card">
-
-                    <strong
-                        id="profileRatedCount">
-                        0
-                    </strong>
-
-                    <span>
-                        Rated
-                    </span>
-
-                </div>
-
-            </div>
-
-
-            <!-- PROFILE SECTIONS -->
-
-            <div class="profile-section">
-
-                <div class="profile-section-title">
-
-                    <span>
-                        WATCHING ACTIVITY
-                    </span>
-
-                </div>
-
-                <div
-                    id="profileRecent"
-                    class="profile-recent">
-                </div>
-
-            </div>
-
-
-            <div class="profile-section">
-
-                <div class="profile-section-title">
-
-                    <span>
-                        YOUR RATINGS
-                    </span>
-
-                </div>
-
-                <div
-                    id="profileRatings"
-                    class="profile-ratings">
-                </div>
-
-            </div>
-
-
-            <button
-                id="profileClearHistory"
-                class="profile-danger-btn"
-                type="button">
-
-                Clear Watch History
-
-            </button>
-
-        </div>
-
-    </dialog>
-
-
-    <!-- =====================================================
-         TOAST
-         ===================================================== -->
-
-    <div
-        id="toast"
-        class="toast">
     </div>
 
+</header>
 
-    <!-- =====================================================
-         FOOTER
-         ===================================================== -->
 
-    <footer>
 
-        <div class="footer-logo">
-            CINE<span>VERSE</span>
+<!-- =====================================================
+     HERO
+===================================================== -->
+
+<main>
+
+<section id="home" class="hero">
+
+    <div class="hero-background"></div>
+
+    <div class="hero-overlay"></div>
+
+    <div class="hero-content">
+
+        <span class="hero-label">
+            CINEVERSE ORIGINAL
+        </span>
+
+        <h1>
+            BEYOND<br>
+            THE VOID
+        </h1>
+
+        <div class="hero-meta">
+
+            <span>2026</span>
+
+            <span>2h 18m</span>
+
+            <span>⭐ 8.7</span>
+
+            <span>Sci-Fi</span>
+
         </div>
 
         <p>
-            Your cinematic universe.
+            A deep-space mission discovers a mysterious
+            signal beyond the known universe.
         </p>
 
-        <small>
-            CineVerse portfolio project
-        </small>
+        <div class="hero-buttons">
 
-    </footer>
+            <button
+                id="heroPlay"
+                class="btn btn-primary"
+                type="button">
+
+                ▶ Watch Trailer
+
+            </button>
+
+            <button
+                id="heroDetails"
+                class="btn btn-secondary"
+                type="button">
+
+                More Info
+
+            </button>
+
+        </div>
+
+    </div>
+
+    <div class="scroll-indicator">
+
+        <span>
+            SCROLL TO EXPLORE
+        </span>
+
+        <div class="scroll-line"></div>
+
+    </div>
+
+</section>
 
 
-    <script src="script.js"></script>
+
+<!-- =====================================================
+     SEARCH
+===================================================== -->
+
+<section class="search-section">
+
+    <div class="search-box">
+
+        <span>⌕</span>
+
+        <input
+            id="movieSearch"
+            type="text"
+            placeholder="Search movies, genres..."
+            autocomplete="off"
+        >
+
+        <button
+            id="clearSearch"
+            type="button">
+
+            ×
+
+        </button>
+
+    </div>
+
+</section>
+
+
+
+<!-- =====================================================
+     TRENDING
+===================================================== -->
+
+<section
+    id="trending"
+    class="section featured-section">
+
+    <div class="section-header">
+
+        <div>
+
+            <span class="section-label">
+                HOT RIGHT NOW
+            </span>
+
+            <h2>
+                Trending Now
+            </h2>
+
+        </div>
+
+        <span class="section-description">
+            Popular this week
+        </span>
+
+    </div>
+
+    <div
+        id="trendingGrid"
+        class="movie-grid featured-grid">
+    </div>
+
+</section>
+
+
+
+<!-- =====================================================
+     RECOMMENDED
+===================================================== -->
+
+<section
+    id="recommended"
+    class="section recommendation-section">
+
+    <div class="section-header">
+
+        <div>
+
+            <span class="section-label">
+                CURATED FOR YOU
+            </span>
+
+            <h2>
+                Recommended For You
+            </h2>
+
+        </div>
+
+        <span
+            id="recommendationReason"
+            class="section-description">
+
+            Based on your activity
+
+        </span>
+
+    </div>
+
+    <div
+        id="recommendedGrid"
+        class="movie-grid">
+    </div>
+
+</section>
+
+
+
+<!-- =====================================================
+     TOP RATED
+===================================================== -->
+
+<section
+    id="topRated"
+    class="section">
+
+    <div class="section-header">
+
+        <div>
+
+            <span class="section-label">
+                AUDIENCE FAVORITES
+            </span>
+
+            <h2>
+                Top Rated
+            </h2>
+
+        </div>
+
+        <span class="section-description">
+            Highest rated movies
+        </span>
+
+    </div>
+
+    <div
+        id="topRatedGrid"
+        class="movie-grid">
+    </div>
+
+</section>
+
+
+
+<!-- =====================================================
+     RECENTLY ADDED
+===================================================== -->
+
+<section
+    id="recent"
+    class="section dark-section">
+
+    <div class="section-header">
+
+        <div>
+
+            <span class="section-label">
+                NEW ARRIVALS
+            </span>
+
+            <h2>
+                Recently Added
+            </h2>
+
+        </div>
+
+    </div>
+
+    <div
+        id="recentGrid"
+        class="movie-grid">
+    </div>
+
+</section>
+
+
+
+<!-- =====================================================
+     MOVIES
+===================================================== -->
+
+<section
+    id="movies"
+    class="section">
+
+    <div class="section-header">
+
+        <div>
+
+            <span class="section-label">
+                DISCOVER
+            </span>
+
+            <h2>
+                Explore Movies
+            </h2>
+
+        </div>
+
+        <span
+            id="movieCount"
+            class="movie-count">
+
+            0 movies
+
+        </span>
+
+    </div>
+
+    <div
+        id="filterContainer"
+        class="filter-container">
+    </div>
+
+    <div
+        id="movieGrid"
+        class="movie-grid">
+    </div>
+
+</section>
+
+
+
+<!-- =====================================================
+     CONTINUE WATCHING
+===================================================== -->
+
+<section
+    id="continue"
+    class="section continue-section">
+
+    <div class="section-header">
+
+        <div>
+
+            <span class="section-label">
+                YOUR JOURNEY
+            </span>
+
+            <h2>
+                Continue Watching
+            </h2>
+
+        </div>
+
+    </div>
+
+    <div
+        id="continueGrid"
+        class="movie-grid">
+    </div>
+
+</section>
+
+
+
+<!-- =====================================================
+     MY LIST
+===================================================== -->
+
+<section
+    id="watchlist"
+    class="section watchlist-section">
+
+    <div class="section-header">
+
+        <div>
+
+            <span class="section-label">
+                SAVED
+            </span>
+
+            <h2>
+                My List
+            </h2>
+
+        </div>
+
+    </div>
+
+    <div
+        id="watchlistGrid"
+        class="movie-grid">
+    </div>
+
+</section>
+
+
+
+<!-- =====================================================
+     HISTORY
+===================================================== -->
+
+<section
+    id="history"
+    class="section history-section">
+
+    <div class="section-header">
+
+        <div>
+
+            <span class="section-label">
+                ACTIVITY
+            </span>
+
+            <h2>
+                Recently Watched
+            </h2>
+
+        </div>
+
+        <button
+            id="clearHistory"
+            class="clear-history-btn"
+            type="button">
+
+            Clear History
+
+        </button>
+
+    </div>
+
+    <div
+        id="historyGrid"
+        class="movie-grid">
+    </div>
+
+</section>
+
+</main>
+
+
+
+<!-- =====================================================
+     MOVIE DETAILS
+===================================================== -->
+
+<dialog id="movieDialog">
+
+<div class="dialog-content">
+
+    <button
+        id="closeMovieDialog"
+        class="dialog-close"
+        type="button">
+
+        ×
+
+    </button>
+
+    <div class="details-image">
+
+        <img
+            id="detailsImage"
+            src=""
+            alt=""
+        >
+
+        <div class="details-image-gradient"></div>
+
+    </div>
+
+    <div class="details-content">
+
+        <span
+            id="detailsGenre"
+            class="details-label">
+        </span>
+
+        <h2 id="detailsTitle"></h2>
+
+        <div
+            id="detailsMeta"
+            class="details-meta">
+        </div>
+
+        <p
+            id="detailsDescription"
+            class="details-description">
+        </p>
+
+
+        <!-- RATING -->
+
+        <div class="rating-area">
+
+            <span>
+                Your Rating
+            </span>
+
+            <div
+                id="ratingStars"
+                class="rating-stars">
+
+                <button
+                    type="button"
+                    data-rating="1">
+                    ★
+                </button>
+
+                <button
+                    type="button"
+                    data-rating="2">
+                    ★
+                </button>
+
+                <button
+                    type="button"
+                    data-rating="3">
+                    ★
+                </button>
+
+                <button
+                    type="button"
+                    data-rating="4">
+                    ★
+                </button>
+
+                <button
+                    type="button"
+                    data-rating="5">
+                    ★
+                </button>
+
+            </div>
+
+            <span
+                id="ratingText"
+                class="rating-text">
+
+                Not rated
+
+            </span>
+
+        </div>
+
+
+        <!-- PROGRESS -->
+
+        <div class="progress-area">
+
+            <div class="progress-top">
+
+                <span>
+                    Your Progress
+                </span>
+
+                <strong id="progressText">
+                    0%
+                </strong>
+
+            </div>
+
+            <input
+                id="progressSlider"
+                type="range"
+                min="0"
+                max="100"
+                value="0"
+            >
+
+        </div>
+
+
+        <!-- ACTIONS -->
+
+        <div class="details-actions">
+
+            <button
+                id="watchTrailer"
+                class="btn btn-primary"
+                type="button">
+
+                ▶ Watch Trailer
+
+            </button>
+
+            <button
+                id="watchNow"
+                class="btn btn-secondary"
+                type="button">
+
+                ▶ Continue Watching
+
+            </button>
+
+            <button
+                id="watchlistButton"
+                class="btn btn-outline"
+                type="button">
+
+                + Add to My List
+
+            </button>
+
+        </div>
+
+    </div>
+
+</div>
+
+</dialog>
+
+
+
+<!-- =====================================================
+     TRAILER
+===================================================== -->
+
+<dialog id="trailerDialog">
+
+<div class="player">
+
+    <button
+        id="closeTrailer"
+        class="dialog-close player-close"
+        type="button">
+
+        ×
+
+    </button>
+
+    <iframe
+        id="trailerFrame"
+        src=""
+        title="Movie Trailer"
+        allow="autoplay; fullscreen"
+        allowfullscreen>
+    </iframe>
+
+    <div class="player-info">
+
+        <strong id="playerTitle">
+            Movie Trailer
+        </strong>
+
+        <span>
+            CineVerse Preview
+        </span>
+
+    </div>
+
+</div>
+
+</dialog>
+
+
+
+<!-- =====================================================
+     PROFILE
+===================================================== -->
+
+<dialog id="profileDialog">
+
+<div class="profile-panel">
+
+    <button
+        id="closeProfile"
+        class="dialog-close"
+        type="button">
+
+        ×
+
+    </button>
+
+    <div class="profile-header">
+
+        <div class="profile-avatar">
+            AG
+        </div>
+
+        <div>
+
+            <span class="section-label">
+                CINEVERSE MEMBER
+            </span>
+
+            <h2>
+                Abhishek
+            </h2>
+
+            <p>
+                Your cinematic journey
+            </p>
+
+        </div>
+
+    </div>
+
+
+    <div class="profile-stats">
+
+        <div class="stat-card">
+
+            <strong id="profileListCount">
+                0
+            </strong>
+
+            <span>
+                My List
+            </span>
+
+        </div>
+
+        <div class="stat-card">
+
+            <strong id="profileContinueCount">
+                0
+            </strong>
+
+            <span>
+                Watching
+            </span>
+
+        </div>
+
+        <div class="stat-card">
+
+            <strong id="profileHistoryCount">
+                0
+            </strong>
+
+            <span>
+                Watched
+            </span>
+
+        </div>
+
+        <div class="stat-card">
+
+            <strong id="profileRatedCount">
+                0
+            </strong>
+
+            <span>
+                Rated
+            </span>
+
+        </div>
+
+    </div>
+
+
+    <div class="profile-section">
+
+        <div class="profile-section-title">
+            WATCHING ACTIVITY
+        </div>
+
+        <div
+            id="profileRecent"
+            class="profile-recent">
+        </div>
+
+    </div>
+
+
+    <div class="profile-section">
+
+        <div class="profile-section-title">
+            YOUR RATINGS
+        </div>
+
+        <div
+            id="profileRatings"
+            class="profile-ratings">
+        </div>
+
+    </div>
+
+
+    <button
+        id="profileClearHistory"
+        class="profile-danger-btn"
+        type="button">
+
+        Clear Watch History
+
+    </button>
+
+</div>
+
+</dialog>
+
+
+
+<!-- =====================================================
+     TOAST
+===================================================== -->
+
+<div
+    id="toast"
+    class="toast">
+</div>
+
+
+
+<!-- =====================================================
+     FOOTER
+===================================================== -->
+
+<footer>
+
+    <div class="footer-logo">
+        CINE<span>VERSE</span>
+    </div>
+
+    <p>
+        Your cinematic universe.
+    </p>
+
+    <small>
+        CineVerse portfolio project
+    </small>
+
+</footer>
+
+
+<script src="script.js"></script>
 
 </body>
 
