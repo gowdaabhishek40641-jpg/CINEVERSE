@@ -1,250 +1,217 @@
-/* =========================================================
-   CINEVERSE
-   COMMIT 11
-   TRENDING + RECOMMENDATIONS + TOP RATED
-========================================================= */
+/* =========================================
+   CINEVERSE COMMIT 10
+   COMPLETE OTT INTERACTION SYSTEM
+========================================= */
 
 
-/* =========================================================
-   MOVIES
-========================================================= */
+/* ================= MOVIE DATABASE ================= */
 
 const movies = [
 
     {
         id: 1,
-        title: "Beyond The Void",
+        title: "The Last Horizon",
         genre: "Sci-Fi",
         year: 2026,
         duration: "2h 18m",
-        rating: "8.7",
-        popularity: 99,
-        added: "2026-09-28",
-        image:
-            "https://images.unsplash.com/photo-1534791547706-9f5e3c5f1847?auto=format&fit=crop&w=1200&q=85",
+        rating: "9.1",
         description:
-            "A deep-space mission discovers a mysterious signal beyond the known universe. What begins as a scientific expedition becomes a fight for survival.",
+            "Humanity's final journey begins beyond the edge of space. One crew must discover the truth before time runs out.",
+        image:
+            "https://images.unsplash.com/photo-1446776877081-d282a0f896e2?auto=format&fit=crop&w=1000&q=80",
         trailer:
-            "https://www.youtube.com/embed/ScMzIvxBSi4"
+            "https://www.youtube.com/embed/1La4QzGeaaQ"
     },
 
     {
         id: 2,
-        title: "Dark Future",
+        title: "Shadow Protocol",
         genre: "Action",
-        year: 2025,
+        year: 2026,
         duration: "2h 05m",
-        rating: "8.4",
-        popularity: 96,
-        added: "2026-09-24",
-        image:
-            "https://images.unsplash.com/photo-1519608487953-e999c86e7455?auto=format&fit=crop&w=1200&q=85",
+        rating: "8.8",
         description:
-            "A soldier enters a future ruled by machines and fights to restore humanity.",
+            "An elite operative discovers a global conspiracy hidden inside the world's most powerful intelligence network.",
+        image:
+            "https://images.unsplash.com/photo-1518709594023-6eab9bab7b23?auto=format&fit=crop&w=1000&q=80",
         trailer:
-            "https://www.youtube.com/embed/ScMzIvxBSi4"
+            "https://www.youtube.com/embed/EXeTwQWrcwY"
     },
 
     {
         id: 3,
-        title: "Lost Galaxy",
-        genre: "Sci-Fi",
+        title: "Neon City",
+        genre: "Thriller",
         year: 2025,
-        duration: "2h 25m",
-        rating: "9.0",
-        popularity: 98,
-        added: "2026-09-25",
-        image:
-            "https://images.unsplash.com/photo-1462331940025-496dfbfc7564?auto=format&fit=crop&w=1200&q=85",
+        duration: "1h 58m",
+        rating: "8.5",
         description:
-            "A crew searches for a lost civilization hidden inside a distant galaxy.",
+            "A detective enters a futuristic city where memories can be bought, sold and erased.",
+        image:
+            "https://images.unsplash.com/photo-1519608487953-e999c86e7455?auto=format&fit=crop&w=1000&q=80",
         trailer:
-            "https://www.youtube.com/embed/ScMzIvxBSi4"
+            "https://www.youtube.com/embed/YoHD9XEInc0"
     },
 
     {
         id: 4,
-        title: "Night City",
-        genre: "Thriller",
-        year: 2026,
-        duration: "1h 58m",
-        rating: "8.2",
-        popularity: 93,
-        added: "2026-09-30",
-        image:
-            "https://images.unsplash.com/photo-1519608487953-e999c86e7455?auto=format&fit=crop&w=1200&q=85",
+        title: "Beyond Earth",
+        genre: "Sci-Fi",
+        year: 2025,
+        duration: "2h 21m",
+        rating: "8.9",
         description:
-            "A detective follows a mysterious trail through a city that never sleeps.",
+            "A group of explorers discover something impossible while searching for a new home.",
+        image:
+            "https://images.unsplash.com/photo-1614728263952-84ea256f9679?auto=format&fit=crop&w=1000&q=80",
         trailer:
-            "https://www.youtube.com/embed/ScMzIvxBSi4"
+            "https://www.youtube.com/embed/6ZfuNTqbHE8"
     },
 
     {
         id: 5,
-        title: "Final Mission",
-        genre: "Action",
+        title: "The Silent War",
+        genre: "Drama",
         year: 2024,
-        duration: "2h 12m",
-        rating: "8.1",
-        popularity: 89,
-        added: "2026-09-20",
-        image:
-            "https://images.unsplash.com/photo-1534447677768-be436bb09401?auto=format&fit=crop&w=1200&q=85",
+        duration: "2h 11m",
+        rating: "8.4",
         description:
-            "One final mission stands between a special forces team and global disaster.",
+            "Two rival nations attempt to stop a war without firing a single shot.",
+        image:
+            "https://images.unsplash.com/photo-1500534623283-312aade485b7?auto=format&fit=crop&w=1000&q=80",
         trailer:
-            "https://www.youtube.com/embed/ScMzIvxBSi4"
+            "https://www.youtube.com/embed/zSWdZVtXT7E"
     },
 
     {
         id: 6,
-        title: "Cyber World",
-        genre: "Technology",
+        title: "Dark Frequency",
+        genre: "Thriller",
         year: 2026,
-        duration: "2h 10m",
-        rating: "8.8",
-        popularity: 97,
-        added: "2026-09-29",
-        image:
-            "https://images.unsplash.com/photo-1518770660439-4636190af475?auto=format&fit=crop&w=1200&q=85",
+        duration: "1h 49m",
+        rating: "8.7",
         description:
-            "A hacker discovers a digital world hidden beneath the modern internet.",
+            "A mysterious radio signal begins predicting crimes before they happen.",
+        image:
+            "https://images.unsplash.com/photo-1519608487953-e999c86e7455?auto=format&fit=crop&w=1000&q=80",
         trailer:
-            "https://www.youtube.com/embed/ScMzIvxBSi4"
+            "https://www.youtube.com/embed/YoHD9XEInc0"
     },
 
     {
         id: 7,
-        title: "Shadow Protocol",
-        genre: "Thriller",
+        title: "Velocity",
+        genre: "Action",
         year: 2025,
         duration: "2h 02m",
-        rating: "8.6",
-        popularity: 94,
-        added: "2026-09-22",
-        image:
-            "https://images.unsplash.com/photo-1481627834876-b7833e8f5570?auto=format&fit=crop&w=1200&q=85",
+        rating: "8.3",
         description:
-            "An intelligence agent uncovers a secret protocol capable of changing the world.",
+            "A street racer becomes involved in an international mission that pushes speed to the limit.",
+        image:
+            "https://images.unsplash.com/photo-1504215680853-026ed2a45def?auto=format&fit=crop&w=1000&q=80",
         trailer:
-            "https://www.youtube.com/embed/ScMzIvxBSi4"
+            "https://www.youtube.com/embed/2g811Eo7K8U"
     },
 
     {
         id: 8,
-        title: "Future Earth",
-        genre: "Adventure",
-        year: 2027,
-        duration: "2h 30m",
-        rating: "8.9",
-        popularity: 91,
-        added: "2026-10-01",
-        image:
-            "https://images.unsplash.com/photo-1500530855697-b586d89ba3ee?auto=format&fit=crop&w=1200&q=85",
+        title: "Lost Planet",
+        genre: "Sci-Fi",
+        year: 2024,
+        duration: "2h 15m",
+        rating: "8.6",
         description:
-            "Humanity returns to Earth after decades away to rebuild civilization.",
+            "A rescue team lands on an abandoned planet and discovers that they are not alone.",
+        image:
+            "https://images.unsplash.com/photo-1614728894747-a83421e2b9c9?auto=format&fit=crop&w=1000&q=80",
         trailer:
-            "https://www.youtube.com/embed/ScMzIvxBSi4"
+            "https://www.youtube.com/embed/6ZfuNTqbHE8"
     },
 
     {
         id: 9,
-        title: "The Unknown",
-        genre: "Mystery",
-        year: 2025,
-        duration: "1h 55m",
-        rating: "8.3",
-        popularity: 88,
-        added: "2026-09-18",
-        image:
-            "https://images.unsplash.com/photo-1500534623283-312aade485b7?auto=format&fit=crop&w=1200&q=85",
+        title: "Final Mission",
+        genre: "Action",
+        year: 2023,
+        duration: "2h 08m",
+        rating: "8.1",
         description:
-            "A mysterious disappearance reveals secrets buried for generations.",
+            "A retired soldier returns for one final mission to save his team.",
+        image:
+            "https://images.unsplash.com/photo-1500534623283-312aade485b7?auto=format&fit=crop&w=1000&q=80",
         trailer:
-            "https://www.youtube.com/embed/ScMzIvxBSi4"
+            "https://www.youtube.com/embed/EXeTwQWrcwY"
     },
 
     {
         id: 10,
-        title: "Infinity",
-        genre: "Sci-Fi",
-        year: 2026,
-        duration: "2h 35m",
-        rating: "9.1",
-        popularity: 100,
-        added: "2026-09-27",
-        image:
-            "https://images.unsplash.com/photo-1446776877081-d282a0f896e2?auto=format&fit=crop&w=1200&q=85",
+        title: "Echoes",
+        genre: "Drama",
+        year: 2024,
+        duration: "1h 55m",
+        rating: "8.2",
         description:
-            "A scientist discovers a way to cross the boundaries of time and space.",
+            "A musician returns to his hometown and confronts memories he tried to forget.",
+        image:
+            "https://images.unsplash.com/photo-1493225457124-a3eb161ffa5f?auto=format&fit=crop&w=1000&q=80",
         trailer:
-            "https://www.youtube.com/embed/ScMzIvxBSi4"
+            "https://www.youtube.com/embed/zSWdZVtXT7E"
     },
 
     {
         id: 11,
-        title: "Last Code",
-        genre: "Technology",
-        year: 2025,
-        duration: "2h 08m",
-        rating: "8.5",
-        popularity: 92,
-        added: "2026-10-02",
-        image:
-            "https://images.unsplash.com/photo-1515879218367-8466d910aaa4?auto=format&fit=crop&w=1200&q=85",
+        title: "Black Signal",
+        genre: "Thriller",
+        year: 2026,
+        duration: "2h 00m",
+        rating: "8.9",
         description:
-            "A programmer races against time after discovering the world's most dangerous code.",
+            "A hacker intercepts a signal that reveals a secret capable of changing the world.",
+        image:
+            "https://images.unsplash.com/photo-1550751827-4bd374c3f58b?auto=format&fit=crop&w=1000&q=80",
         trailer:
-            "https://www.youtube.com/embed/ScMzIvxBSi4"
+            "https://www.youtube.com/embed/YoHD9XEInc0"
     },
 
     {
         id: 12,
-        title: "Silent Night",
-        genre: "Horror",
-        year: 2024,
-        duration: "1h 48m",
-        rating: "7.9",
-        popularity: 84,
-        added: "2026-09-15",
-        image:
-            "https://images.unsplash.com/photo-1505635552518-3448f4b0d8f4?auto=format&fit=crop&w=1200&q=85",
+        title: "Infinite",
+        genre: "Sci-Fi",
+        year: 2025,
+        duration: "2h 27m",
+        rating: "9.0",
         description:
-            "A quiet town faces a mysterious event that happens every midnight.",
+            "A scientist discovers a way to see alternate versions of reality.",
+        image:
+            "https://images.unsplash.com/photo-1462331940025-496dfbfc7564?auto=format&fit=crop&w=1000&q=80",
         trailer:
-            "https://www.youtube.com/embed/ScMzIvxBSi4"
+            "https://www.youtube.com/embed/1La4QzGeaaQ"
     }
 
 ];
 
 
-/* =========================================================
-   STORAGE
-========================================================= */
+/* ================= STORAGE ================= */
 
-const WATCHLIST_KEY =
-    "cineverse_watchlist_v2";
+const STORAGE = {
 
-const CONTINUE_KEY =
-    "cineverse_continue_v2";
+    watchlist: "cineverseWatchlist",
 
-const HISTORY_KEY =
-    "cineverse_history_v1";
+    progress: "cineverseProgress"
 
-const RATINGS_KEY =
-    "cineverse_ratings_v1";
+};
 
 
-function getStorage(
-    key,
-    fallback
-) {
+function readStorage(key, fallback) {
 
     try {
 
-        return JSON.parse(
-            localStorage.getItem(key)
-        ) || fallback;
+        const data =
+            localStorage.getItem(key);
+
+        return data
+            ? JSON.parse(data)
+            : fallback;
 
     } catch {
 
@@ -255,241 +222,170 @@ function getStorage(
 }
 
 
-function setStorage(
-    key,
-    value
-) {
+function writeStorage(key, value) {
 
-    localStorage.setItem(
-        key,
-        JSON.stringify(value)
-    );
+    try {
 
-}
+        localStorage.setItem(
+            key,
+            JSON.stringify(value)
+        );
 
+    } catch (error) {
 
-function getWatchlist() {
+        console.error(
+            "Storage error:",
+            error
+        );
 
-    return getStorage(
-        WATCHLIST_KEY,
-        []
-    );
+    }
 
 }
 
 
-function saveWatchlist(list) {
+/* ================= STATE ================= */
 
-    setStorage(
-        WATCHLIST_KEY,
-        list
-    );
+let currentMovieId = null;
 
-}
+let currentGenre = "All";
 
-
-function getContinue() {
-
-    return getStorage(
-        CONTINUE_KEY,
-        []
-    );
-
-}
+let currentSearch = "";
 
 
-function saveContinue(list) {
-
-    setStorage(
-        CONTINUE_KEY,
-        list
-    );
-
-}
-
-
-function getHistory() {
-
-    return getStorage(
-        HISTORY_KEY,
-        []
-    );
-
-}
-
-
-function saveHistory(list) {
-
-    setStorage(
-        HISTORY_KEY,
-        list
-    );
-
-}
-
-
-function getRatings() {
-
-    return getStorage(
-        RATINGS_KEY,
-        {}
-    );
-
-}
-
-
-function saveRatings(ratings) {
-
-    setStorage(
-        RATINGS_KEY,
-        ratings
-    );
-
-}
-
-
-/* =========================================================
-   STATE
-========================================================= */
-
-let currentMovie = null;
-
-let activeGenre = "All";
-
-let searchTerm = "";
-
-
-/* =========================================================
-   DOM
-========================================================= */
+/* ================= ELEMENTS ================= */
 
 const movieGrid =
-    document.getElementById(
-        "movieGrid"
-    );
-
-const trendingGrid =
-    document.getElementById(
-        "trendingGrid"
-    );
-
-const recommendedGrid =
-    document.getElementById(
-        "recommendedGrid"
-    );
-
-const topRatedGrid =
-    document.getElementById(
-        "topRatedGrid"
-    );
-
-const recentGrid =
-    document.getElementById(
-        "recentGrid"
-    );
+    document.getElementById("movieGrid");
 
 const continueGrid =
-    document.getElementById(
-        "continueGrid"
-    );
+    document.getElementById("continueGrid");
 
 const watchlistGrid =
-    document.getElementById(
-        "watchlistGrid"
-    );
+    document.getElementById("watchlistGrid");
 
-const historyGrid =
-    document.getElementById(
-        "historyGrid"
-    );
-
-const filterContainer =
-    document.getElementById(
-        "filterContainer"
-    );
-
-const searchInput =
-    document.getElementById(
-        "movieSearch"
-    );
+const movieSearch =
+    document.getElementById("movieSearch");
 
 const movieCount =
-    document.getElementById(
-        "movieCount"
+    document.getElementById("movieCount");
+
+const movieModal =
+    document.getElementById("movieModal");
+
+const playerModal =
+    document.getElementById("playerModal");
+
+const trailerFrame =
+    document.getElementById("trailerFrame");
+
+const detailsImage =
+    document.getElementById("detailsImage");
+
+const detailsTitle =
+    document.getElementById("detailsTitle");
+
+const detailsGenre =
+    document.getElementById("detailsGenre");
+
+const detailsMeta =
+    document.getElementById("detailsMeta");
+
+const detailsDescription =
+    document.getElementById("detailsDescription");
+
+const listButton =
+    document.getElementById("listButton");
+
+const playerTitle =
+    document.getElementById("playerTitle");
+
+const movieProgress =
+    document.getElementById("movieProgress");
+
+const progressValue =
+    document.getElementById("progressValue");
+
+const toast =
+    document.getElementById("toast");
+
+
+/* ================= GET MOVIE ================= */
+
+function getMovie(id) {
+
+    return movies.find(
+        movie => movie.id === Number(id)
     );
 
-const movieDialog =
-    document.getElementById(
-        "movieDialog"
-    );
-
-const trailerDialog =
-    document.getElementById(
-        "trailerDialog"
-    );
-
-const profileDialog =
-    document.getElementById(
-        "profileDialog"
-    );
+}
 
 
-/* =========================================================
-   MOVIE CARD
-========================================================= */
+/* ================= MOVIE CARD ================= */
 
-function movieCard(
+function createMovieCard(
     movie,
-    progress = null,
-    featured = false
+    progress = null
 ) {
+
+    const progressData =
+        progress ??
+        readStorage(
+            STORAGE.progress,
+            {}
+        )[movie.id] ??
+        0;
 
     return `
 
         <article
-            class="
-                movie-card
-                ${featured ? "featured-card" : ""}
-            "
-            data-id="${movie.id}">
+            class="movie-card"
+            data-movie-id="${movie.id}">
 
-            <img
-                src="${movie.image}"
-                alt="${movie.title}"
-                loading="lazy"
-            >
+            <div
+                class="movie-poster"
+                style="
+                    background-image:
+                    url('${movie.image}')
+                ">
+            </div>
 
             <div class="movie-info">
 
-                <div class="movie-title">
+                <h3>
                     ${movie.title}
-                </div>
+                </h3>
 
                 <div class="movie-meta">
-                    ${movie.genre}
-                    •
+
                     ${movie.year}
                     •
-                    ⭐ ${movie.rating}
+                    ${movie.duration}
+                    •
+                    ${movie.genre}
+
                 </div>
+
+                <span class="movie-rating">
+                    ★ ${movie.rating}
+                </span>
 
             </div>
 
             ${
-                progress !== null
-                    ? `
-                        <div class="card-progress">
+                progressData > 0
+                ? `
+                    <div class="progress-bar">
 
-                            <div
-                                class="card-progress-fill"
-                                style="
-                                    width:${progress}%;
-                                ">
-                            </div>
-
+                        <div
+                            class="progress-fill"
+                            style="
+                                width:${progressData}%
+                            ">
                         </div>
-                    `
-                    : ""
+
+                    </div>
+                `
+                : ""
             }
 
         </article>
@@ -499,1212 +395,265 @@ function movieCard(
 }
 
 
-/* =========================================================
-   TRENDING
-========================================================= */
+/* ================= RENDER MOVIES ================= */
 
-function renderTrending() {
+function renderMovies() {
 
-    const trending =
-        [...movies]
-            .sort(
-                (a, b) =>
-                    b.popularity -
-                    a.popularity
-            )
-            .slice(0, 6);
-
-
-    trendingGrid.innerHTML =
-        trending
-            .map(
-                movie =>
-                    movieCard(
-                        movie,
-                        null,
-                        true
-                    )
-            )
-            .join("");
-
-}
-
-
-/* =========================================================
-   TOP RATED
-========================================================= */
-
-function renderTopRated() {
-
-    const topRated =
-        [...movies]
-            .sort(
-                (a, b) =>
-                    Number(b.rating) -
-                    Number(a.rating)
-            )
-            .slice(0, 6);
-
-
-    topRatedGrid.innerHTML =
-        topRated
-            .map(
-                movie =>
-                    movieCard(movie)
-            )
-            .join("");
-
-}
-
-
-/* =========================================================
-   RECENTLY ADDED
-========================================================= */
-
-function renderRecentlyAdded() {
-
-    const recent =
-        [...movies]
-            .sort(
-                (a, b) =>
-                    new Date(b.added) -
-                    new Date(a.added)
-            )
-            .slice(0, 6);
-
-
-    recentGrid.innerHTML =
-        recent
-            .map(
-                movie =>
-                    movieCard(movie)
-            )
-            .join("");
-
-}
-
-
-/* =========================================================
-   RECOMMENDATION ENGINE
-========================================================= */
-
-function getRecommendations() {
-
-    const history =
-        getHistory();
-
-    const watchlist =
-        getWatchlist();
-
-    const ratings =
-        getRatings();
-
-
-    /*
-       Find genres the user has interacted with.
-    */
-
-    const preferredGenres = {};
-
-
-    history.forEach(item => {
-
-        const movie =
-            movies.find(
-                m =>
-                    m.id === item.id
-            );
-
-        if (!movie) return;
-
-        preferredGenres[movie.genre] =
-            (
-                preferredGenres[movie.genre]
-                || 0
-            ) + 2;
-
-    });
-
-
-    watchlist.forEach(id => {
-
-        const movie =
-            movies.find(
-                m =>
-                    m.id === id
-            );
-
-        if (!movie) return;
-
-        preferredGenres[movie.genre] =
-            (
-                preferredGenres[movie.genre]
-                || 0
-            ) + 3;
-
-    });
-
-
-    Object.keys(
-        ratings
-    ).forEach(id => {
-
-        const movie =
-            movies.find(
-                m =>
-                    m.id === Number(id)
-            );
-
-        if (!movie) return;
-
-        if (
-            Number(
-                ratings[id]
-            ) >= 4
-        ) {
-
-            preferredGenres[movie.genre] =
-                (
-                    preferredGenres[movie.genre]
-                    || 0
-                ) + 5;
-
-        }
-
-    });
-
-
-    /*
-       No user activity:
-       show high-quality mixed selection.
-    */
-
-    if (
-        Object.keys(
-            preferredGenres
-        ).length === 0
-    ) {
-
-        return [...movies]
-            .sort(
-                (a, b) =>
-                    Number(b.rating) -
-                    Number(a.rating)
-            )
-            .slice(0, 6);
-
-    }
-
-
-    /*
-       Score movies based on
-       preferred genres.
-    */
-
-    const scored =
-        movies.map(movie => {
-
-            const genreScore =
-                preferredGenres[
-                    movie.genre
-                ] || 0;
-
-            const ratingScore =
-                Number(
-                    movie.rating
-                );
-
-            const popularityScore =
-                movie.popularity / 20;
-
-
-            return {
-
-                movie,
-
-                score:
-                    genreScore +
-                    ratingScore +
-                    popularityScore
-
-            };
-
-        });
-
-
-    return scored
-        .sort(
-            (a, b) =>
-                b.score -
-                a.score
-        )
-        .map(
-            item =>
-                item.movie
-        )
-        .slice(0, 6);
-
-}
-
-
-/* =========================================================
-   RENDER RECOMMENDATIONS
-========================================================= */
-
-function renderRecommendations() {
-
-    const recommendations =
-        getRecommendations();
-
-
-    recommendedGrid.innerHTML =
-        recommendations
-            .map(
-                movie =>
-                    movieCard(movie)
-            )
-            .join("");
-
-
-    const history =
-        getHistory();
-
-    const watchlist =
-        getWatchlist();
-
-    const ratings =
-        getRatings();
-
-
-    const hasPersonalData =
-        history.length ||
-        watchlist.length ||
-        Object.keys(ratings).length;
-
-
-    document.getElementById(
-        "recommendationReason"
-    ).textContent =
-        hasPersonalData
-            ? "Based on your activity"
-            : "Popular picks for you";
-
-}
-
-
-/* =========================================================
-   FILTERED MOVIES
-========================================================= */
-
-function getFilteredMovies() {
-
-    return movies.filter(
-        movie => {
+    let filtered =
+        movies.filter(movie => {
 
             const genreMatch =
-                activeGenre === "All"
-                ||
-                movie.genre === activeGenre;
-
+                currentGenre === "All" ||
+                movie.genre === currentGenre;
 
             const searchMatch =
                 movie.title
                     .toLowerCase()
-                    .includes(searchTerm)
-
-                ||
-
+                    .includes(
+                        currentSearch
+                    ) ||
                 movie.genre
                     .toLowerCase()
-                    .includes(searchTerm)
+                    .includes(
+                        currentSearch
+                    );
 
-                ||
+            return genreMatch &&
+                   searchMatch;
 
-                movie.description
-                    .toLowerCase()
-                    .includes(searchTerm);
-
-
-            return (
-                genreMatch &&
-                searchMatch
-            );
-
-        }
-    );
-
-}
-
-
-/* =========================================================
-   RENDER MOVIES
-========================================================= */
-
-function renderMovies() {
-
-    const filtered =
-        getFilteredMovies();
-
-
-    movieGrid.innerHTML = "";
-
-    movieCount.textContent =
-        `${filtered.length} movies`;
-
-
-    if (!filtered.length) {
-
-        movieGrid.innerHTML = `
-
-            <div class="empty-state">
-
-                <div>
-
-                    <h3>
-                        No movies found
-                    </h3>
-
-                    <p>
-                        Try another search or genre.
-                    </p>
-
-                </div>
-
-            </div>
-
-        `;
-
-        return;
-
-    }
+        });
 
 
     movieGrid.innerHTML =
-        filtered
-            .map(
-                movie =>
-                    movieCard(movie)
-            )
-            .join("");
+        filtered.length
+
+        ? filtered
+            .map(createMovieCard)
+            .join("")
+
+        : `
+            <p style="color:#777">
+                No movies found.
+            </p>
+        `;
+
+
+    movieCount.textContent =
+        `${filtered.length} Movies`;
 
 }
 
 
-/* =========================================================
-   FILTERS
-========================================================= */
+/* ================= OPEN DETAILS ================= */
 
-function createFilters() {
-
-    const genres = [
-
-        "All",
-
-        ...new Set(
-            movies.map(
-                movie =>
-                    movie.genre
-            )
-        )
-
-    ];
-
-
-    filterContainer.innerHTML = "";
-
-
-    genres.forEach(
-        genre => {
-
-            const button =
-                document.createElement(
-                    "button"
-                );
-
-            button.type = "button";
-
-            button.className =
-                "filter-btn"
-                +
-                (
-                    genre === "All"
-                        ? " active"
-                        : ""
-                );
-
-            button.textContent =
-                genre;
-
-
-            button.addEventListener(
-                "click",
-                () => {
-
-                    activeGenre =
-                        genre;
-
-
-                    document
-                        .querySelectorAll(
-                            ".filter-btn"
-                        )
-                        .forEach(
-                            item =>
-                                item.classList
-                                    .remove(
-                                        "active"
-                                    )
-                        );
-
-
-                    button.classList.add(
-                        "active"
-                    );
-
-
-                    renderMovies();
-
-                }
-            );
-
-
-            filterContainer.appendChild(
-                button
-            );
-
-        }
-    );
-
-}
-
-
-/* =========================================================
-   HISTORY
-========================================================= */
-
-function addToHistory(movie) {
-
-    let history =
-        getHistory();
-
-
-    history =
-        history.filter(
-            item =>
-                item.id !== movie.id
-        );
-
-
-    history.unshift({
-
-        id:
-            movie.id,
-
-        watchedAt:
-            Date.now()
-
-    });
-
-
-    history =
-        history.slice(
-            0,
-            10
-        );
-
-
-    saveHistory(
-        history
-    );
-
-
-    renderHistory();
-
-    renderRecommendations();
-
-    updateProfile();
-
-}
-
-
-/* =========================================================
-   OPEN MOVIE
-========================================================= */
-
-function openMovieDetails(id) {
+function openDetails(id) {
 
     const movie =
-        movies.find(
-            item =>
-                item.id === Number(id)
-        );
+        getMovie(id);
 
+    if (!movie) return;
+
+    currentMovieId =
+        movie.id;
+
+
+    detailsImage.style.backgroundImage =
+        `url("${movie.image}")`;
+
+    detailsTitle.textContent =
+        movie.title;
+
+    detailsGenre.textContent =
+        movie.genre;
+
+    detailsMeta.textContent =
+        `${movie.year} • ${movie.duration} • ★ ${movie.rating}`;
+
+    detailsDescription.textContent =
+        movie.description;
+
+
+    updateListButton();
+
+
+    movieModal.classList.add("active");
+
+    movieModal.setAttribute(
+        "aria-hidden",
+        "false"
+    );
+
+    document.body.style.overflow =
+        "hidden";
+
+}
+
+
+/* ================= CLOSE DETAILS ================= */
+
+function closeDetails() {
+
+    movieModal.classList.remove("active");
+
+    movieModal.setAttribute(
+        "aria-hidden",
+        "true"
+    );
+
+    document.body.style.overflow =
+        "";
+
+}
+
+
+/* ================= OPEN PLAYER ================= */
+
+function openPlayer(id) {
+
+    const movie =
+        getMovie(id);
 
     if (!movie) return;
 
 
-    currentMovie =
-        movie;
+    currentMovieId =
+        movie.id;
 
 
-    addToHistory(
-        movie
-    );
+    playerTitle.textContent =
+        movie.title;
 
-
-    const watchlist =
-        getWatchlist();
-
-
-    const saved =
-        watchlist.includes(
-            movie.id
-        );
-
-
-    const continueList =
-        getContinue();
-
-
-    const progressItem =
-        continueList.find(
-            item =>
-                item.id === movie.id
-        );
+    trailerFrame.src =
+        `${movie.trailer}?autoplay=1`;
 
 
     const progress =
-        progressItem
-            ? progressItem.progress
-            : 0;
+        getProgress(movie.id);
 
-
-    const ratings =
-        getRatings();
-
-
-    const userRating =
-        ratings[movie.id] || 0;
-
-
-    document.getElementById(
-        "detailsImage"
-    ).src =
-        movie.image;
-
-
-    document.getElementById(
-        "detailsImage"
-    ).alt =
-        movie.title;
-
-
-    document.getElementById(
-        "detailsTitle"
-    ).textContent =
-        movie.title;
-
-
-    document.getElementById(
-        "detailsGenre"
-    ).textContent =
-        movie.genre.toUpperCase();
-
-
-    document.getElementById(
-        "detailsMeta"
-    ).innerHTML = `
-
-        <span>
-            ⭐ ${movie.rating}
-        </span>
-
-        <span>
-            ${movie.year}
-        </span>
-
-        <span>
-            ${movie.duration}
-        </span>
-
-        <span>
-            ${movie.genre}
-        </span>
-
-    `;
-
-
-    document.getElementById(
-        "detailsDescription"
-    ).textContent =
-        movie.description;
-
-
-    document.getElementById(
-        "progressSlider"
-    ).value =
+    movieProgress.value =
         progress;
 
-
-    document.getElementById(
-        "progressText"
-    ).textContent =
+    progressValue.textContent =
         `${progress}%`;
 
 
-    document.getElementById(
-        "watchlistButton"
-    ).textContent =
-        saved
-            ? "✓ Remove from My List"
-            : "+ Add to My List";
+    playerModal.classList.add("active");
 
-
-    updateRatingUI(
-        userRating
+    playerModal.setAttribute(
+        "aria-hidden",
+        "false"
     );
 
-
-    movieDialog.showModal();
+    document.body.style.overflow =
+        "hidden";
 
 }
 
 
-/* =========================================================
-   DIALOG EVENTS
-========================================================= */
+/* ================= CLOSE PLAYER ================= */
 
-document
-    .getElementById(
-        "closeMovieDialog"
-    )
-    .addEventListener(
-        "click",
-        () =>
-            movieDialog.close()
+function closePlayer() {
+
+    playerModal.classList.remove("active");
+
+    playerModal.setAttribute(
+        "aria-hidden",
+        "true"
     );
 
+    trailerFrame.src = "";
 
-function attachMovieClicks(
-    container
-) {
+    document.body.style.overflow =
+        "";
 
-    container.addEventListener(
-        "click",
-        event => {
-
-            const card =
-                event.target.closest(
-                    ".movie-card"
-                );
+}
 
 
-            if (!card) return;
+/* ================= WATCHLIST ================= */
 
+function getWatchlist() {
 
-            openMovieDetails(
-                card.dataset.id
-            );
-
-        }
+    return readStorage(
+        STORAGE.watchlist,
+        []
     );
 
 }
 
 
-attachMovieClicks(
-    movieGrid
-);
+function isInWatchlist(id) {
 
-attachMovieClicks(
-    trendingGrid
-);
-
-attachMovieClicks(
-    recommendedGrid
-);
-
-attachMovieClicks(
-    topRatedGrid
-);
-
-attachMovieClicks(
-    recentGrid
-);
-
-attachMovieClicks(
-    continueGrid
-);
-
-attachMovieClicks(
-    watchlistGrid
-);
-
-attachMovieClicks(
-    historyGrid
-);
-
-
-/* =========================================================
-   TRAILER
-========================================================= */
-
-document
-    .getElementById(
-        "watchTrailer"
-    )
-    .addEventListener(
-        "click",
-        playTrailer
-    );
-
-
-function playTrailer() {
-
-    if (!currentMovie) return;
-
-
-    addToHistory(
-        currentMovie
-    );
-
-
-    document.getElementById(
-        "trailerFrame"
-    ).src =
-        `${currentMovie.trailer}?autoplay=1`;
-
-
-    document.getElementById(
-        "playerTitle"
-    ).textContent =
-        currentMovie.title;
-
-
-    movieDialog.close();
-
-    trailerDialog.showModal();
+    return getWatchlist()
+        .includes(Number(id));
 
 }
 
 
-document
-    .getElementById(
-        "closeTrailer"
-    )
-    .addEventListener(
-        "click",
-        closeTrailer
-    );
+function toggleWatchlist() {
+
+    if (!currentMovieId) return;
 
 
-function closeTrailer() {
-
-    document.getElementById(
-        "trailerFrame"
-    ).src = "";
+    let list =
+        getWatchlist();
 
 
-    trailerDialog.close();
+    if (list.includes(currentMovieId)) {
 
-}
-
-
-/* =========================================================
-   WATCH NOW
-========================================================= */
-
-document
-    .getElementById(
-        "watchNow"
-    )
-    .addEventListener(
-        "click",
-        () => {
-
-            if (!currentMovie)
-                return;
-
-
-            let list =
-                getContinue();
-
-
-            const existing =
-                list.find(
-                    item =>
-                        item.id ===
-                        currentMovie.id
-                );
-
-
-            if (existing) {
-
-                existing.progress =
-                    Math.min(
-                        existing.progress + 5,
-                        100
-                    );
-
-            } else {
-
-                list.push({
-
-                    id:
-                        currentMovie.id,
-
-                    progress:
-                        5
-
-                });
-
-            }
-
-
-            saveContinue(
-                list
+        list =
+            list.filter(
+                id =>
+                    id !== currentMovieId
             );
 
-
-            renderContinue();
-
-            renderRecommendations();
-
-            updateProfile();
-
-            showToast(
-                "Added to Continue Watching"
-            );
-
-
-            playTrailer();
-
-        }
-    );
-
-
-/* =========================================================
-   WATCHLIST
-========================================================= */
-
-document
-    .getElementById(
-        "watchlistButton"
-    )
-    .addEventListener(
-        "click",
-        () => {
-
-            if (!currentMovie)
-                return;
-
-
-            let list =
-                getWatchlist();
-
-
-            if (
-                list.includes(
-                    currentMovie.id
-                )
-            ) {
-
-                list =
-                    list.filter(
-                        id =>
-                            id !==
-                            currentMovie.id
-                    );
-
-
-                showToast(
-                    "Removed from My List"
-                );
-
-            } else {
-
-                list.push(
-                    currentMovie.id
-                );
-
-
-                showToast(
-                    "Added to My List"
-                );
-
-            }
-
-
-            saveWatchlist(
-                list
-            );
-
-
-            renderWatchlist();
-
-            renderRecommendations();
-
-            updateProfile();
-
-
-            openMovieDetails(
-                currentMovie.id
-            );
-
-        }
-    );
-
-
-/* =========================================================
-   PROGRESS
-========================================================= */
-
-document
-    .getElementById(
-        "progressSlider"
-    )
-    .addEventListener(
-        "input",
-        event => {
-
-            document.getElementById(
-                "progressText"
-            ).textContent =
-                `${event.target.value}%`;
-
-        }
-    );
-
-
-document
-    .getElementById(
-        "progressSlider"
-    )
-    .addEventListener(
-        "change",
-        event => {
-
-            if (!currentMovie)
-                return;
-
-
-            let list =
-                getContinue();
-
-
-            const progress =
-                Number(
-                    event.target.value
-                );
-
-
-            const existing =
-                list.find(
-                    item =>
-                        item.id ===
-                        currentMovie.id
-                );
-
-
-            if (existing) {
-
-                existing.progress =
-                    progress;
-
-            } else {
-
-                list.push({
-
-                    id:
-                        currentMovie.id,
-
-                    progress:
-                        progress
-
-                });
-
-            }
-
-
-            saveContinue(
-                list
-            );
-
-
-            renderContinue();
-
-            updateProfile();
-
-            showToast(
-                "Progress saved"
-            );
-
-        }
-    );
-
-
-/* =========================================================
-   RATING
-========================================================= */
-
-document
-    .querySelectorAll(
-        "#ratingStars button"
-    )
-    .forEach(
-        button => {
-
-            button.addEventListener(
-                "click",
-                () => {
-
-                    if (!currentMovie)
-                        return;
-
-
-                    const rating =
-                        Number(
-                            button.dataset.rating
-                        );
-
-
-                    const ratings =
-                        getRatings();
-
-
-                    ratings[currentMovie.id] =
-                        rating;
-
-
-                    saveRatings(
-                        ratings
-                    );
-
-
-                    updateRatingUI(
-                        rating
-                    );
-
-
-                    renderRecommendations();
-
-                    updateProfile();
-
-
-                    showToast(
-                        `Rated ${rating}/5`
-                    );
-
-                }
-            );
-
-        }
-    );
-
-
-function updateRatingUI(
-    rating
-) {
-
-    document
-        .querySelectorAll(
-            "#ratingStars button"
-        )
-        .forEach(
-            button => {
-
-                const value =
-                    Number(
-                        button.dataset.rating
-                    );
-
-
-                button.classList.toggle(
-                    "active",
-                    value <= rating
-                );
-
-            }
+        showToast(
+            "Removed from My List"
         );
 
+    } else {
 
-    document.getElementById(
-        "ratingText"
-    ).textContent =
-        rating
-            ? `${rating}/5 stars`
-            : "Not rated";
+        list.push(
+            currentMovieId
+        );
 
-}
-
-
-/* =========================================================
-   CONTINUE WATCHING
-========================================================= */
-
-function renderContinue() {
-
-    const list =
-        getContinue();
-
-
-    if (!list.length) {
-
-        continueGrid.innerHTML = `
-
-            <div class="empty-state">
-
-                <div>
-
-                    <h3>
-                        Nothing to continue
-                    </h3>
-
-                    <p>
-                        Start watching a movie
-                        to see your progress here.
-                    </p>
-
-                </div>
-
-            </div>
-
-        `;
-
-        return;
+        showToast(
+            "Added to My List ✓"
+        );
 
     }
 
 
-    continueGrid.innerHTML =
+    writeStorage(
+        STORAGE.watchlist,
         list
-            .map(
-                item => {
-
-                    const movie =
-                        movies.find(
-                            m =>
-                                m.id === item.id
-                        );
+    );
 
 
-                    return movie
-                        ? movieCard(
-                            movie,
-                            item.progress
-                        )
-                        : "";
+    updateListButton();
 
-                }
-            )
-            .join("");
+    renderWatchlist();
 
 }
 
 
-/* =========================================================
-   WATCHLIST
-========================================================= */
+function updateListButton() {
+
+    if (!currentMovieId) return;
+
+
+    listButton.textContent =
+        isInWatchlist(
+            currentMovieId
+        )
+
+        ? "✓ In My List"
+
+        : "+ Add to My List";
+
+}
+
+
+/* ================= RENDER LIST ================= */
 
 function renderWatchlist() {
 
@@ -1712,145 +661,135 @@ function renderWatchlist() {
         getWatchlist();
 
 
-    const selected =
-        movies.filter(
-            movie =>
-                list.includes(
-                    movie.id
-                )
-        );
-
-
-    if (!selected.length) {
-
-        watchlistGrid.innerHTML = `
-
-            <div class="empty-state">
-
-                <div>
-
-                    <h3>
-                        Your list is empty
-                    </h3>
-
-                    <p>
-                        Add movies using
-                        "Add to My List".
-                    </p>
-
-                </div>
-
-            </div>
-
-        `;
-
-        return;
-
-    }
+    const selectedMovies =
+        list
+            .map(getMovie)
+            .filter(Boolean);
 
 
     watchlistGrid.innerHTML =
-        selected
-            .map(
-                movie =>
-                    movieCard(movie)
-            )
-            .join("");
+        selectedMovies.length
 
-}
+        ? selectedMovies
+            .map(createMovieCard)
+            .join("")
 
-
-/* =========================================================
-   HISTORY
-========================================================= */
-
-function renderHistory() {
-
-    const history =
-        getHistory();
-
-
-    if (!history.length) {
-
-        historyGrid.innerHTML = `
-
-            <div class="empty-state">
-
-                <div>
-
-                    <h3>
-                        No watch history
-                    </h3>
-
-                    <p>
-                        Movies you open or watch
-                        will appear here.
-                    </p>
-
-                </div>
-
-            </div>
-
+        : `
+            <p style="
+                color:#777;
+                grid-column:1/-1;
+            ">
+                Your My List is empty.
+                Open a movie and add it here.
+            </p>
         `;
 
-        return;
+
+    const section =
+        document.getElementById(
+            "my-list"
+        );
+
+
+    if (selectedMovies.length) {
+
+        section.classList.add(
+            "visible"
+        );
+
+    } else {
+
+        section.classList.remove(
+            "visible"
+        );
 
     }
 
-
-    historyGrid.innerHTML =
-        history
-            .map(
-                item => {
-
-                    const movie =
-                        movies.find(
-                            m =>
-                                m.id === item.id
-                        );
+}
 
 
-                    return movie
-                        ? movieCard(movie)
-                        : "";
+/* ================= CONTINUE WATCHING ================= */
 
-                }
-            )
-            .join("");
+function getProgress(id) {
+
+    const progress =
+        readStorage(
+            STORAGE.progress,
+            {}
+        );
+
+    return Number(
+        progress[id] || 0
+    );
 
 }
 
 
-/* =========================================================
-   CLEAR HISTORY
-========================================================= */
+function saveProgress() {
 
-document
-    .getElementById(
-        "clearHistory"
-    )
-    .addEventListener(
-        "click",
-        clearHistory
+    if (!currentMovieId) return;
+
+
+    const progress =
+        readStorage(
+            STORAGE.progress,
+            {}
+        );
+
+
+    progress[currentMovieId] =
+        Number(
+            movieProgress.value
+        );
+
+
+    writeStorage(
+        STORAGE.progress,
+        progress
     );
 
 
-document
-    .getElementById(
-        "profileClearHistory"
-    )
-    .addEventListener(
-        "click",
-        clearHistory
+    renderContinueWatching();
+
+    renderMovies();
+
+    showToast(
+        "Watch progress saved ✓"
     );
 
+}
 
-function clearHistory() {
 
-    if (!getHistory().length) {
+function renderContinueWatching() {
 
-        showToast(
-            "Watch history is already empty"
+    const progress =
+        readStorage(
+            STORAGE.progress,
+            {}
+        );
+
+
+    const entries =
+        Object.entries(progress)
+            .filter(
+                ([, value]) =>
+                    Number(value) > 0 &&
+                    Number(value) < 100
+            );
+
+
+    const section =
+        document.getElementById(
+            "continue"
+        );
+
+
+    if (!entries.length) {
+
+        continueGrid.innerHTML = "";
+
+        section.classList.remove(
+            "visible"
         );
 
         return;
@@ -1858,49 +797,42 @@ function clearHistory() {
     }
 
 
-    if (
-        !confirm(
-            "Clear your complete watch history?"
-        )
-    ) {
-
-        return;
-
-    }
-
-
-    localStorage.removeItem(
-        HISTORY_KEY
+    section.classList.add(
+        "visible"
     );
 
 
-    renderHistory();
+    const continueMovies =
+        entries
+            .map(([id]) =>
+                getMovie(Number(id))
+            )
+            .filter(Boolean);
 
-    renderRecommendations();
 
-    updateProfile();
-
-
-    showToast(
-        "Watch history cleared"
-    );
+    continueGrid.innerHTML =
+        continueMovies
+            .map(movie =>
+                createMovieCard(
+                    movie,
+                    getProgress(movie.id)
+                )
+            )
+            .join("");
 
 }
 
 
-/* =========================================================
-   SEARCH
-========================================================= */
+/* ================= SEARCH ================= */
 
-searchInput.addEventListener(
+movieSearch.addEventListener(
     "input",
     event => {
 
-        searchTerm =
+        currentSearch =
             event.target.value
-                .toLowerCase()
-                .trim();
-
+                .trim()
+                .toLowerCase();
 
         renderMovies();
 
@@ -1908,397 +840,299 @@ searchInput.addEventListener(
 );
 
 
-document
-    .getElementById(
-        "clearSearch"
-    )
-    .addEventListener(
-        "click",
-        () => {
-
-            searchInput.value = "";
-
-            searchTerm = "";
-
-            renderMovies();
-
-            searchInput.focus();
-
-        }
-    );
-
+/* ================= FILTER ================= */
 
 document
-    .getElementById(
-        "focusSearch"
-    )
-    .addEventListener(
-        "click",
-        () => {
+    .querySelectorAll(".filter-btn")
+    .forEach(button => {
 
-            document
-                .querySelector(
-                    ".search-section"
-                )
-                .scrollIntoView({
-                    behavior:
-                        "smooth"
-                });
+        button.addEventListener(
+            "click",
+            () => {
+
+                document
+                    .querySelectorAll(
+                        ".filter-btn"
+                    )
+                    .forEach(btn =>
+                        btn.classList.remove(
+                            "active"
+                        )
+                    );
 
 
-            setTimeout(
-                () =>
-                    searchInput.focus(),
-                500
+                button.classList.add(
+                    "active"
+                );
+
+
+                currentGenre =
+                    button.dataset.genre;
+
+
+                renderMovies();
+
+            }
+        );
+
+    });
+
+
+/* ================= CARD CLICK ================= */
+
+document.addEventListener(
+    "click",
+    event => {
+
+        const card =
+            event.target.closest(
+                ".movie-card"
+            );
+
+
+        if (!card) return;
+
+
+        const id =
+            Number(
+                card.dataset.movieId
+            );
+
+
+        openDetails(id);
+
+    }
+);
+
+
+/* ================= ACTION BUTTONS ================= */
+
+document.addEventListener(
+    "click",
+    event => {
+
+        const actionElement =
+            event.target.closest(
+                "[data-action]"
+            );
+
+
+        if (!actionElement) return;
+
+
+        const action =
+            actionElement.dataset.action;
+
+
+        if (
+            action ===
+            "details-play"
+        ) {
+
+            closeDetails();
+
+            openPlayer(
+                currentMovieId
             );
 
         }
-    );
 
 
-/* =========================================================
-   PROFILE
-========================================================= */
+        if (
+            action ===
+            "toggle-list"
+        ) {
 
-document
-    .getElementById(
-        "openProfile"
-    )
-    .addEventListener(
-        "click",
-        () => {
-
-            updateProfile();
-
-            profileDialog.showModal();
+            toggleWatchlist();
 
         }
-    );
 
 
-document
-    .getElementById(
-        "closeProfile"
-    )
-    .addEventListener(
-        "click",
-        () =>
-            profileDialog.close()
-    );
+        if (
+            action ===
+            "close-details"
+        ) {
+
+            closeDetails();
+
+        }
 
 
-function updateProfile() {
+        if (
+            action ===
+            "close-player"
+        ) {
 
-    const watchlist =
-        getWatchlist();
+            closePlayer();
 
-    const continueList =
-        getContinue();
-
-    const history =
-        getHistory();
-
-    const ratings =
-        getRatings();
+        }
 
 
-    document.getElementById(
-        "profileListCount"
-    ).textContent =
-        watchlist.length;
+        if (
+            action ===
+            "save-progress"
+        ) {
+
+            saveProgress();
+
+        }
 
 
-    document.getElementById(
-        "profileContinueCount"
-    ).textContent =
-        continueList.length;
+        if (
+            action ===
+            "clear-list"
+        ) {
+
+            clearWatchlist();
+
+        }
 
 
-    document.getElementById(
-        "profileHistoryCount"
-    ).textContent =
-        history.length;
+        if (
+            action ===
+            "scroll-list"
+        ) {
+
+            document
+                .getElementById(
+                    "my-list"
+                )
+                .scrollIntoView({
+                    behavior: "smooth"
+                });
+
+        }
 
 
-    document.getElementById(
-        "profileRatedCount"
-    ).textContent =
-        Object.keys(
-            ratings
-        ).length;
+        if (
+            action ===
+            "hero-play"
+        ) {
+
+            openPlayer(1);
+
+        }
 
 
-    renderProfileRecent();
+        if (
+            action ===
+            "hero-details"
+        ) {
 
-    renderProfileRatings();
+            openDetails(1);
 
-}
+        }
+
+    }
+);
 
 
-/* =========================================================
-   PROFILE RECENT
-========================================================= */
+/* ================= PROGRESS SLIDER ================= */
 
-function renderProfileRecent() {
+movieProgress.addEventListener(
+    "input",
+    () => {
 
-    const container =
-        document.getElementById(
-            "profileRecent"
+        progressValue.textContent =
+            `${movieProgress.value}%`;
+
+    }
+);
+
+
+/* ================= CLEAR LIST ================= */
+
+function clearWatchlist() {
+
+    if (!getWatchlist().length) {
+
+        showToast(
+            "My List is already empty"
         );
-
-
-    const history =
-        getHistory();
-
-
-    if (!history.length) {
-
-        container.innerHTML = `
-
-            <div class="profile-item">
-
-                <span
-                    class="profile-item-subtitle">
-
-                    No recent activity yet.
-
-                </span>
-
-            </div>
-
-        `;
 
         return;
 
     }
 
 
-    container.innerHTML =
-        history
-            .slice(0, 5)
-            .map(
-                item => {
-
-                    const movie =
-                        movies.find(
-                            m =>
-                                m.id === item.id
-                        );
+    localStorage.removeItem(
+        STORAGE.watchlist
+    );
 
 
-                    if (!movie)
-                        return "";
+    renderWatchlist();
 
-
-                    const date =
-                        new Date(
-                            item.watchedAt
-                        );
-
-
-                    return `
-
-                        <div
-                            class="profile-item">
-
-                            <div
-                                class="profile-item-left">
-
-                                <img
-                                    src="${movie.image}"
-                                    alt="${movie.title}"
-                                >
-
-                                <div>
-
-                                    <div
-                                        class="profile-item-title">
-
-                                        ${movie.title}
-
-                                    </div>
-
-                                    <div
-                                        class="profile-item-subtitle">
-
-                                        ${movie.genre}
-                                        •
-                                        ${date.toLocaleDateString()}
-
-                                    </div>
-
-                                </div>
-
-                            </div>
-
-                            <span>
-                                ▶
-                            </span>
-
-                        </div>
-
-                    `;
-
-                }
-            )
-            .join("");
+    showToast(
+        "My List cleared"
+    );
 
 }
 
 
-/* =========================================================
-   PROFILE RATINGS
-========================================================= */
+/* ================= ESC KEY ================= */
 
-function renderProfileRatings() {
+document.addEventListener(
+    "keydown",
+    event => {
 
-    const container =
-        document.getElementById(
-            "profileRatings"
-        );
+        if (event.key !== "Escape")
+            return;
 
 
-    const ratings =
-        getRatings();
+        closeDetails();
 
-
-    const ratedMovies =
-        movies.filter(
-            movie =>
-                ratings[movie.id]
-        );
-
-
-    if (!ratedMovies.length) {
-
-        container.innerHTML = `
-
-            <div class="profile-item">
-
-                <span
-                    class="profile-item-subtitle">
-
-                    You haven't rated any movies yet.
-
-                </span>
-
-            </div>
-
-        `;
-
-        return;
+        closePlayer();
 
     }
+);
 
 
-    container.innerHTML =
-        ratedMovies
-            .map(
-                movie => {
+/* ================= BACKDROP CLICK ================= */
 
-                    const rating =
-                        ratings[
-                            movie.id
-                        ];
+movieModal.addEventListener(
+    "click",
+    event => {
 
+        if (
+            event.target.classList
+                .contains(
+                    "modal-backdrop"
+                )
+        ) {
 
-                    return `
-
-                        <div
-                            class="profile-item">
-
-                            <div
-                                class="profile-item-left">
-
-                                <img
-                                    src="${movie.image}"
-                                    alt="${movie.title}"
-                                >
-
-                                <div>
-
-                                    <div
-                                        class="profile-item-title">
-
-                                        ${movie.title}
-
-                                    </div>
-
-                                    <div
-                                        class="profile-item-subtitle">
-
-                                        Your rating
-
-                                    </div>
-
-                                </div>
-
-                            </div>
-
-                            <div
-                                class="profile-item-rating">
-
-                                ${"★".repeat(rating)}
-                                ${"☆".repeat(5 - rating)}
-
-                            </div>
-
-                        </div>
-
-                    `;
-
-                }
-            )
-            .join("");
-
-}
-
-
-/* =========================================================
-   HERO
-========================================================= */
-
-document
-    .getElementById(
-        "heroPlay"
-    )
-    .addEventListener(
-        "click",
-        () => {
-
-            currentMovie =
-                movies[0];
-
-            playTrailer();
+            closeDetails();
 
         }
-    );
+
+    }
+);
 
 
-document
-    .getElementById(
-        "heroDetails"
-    )
-    .addEventListener(
-        "click",
-        () =>
-            openMovieDetails(1)
-    );
+playerModal.addEventListener(
+    "click",
+    event => {
+
+        if (
+            event.target.classList
+                .contains(
+                    "modal-backdrop"
+                )
+        ) {
+
+            closePlayer();
+
+        }
+
+    }
+);
 
 
-/* =========================================================
-   TOAST
-========================================================= */
+/* ================= TOAST ================= */
 
-function showToast(
-    message
-) {
+let toastTimer;
 
-    const toast =
-        document.getElementById(
-            "toast"
-        );
 
+function showToast(message) {
 
     toast.textContent =
         message;
@@ -2310,77 +1144,36 @@ function showToast(
 
 
     clearTimeout(
-        window.toastTimer
+        toastTimer
     );
 
 
-    window.toastTimer =
+    toastTimer =
         setTimeout(
-            () =>
+            () => {
+
                 toast.classList.remove(
                     "show"
-                ),
-            2200
+                );
+
+            },
+            2500
         );
 
 }
 
 
-/* =========================================================
-   ESCAPE
-========================================================= */
+/* ================= INITIALIZE ================= */
 
-document.addEventListener(
-    "keydown",
-    event => {
+function initialize() {
 
-        if (
-            event.key !==
-            "Escape"
-        ) {
+    renderMovies();
 
-            return;
+    renderWatchlist();
 
-        }
+    renderContinueWatching();
+
+}
 
 
-        if (
-            trailerDialog.open
-        ) {
-
-            closeTrailer();
-
-        }
-
-    }
-);
-
-
-/* =========================================================
-   INITIALIZE
-========================================================= */
-
-createFilters();
-
-renderMovies();
-
-renderTrending();
-
-renderRecommendations();
-
-renderTopRated();
-
-renderRecentlyAdded();
-
-renderContinue();
-
-renderWatchlist();
-
-renderHistory();
-
-updateProfile();
-
-
-console.log(
-    "CineVerse Commit 11 loaded successfully."
-);
+initialize();
