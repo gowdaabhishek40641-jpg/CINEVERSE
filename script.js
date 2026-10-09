@@ -1,1179 +1,398 @@
-/* =========================================
-   CINEVERSE COMMIT 10
-   COMPLETE OTT INTERACTION SYSTEM
-========================================= */
 
+"use strict";
 
-/* ================= MOVIE DATABASE ================= */
-
-const movies = [
-
-    {
-        id: 1,
-        title: "The Last Horizon",
-        genre: "Sci-Fi",
-        year: 2026,
-        duration: "2h 18m",
-        rating: "9.1",
-        description:
-            "Humanity's final journey begins beyond the edge of space. One crew must discover the truth before time runs out.",
-        image:
-            "https://images.unsplash.com/photo-1446776877081-d282a0f896e2?auto=format&fit=crop&w=1000&q=80",
-        trailer:
-            "https://www.youtube.com/embed/1La4QzGeaaQ"
-    },
-
-    {
-        id: 2,
-        title: "Shadow Protocol",
-        genre: "Action",
-        year: 2026,
-        duration: "2h 05m",
-        rating: "8.8",
-        description:
-            "An elite operative discovers a global conspiracy hidden inside the world's most powerful intelligence network.",
-        image:
-            "https://images.unsplash.com/photo-1518709594023-6eab9bab7b23?auto=format&fit=crop&w=1000&q=80",
-        trailer:
-            "https://www.youtube.com/embed/EXeTwQWrcwY"
-    },
-
-    {
-        id: 3,
-        title: "Neon City",
-        genre: "Thriller",
-        year: 2025,
-        duration: "1h 58m",
-        rating: "8.5",
-        description:
-            "A detective enters a futuristic city where memories can be bought, sold and erased.",
-        image:
-            "https://images.unsplash.com/photo-1519608487953-e999c86e7455?auto=format&fit=crop&w=1000&q=80",
-        trailer:
-            "https://www.youtube.com/embed/YoHD9XEInc0"
-    },
-
-    {
-        id: 4,
-        title: "Beyond Earth",
-        genre: "Sci-Fi",
-        year: 2025,
-        duration: "2h 21m",
-        rating: "8.9",
-        description:
-            "A group of explorers discover something impossible while searching for a new home.",
-        image:
-            "https://images.unsplash.com/photo-1614728263952-84ea256f9679?auto=format&fit=crop&w=1000&q=80",
-        trailer:
-            "https://www.youtube.com/embed/6ZfuNTqbHE8"
-    },
-
-    {
-        id: 5,
-        title: "The Silent War",
-        genre: "Drama",
-        year: 2024,
-        duration: "2h 11m",
-        rating: "8.4",
-        description:
-            "Two rival nations attempt to stop a war without firing a single shot.",
-        image:
-            "https://images.unsplash.com/photo-1500534623283-312aade485b7?auto=format&fit=crop&w=1000&q=80",
-        trailer:
-            "https://www.youtube.com/embed/zSWdZVtXT7E"
-    },
-
-    {
-        id: 6,
-        title: "Dark Frequency",
-        genre: "Thriller",
-        year: 2026,
-        duration: "1h 49m",
-        rating: "8.7",
-        description:
-            "A mysterious radio signal begins predicting crimes before they happen.",
-        image:
-            "https://images.unsplash.com/photo-1519608487953-e999c86e7455?auto=format&fit=crop&w=1000&q=80",
-        trailer:
-            "https://www.youtube.com/embed/YoHD9XEInc0"
-    },
-
-    {
-        id: 7,
-        title: "Velocity",
-        genre: "Action",
-        year: 2025,
-        duration: "2h 02m",
-        rating: "8.3",
-        description:
-            "A street racer becomes involved in an international mission that pushes speed to the limit.",
-        image:
-            "https://images.unsplash.com/photo-1504215680853-026ed2a45def?auto=format&fit=crop&w=1000&q=80",
-        trailer:
-            "https://www.youtube.com/embed/2g811Eo7K8U"
-    },
-
-    {
-        id: 8,
-        title: "Lost Planet",
-        genre: "Sci-Fi",
-        year: 2024,
-        duration: "2h 15m",
-        rating: "8.6",
-        description:
-            "A rescue team lands on an abandoned planet and discovers that they are not alone.",
-        image:
-            "https://images.unsplash.com/photo-1614728894747-a83421e2b9c9?auto=format&fit=crop&w=1000&q=80",
-        trailer:
-            "https://www.youtube.com/embed/6ZfuNTqbHE8"
-    },
-
-    {
-        id: 9,
-        title: "Final Mission",
-        genre: "Action",
-        year: 2023,
-        duration: "2h 08m",
-        rating: "8.1",
-        description:
-            "A retired soldier returns for one final mission to save his team.",
-        image:
-            "https://images.unsplash.com/photo-1500534623283-312aade485b7?auto=format&fit=crop&w=1000&q=80",
-        trailer:
-            "https://www.youtube.com/embed/EXeTwQWrcwY"
-    },
-
-    {
-        id: 10,
-        title: "Echoes",
-        genre: "Drama",
-        year: 2024,
-        duration: "1h 55m",
-        rating: "8.2",
-        description:
-            "A musician returns to his hometown and confronts memories he tried to forget.",
-        image:
-            "https://images.unsplash.com/photo-1493225457124-a3eb161ffa5f?auto=format&fit=crop&w=1000&q=80",
-        trailer:
-            "https://www.youtube.com/embed/zSWdZVtXT7E"
-    },
-
-    {
-        id: 11,
-        title: "Black Signal",
-        genre: "Thriller",
-        year: 2026,
-        duration: "2h 00m",
-        rating: "8.9",
-        description:
-            "A hacker intercepts a signal that reveals a secret capable of changing the world.",
-        image:
-            "https://images.unsplash.com/photo-1550751827-4bd374c3f58b?auto=format&fit=crop&w=1000&q=80",
-        trailer:
-            "https://www.youtube.com/embed/YoHD9XEInc0"
-    },
-
-    {
-        id: 12,
-        title: "Infinite",
-        genre: "Sci-Fi",
-        year: 2025,
-        duration: "2h 27m",
-        rating: "9.0",
-        description:
-            "A scientist discovers a way to see alternate versions of reality.",
-        image:
-            "https://images.unsplash.com/photo-1462331940025-496dfbfc7564?auto=format&fit=crop&w=1000&q=80",
-        trailer:
-            "https://www.youtube.com/embed/1La4QzGeaaQ"
-    }
-
+const MOVIES = [
+  {
+    id: 1, title: "Neon Horizon", year: 2025, genre: "Sci-Fi",
+    rating: "8.6", duration: "2h 08m",
+    description: "A lone explorer discovers a mysterious signal that could change humanity's future.",
+    color: "#6657ff", trailer: "https://www.youtube-nocookie.com/embed/ScMzIvxBSi4"
+  },
+  {
+    id: 2, title: "Shadow Protocol", year: 2024, genre: "Action",
+    rating: "8.1", duration: "1h 58m",
+    description: "An intelligence agent must uncover a conspiracy before the city falls into chaos.",
+    color: "#ed496d", trailer: "https://www.youtube-nocookie.com/embed/ScMzIvxBSi4"
+  },
+  {
+    id: 3, title: "Beyond Earth", year: 2025, genre: "Adventure",
+    rating: "8.4", duration: "2h 15m",
+    description: "A daring crew journeys beyond the known frontier in search of a new beginning.",
+    color: "#24b8a9", trailer: "https://www.youtube-nocookie.com/embed/ScMzIvxBSi4"
+  },
+  {
+    id: 4, title: "Silent Echo", year: 2023, genre: "Drama",
+    rating: "7.9", duration: "1h 52m",
+    description: "A musician returns home and discovers the truth behind a long-forgotten memory.",
+    color: "#d39b48", trailer: "https://www.youtube-nocookie.com/embed/ScMzIvxBSi4"
+  },
+  {
+    id: 5, title: "Quantum Run", year: 2025, genre: "Sci-Fi",
+    rating: "8.7", duration: "2h 03m",
+    description: "A brilliant scientist races against time when an experiment fractures reality.",
+    color: "#4287f5", trailer: "https://www.youtube-nocookie.com/embed/ScMzIvxBSi4"
+  },
+  {
+    id: 6, title: "Final Strike", year: 2024, genre: "Action",
+    rating: "7.8", duration: "1h 49m",
+    description: "An elite team has one mission and one night to prevent a global disaster.",
+    color: "#ed7549", trailer: "https://www.youtube-nocookie.com/embed/ScMzIvxBSi4"
+  },
+  {
+    id: 7, title: "Lost Kingdom", year: 2023, genre: "Adventure",
+    rating: "8.0", duration: "2h 11m",
+    description: "A hidden kingdom awaits a traveller brave enough to uncover its ancient secret.",
+    color: "#8e68cf", trailer: "https://www.youtube-nocookie.com/embed/ScMzIvxBSi4"
+  },
+  {
+    id: 8, title: "Last Letter", year: 2024, genre: "Drama",
+    rating: "8.2", duration: "1h 56m",
+    description: "An unexpected letter connects two strangers and changes both of their lives.",
+    color: "#c75e8d", trailer: "https://www.youtube-nocookie.com/embed/ScMzIvxBSi4"
+  }
 ];
 
-
-/* ================= STORAGE ================= */
-
+const $ = (selector) => document.querySelector(selector);
 const STORAGE = {
-
-    watchlist: "cineverseWatchlist",
-
-    progress: "cineverseProgress"
-
+  list: "cineverseWatchlist",
+  progress: "cineverseProgress",
+  users: "cineverseDemoUsers",
+  session: "cineverseDemoSession"
 };
 
-
 function readStorage(key, fallback) {
-
-    try {
-
-        const data =
-            localStorage.getItem(key);
-
-        return data
-            ? JSON.parse(data)
-            : fallback;
-
-    } catch {
-
-        return fallback;
-
-    }
-
+  try {
+    const value = localStorage.getItem(key);
+    return value ? JSON.parse(value) : fallback;
+  } catch (error) {
+    console.warn("Could not read local storage:", error);
+    return fallback;
+  }
 }
-
 
 function writeStorage(key, value) {
-
-    try {
-
-        localStorage.setItem(
-            key,
-            JSON.stringify(value)
-        );
-
-    } catch (error) {
-
-        console.error(
-            "Storage error:",
-            error
-        );
-
-    }
-
+  try {
+    localStorage.setItem(key, JSON.stringify(value));
+  } catch (error) {
+    console.warn("Could not save data:", error);
+  }
 }
 
-
-/* ================= STATE ================= */
-
+let watchlist = readStorage(STORAGE.list, []);
+let progress = readStorage(STORAGE.progress, {});
 let currentMovieId = null;
-
-let currentGenre = "All";
-
-let currentSearch = "";
-
-
-/* ================= ELEMENTS ================= */
-
-const movieGrid =
-    document.getElementById("movieGrid");
-
-const continueGrid =
-    document.getElementById("continueGrid");
-
-const watchlistGrid =
-    document.getElementById("watchlistGrid");
-
-const movieSearch =
-    document.getElementById("movieSearch");
-
-const movieCount =
-    document.getElementById("movieCount");
-
-const movieModal =
-    document.getElementById("movieModal");
-
-const playerModal =
-    document.getElementById("playerModal");
-
-const trailerFrame =
-    document.getElementById("trailerFrame");
-
-const detailsImage =
-    document.getElementById("detailsImage");
-
-const detailsTitle =
-    document.getElementById("detailsTitle");
-
-const detailsGenre =
-    document.getElementById("detailsGenre");
-
-const detailsMeta =
-    document.getElementById("detailsMeta");
-
-const detailsDescription =
-    document.getElementById("detailsDescription");
-
-const listButton =
-    document.getElementById("listButton");
-
-const playerTitle =
-    document.getElementById("playerTitle");
-
-const movieProgress =
-    document.getElementById("movieProgress");
-
-const progressValue =
-    document.getElementById("progressValue");
-
-const toast =
-    document.getElementById("toast");
-
-
-/* ================= GET MOVIE ================= */
+let authMode = "register";
 
 function getMovie(id) {
-
-    return movies.find(
-        movie => movie.id === Number(id)
-    );
-
+  return MOVIES.find(movie => movie.id === Number(id));
 }
 
-
-/* ================= MOVIE CARD ================= */
-
-function createMovieCard(
-    movie,
-    progress = null
-) {
-
-    const progressData =
-        progress ??
-        readStorage(
-            STORAGE.progress,
-            {}
-        )[movie.id] ??
-        0;
-
-    return `
-
-        <article
-            class="movie-card"
-            data-movie-id="${movie.id}">
-
-            <div
-                class="movie-poster"
-                style="
-                    background-image:
-                    url('${movie.image}')
-                ">
-            </div>
-
-            <div class="movie-info">
-
-                <h3>
-                    ${movie.title}
-                </h3>
-
-                <div class="movie-meta">
-
-                    ${movie.year}
-                    •
-                    ${movie.duration}
-                    •
-                    ${movie.genre}
-
-                </div>
-
-                <span class="movie-rating">
-                    ★ ${movie.rating}
-                </span>
-
-            </div>
-
-            ${
-                progressData > 0
-                ? `
-                    <div class="progress-bar">
-
-                        <div
-                            class="progress-fill"
-                            style="
-                                width:${progressData}%
-                            ">
-                        </div>
-
-                    </div>
-                `
-                : ""
-            }
-
-        </article>
-
-    `;
-
+function openModal(id) {
+  const modal = document.getElementById(id);
+  if (!modal) return;
+  modal.classList.add("active");
+  modal.setAttribute("aria-hidden", "false");
 }
 
+function closeModal(id) {
+  const modal = document.getElementById(id);
+  if (!modal) return;
+  modal.classList.remove("active");
+  modal.setAttribute("aria-hidden", "true");
+}
 
-/* ================= RENDER MOVIES ================= */
+function isSaved(id) {
+  return watchlist.includes(Number(id));
+}
+
+function movieCard(movie) {
+  const saved = isSaved(movie.id);
+
+  return `
+    <article class="movie-card">
+      <div class="poster" style="--poster-glow:${movie.color}">
+        <span class="poster-title">${movie.title}</span>
+      </div>
+      <div class="movie-info">
+        <h3>${movie.title}</h3>
+        <div class="movie-meta">${movie.year} · ${movie.genre} · ★ ${movie.rating}</div>
+        <div class="movie-actions">
+          <button class="small-button" type="button"
+            data-action="details" data-id="${movie.id}">Details</button>
+          <button class="small-button ${saved ? "saved" : ""}" type="button"
+            data-action="watchlist" data-id="${movie.id}"
+            aria-label="${saved ? "Remove from" : "Add to"} watchlist">
+            ${saved ? "♥ Saved" : "♡ List"}
+          </button>
+        </div>
+      </div>
+    </article>
+  `;
+}
 
 function renderMovies() {
+  const search = ($("#searchInput").value || "").trim().toLowerCase();
+  const genre = $("#genreFilter").value;
 
-    let filtered =
-        movies.filter(movie => {
+  const filtered = MOVIES.filter(movie => {
+    const matchesSearch =
+      movie.title.toLowerCase().includes(search) ||
+      movie.genre.toLowerCase().includes(search);
+    const matchesGenre = genre === "All" || movie.genre === genre;
+    return matchesSearch && matchesGenre;
+  });
 
-            const genreMatch =
-                currentGenre === "All" ||
-                movie.genre === currentGenre;
-
-            const searchMatch =
-                movie.title
-                    .toLowerCase()
-                    .includes(
-                        currentSearch
-                    ) ||
-                movie.genre
-                    .toLowerCase()
-                    .includes(
-                        currentSearch
-                    );
-
-            return genreMatch &&
-                   searchMatch;
-
-        });
-
-
-    movieGrid.innerHTML =
-        filtered.length
-
-        ? filtered
-            .map(createMovieCard)
-            .join("")
-
-        : `
-            <p style="color:#777">
-                No movies found.
-            </p>
-        `;
-
-
-    movieCount.textContent =
-        `${filtered.length} Movies`;
-
+  $("#movieGrid").innerHTML = filtered.map(movieCard).join("");
+  $("#emptyMessage").classList.toggle("hidden", filtered.length > 0);
+  renderWatchlist();
 }
-
-
-/* ================= OPEN DETAILS ================= */
-
-function openDetails(id) {
-
-    const movie =
-        getMovie(id);
-
-    if (!movie) return;
-
-    currentMovieId =
-        movie.id;
-
-
-    detailsImage.style.backgroundImage =
-        `url("${movie.image}")`;
-
-    detailsTitle.textContent =
-        movie.title;
-
-    detailsGenre.textContent =
-        movie.genre;
-
-    detailsMeta.textContent =
-        `${movie.year} • ${movie.duration} • ★ ${movie.rating}`;
-
-    detailsDescription.textContent =
-        movie.description;
-
-
-    updateListButton();
-
-
-    movieModal.classList.add("active");
-
-    movieModal.setAttribute(
-        "aria-hidden",
-        "false"
-    );
-
-    document.body.style.overflow =
-        "hidden";
-
-}
-
-
-/* ================= CLOSE DETAILS ================= */
-
-function closeDetails() {
-
-    movieModal.classList.remove("active");
-
-    movieModal.setAttribute(
-        "aria-hidden",
-        "true"
-    );
-
-    document.body.style.overflow =
-        "";
-
-}
-
-
-/* ================= OPEN PLAYER ================= */
-
-function openPlayer(id) {
-
-    const movie =
-        getMovie(id);
-
-    if (!movie) return;
-
-
-    currentMovieId =
-        movie.id;
-
-
-    playerTitle.textContent =
-        movie.title;
-
-    trailerFrame.src =
-        `${movie.trailer}?autoplay=1`;
-
-
-    const progress =
-        getProgress(movie.id);
-
-    movieProgress.value =
-        progress;
-
-    progressValue.textContent =
-        `${progress}%`;
-
-
-    playerModal.classList.add("active");
-
-    playerModal.setAttribute(
-        "aria-hidden",
-        "false"
-    );
-
-    document.body.style.overflow =
-        "hidden";
-
-}
-
-
-/* ================= CLOSE PLAYER ================= */
-
-function closePlayer() {
-
-    playerModal.classList.remove("active");
-
-    playerModal.setAttribute(
-        "aria-hidden",
-        "true"
-    );
-
-    trailerFrame.src = "";
-
-    document.body.style.overflow =
-        "";
-
-}
-
-
-/* ================= WATCHLIST ================= */
-
-function getWatchlist() {
-
-    return readStorage(
-        STORAGE.watchlist,
-        []
-    );
-
-}
-
-
-function isInWatchlist(id) {
-
-    return getWatchlist()
-        .includes(Number(id));
-
-}
-
-
-function toggleWatchlist() {
-
-    if (!currentMovieId) return;
-
-
-    let list =
-        getWatchlist();
-
-
-    if (list.includes(currentMovieId)) {
-
-        list =
-            list.filter(
-                id =>
-                    id !== currentMovieId
-            );
-
-        showToast(
-            "Removed from My List"
-        );
-
-    } else {
-
-        list.push(
-            currentMovieId
-        );
-
-        showToast(
-            "Added to My List ✓"
-        );
-
-    }
-
-
-    writeStorage(
-        STORAGE.watchlist,
-        list
-    );
-
-
-    updateListButton();
-
-    renderWatchlist();
-
-}
-
-
-function updateListButton() {
-
-    if (!currentMovieId) return;
-
-
-    listButton.textContent =
-        isInWatchlist(
-            currentMovieId
-        )
-
-        ? "✓ In My List"
-
-        : "+ Add to My List";
-
-}
-
-
-/* ================= RENDER LIST ================= */
 
 function renderWatchlist() {
-
-    const list =
-        getWatchlist();
-
-
-    const selectedMovies =
-        list
-            .map(getMovie)
-            .filter(Boolean);
-
-
-    watchlistGrid.innerHTML =
-        selectedMovies.length
-
-        ? selectedMovies
-            .map(createMovieCard)
-            .join("")
-
-        : `
-            <p style="
-                color:#777;
-                grid-column:1/-1;
-            ">
-                Your My List is empty.
-                Open a movie and add it here.
-            </p>
-        `;
-
-
-    const section =
-        document.getElementById(
-            "my-list"
-        );
-
-
-    if (selectedMovies.length) {
-
-        section.classList.add(
-            "visible"
-        );
-
-    } else {
-
-        section.classList.remove(
-            "visible"
-        );
-
-    }
-
+  const movies = watchlist.map(getMovie).filter(Boolean);
+  $("#watchlistGrid").innerHTML = movies.map(movieCard).join("");
+  $("#watchlistEmpty").classList.toggle("hidden", movies.length > 0);
 }
-
-
-/* ================= CONTINUE WATCHING ================= */
-
-function getProgress(id) {
-
-    const progress =
-        readStorage(
-            STORAGE.progress,
-            {}
-        );
-
-    return Number(
-        progress[id] || 0
-    );
-
-}
-
-
-function saveProgress() {
-
-    if (!currentMovieId) return;
-
-
-    const progress =
-        readStorage(
-            STORAGE.progress,
-            {}
-        );
-
-
-    progress[currentMovieId] =
-        Number(
-            movieProgress.value
-        );
-
-
-    writeStorage(
-        STORAGE.progress,
-        progress
-    );
-
-
-    renderContinueWatching();
-
-    renderMovies();
-
-    showToast(
-        "Watch progress saved ✓"
-    );
-
-}
-
 
 function renderContinueWatching() {
+  const entries = MOVIES.filter(movie => Number(progress[movie.id]) > 0);
+  $("#continueGrid").innerHTML = entries.map(movie => {
+    const percent = Math.min(100, Math.max(0, Number(progress[movie.id]) || 0));
+    return `
+      <article class="progress-card">
+        <h3>${movie.title}</h3>
+        <p>${movie.genre} · ${movie.duration}</p>
+        <label class="progress-label" for="progress-${movie.id}">
+          Progress: <span id="progress-label-${movie.id}">${percent}%</span>
+        </label>
+        <input id="progress-${movie.id}" type="range" min="0" max="100"
+          value="${percent}" data-action="progress" data-id="${movie.id}">
+        <p>Move the slider to update your watch progress.</p>
+      </article>
+    `;
+  }).join("");
 
-    const progress =
-        readStorage(
-            STORAGE.progress,
-            {}
-        );
-
-
-    const entries =
-        Object.entries(progress)
-            .filter(
-                ([, value]) =>
-                    Number(value) > 0 &&
-                    Number(value) < 100
-            );
-
-
-    const section =
-        document.getElementById(
-            "continue"
-        );
-
-
-    if (!entries.length) {
-
-        continueGrid.innerHTML = "";
-
-        section.classList.remove(
-            "visible"
-        );
-
-        return;
-
-    }
-
-
-    section.classList.add(
-        "visible"
-    );
-
-
-    const continueMovies =
-        entries
-            .map(([id]) =>
-                getMovie(Number(id))
-            )
-            .filter(Boolean);
-
-
-    continueGrid.innerHTML =
-        continueMovies
-            .map(movie =>
-                createMovieCard(
-                    movie,
-                    getProgress(movie.id)
-                )
-            )
-            .join("");
-
+  $("#continueEmpty").classList.toggle("hidden", entries.length > 0);
 }
 
-
-/* ================= SEARCH ================= */
-
-movieSearch.addEventListener(
-    "input",
-    event => {
-
-        currentSearch =
-            event.target.value
-                .trim()
-                .toLowerCase();
-
-        renderMovies();
-
-    }
-);
-
-
-/* ================= FILTER ================= */
-
-document
-    .querySelectorAll(".filter-btn")
-    .forEach(button => {
-
-        button.addEventListener(
-            "click",
-            () => {
-
-                document
-                    .querySelectorAll(
-                        ".filter-btn"
-                    )
-                    .forEach(btn =>
-                        btn.classList.remove(
-                            "active"
-                        )
-                    );
-
-
-                button.classList.add(
-                    "active"
-                );
-
-
-                currentGenre =
-                    button.dataset.genre;
-
-
-                renderMovies();
-
-            }
-        );
-
-    });
-
-
-/* ================= CARD CLICK ================= */
-
-document.addEventListener(
-    "click",
-    event => {
-
-        const card =
-            event.target.closest(
-                ".movie-card"
-            );
-
-
-        if (!card) return;
-
-
-        const id =
-            Number(
-                card.dataset.movieId
-            );
-
-
-        openDetails(id);
-
-    }
-);
-
-
-/* ================= ACTION BUTTONS ================= */
-
-document.addEventListener(
-    "click",
-    event => {
-
-        const actionElement =
-            event.target.closest(
-                "[data-action]"
-            );
-
-
-        if (!actionElement) return;
-
-
-        const action =
-            actionElement.dataset.action;
-
-
-        if (
-            action ===
-            "details-play"
-        ) {
-
-            closeDetails();
-
-            openPlayer(
-                currentMovieId
-            );
-
-        }
-
-
-        if (
-            action ===
-            "toggle-list"
-        ) {
-
-            toggleWatchlist();
-
-        }
-
-
-        if (
-            action ===
-            "close-details"
-        ) {
-
-            closeDetails();
-
-        }
-
-
-        if (
-            action ===
-            "close-player"
-        ) {
-
-            closePlayer();
-
-        }
-
-
-        if (
-            action ===
-            "save-progress"
-        ) {
-
-            saveProgress();
-
-        }
-
-
-        if (
-            action ===
-            "clear-list"
-        ) {
-
-            clearWatchlist();
-
-        }
-
-
-        if (
-            action ===
-            "scroll-list"
-        ) {
-
-            document
-                .getElementById(
-                    "my-list"
-                )
-                .scrollIntoView({
-                    behavior: "smooth"
-                });
-
-        }
-
-
-        if (
-            action ===
-            "hero-play"
-        ) {
-
-            openPlayer(1);
-
-        }
-
-
-        if (
-            action ===
-            "hero-details"
-        ) {
-
-            openDetails(1);
-
-        }
-
-    }
-);
-
-
-/* ================= PROGRESS SLIDER ================= */
-
-movieProgress.addEventListener(
-    "input",
-    () => {
-
-        progressValue.textContent =
-            `${movieProgress.value}%`;
-
-    }
-);
-
-
-/* ================= CLEAR LIST ================= */
-
-function clearWatchlist() {
-
-    if (!getWatchlist().length) {
-
-        showToast(
-            "My List is already empty"
-        );
-
-        return;
-
-    }
-
-
-    localStorage.removeItem(
-        STORAGE.watchlist
-    );
-
-
-    renderWatchlist();
-
-    showToast(
-        "My List cleared"
-    );
-
+function toggleWatchlist(id) {
+  id = Number(id);
+  watchlist = isSaved(id)
+    ? watchlist.filter(item => item !== id)
+    : [...watchlist, id];
+
+  writeStorage(STORAGE.list, watchlist);
+  renderMovies();
+  if (currentMovieId === id) showDetails(id);
 }
 
+function showDetails(id) {
+  const movie = getMovie(id);
+  if (!movie) return;
 
-/* ================= ESC KEY ================= */
+  currentMovieId = movie.id;
+  const saved = isSaved(movie.id);
+  const percent = Math.min(100, Math.max(0, Number(progress[movie.id]) || 0));
 
-document.addEventListener(
-    "keydown",
-    event => {
+  $("#detailsContent").innerHTML = `
+    <div class="details-layout">
+      <div class="details-poster" style="background:
+        radial-gradient(circle at top right, ${movie.color}, transparent 65%), #191b2c">
+        ${movie.title}
+      </div>
+      <div class="details-copy">
+        <p class="eyebrow">CINEVERSE ORIGINAL COLLECTION</p>
+        <h2 id="detailsTitle">${movie.title}</h2>
+        <p>${movie.year} · ${movie.genre} · ${movie.duration} · ★ ${movie.rating}</p>
+        <p>${movie.description}</p>
+        <button class="primary-button" type="button"
+          data-action="play" data-id="${movie.id}">▶ Watch Trailer</button>
+        <button class="secondary-button" type="button"
+          data-action="watchlist" data-id="${movie.id}">
+          ${saved ? "♥ Remove from My List" : "♡ Add to My List"}
+        </button>
+        <div id="trailerContainer"></div>
+        <p class="progress-label">Watch progress: ${percent}%</p>
+        <input type="range" min="0" max="100" value="${percent}"
+          data-action="progress" data-id="${movie.id}" aria-label="Watch progress">
+      </div>
+    </div>
+  `;
 
-        if (event.key !== "Escape")
-            return;
-
-
-        closeDetails();
-
-        closePlayer();
-
-    }
-);
-
-
-/* ================= BACKDROP CLICK ================= */
-
-movieModal.addEventListener(
-    "click",
-    event => {
-
-        if (
-            event.target.classList
-                .contains(
-                    "modal-backdrop"
-                )
-        ) {
-
-            closeDetails();
-
-        }
-
-    }
-);
-
-
-playerModal.addEventListener(
-    "click",
-    event => {
-
-        if (
-            event.target.classList
-                .contains(
-                    "modal-backdrop"
-                )
-        ) {
-
-            closePlayer();
-
-        }
-
-    }
-);
-
-
-/* ================= TOAST ================= */
-
-let toastTimer;
-
-
-function showToast(message) {
-
-    toast.textContent =
-        message;
-
-
-    toast.classList.add(
-        "show"
-    );
-
-
-    clearTimeout(
-        toastTimer
-    );
-
-
-    toastTimer =
-        setTimeout(
-            () => {
-
-                toast.classList.remove(
-                    "show"
-                );
-
-            },
-            2500
-        );
-
+  openModal("detailsModal");
 }
 
+function saveProgress(id, value) {
+  progress[id] = Number(value);
+  writeStorage(STORAGE.progress, progress);
+  renderContinueWatching();
 
-/* ================= INITIALIZE ================= */
+  const label = document.getElementById(`progress-label-${id}`);
+  if (label) label.textContent = `${value}%`;
 
-function initialize() {
-
-    renderMovies();
-
-    renderWatchlist();
-
-    renderContinueWatching();
-
+  if (currentMovieId === Number(id)) {
+    const copy = $("#detailsContent");
+    const progressLabel = copy?.querySelector(".progress-label");
+    if (progressLabel) progressLabel.textContent = `Watch progress: ${value}%`;
+  }
 }
 
+// Movie actions are delegated so they keep working after rerendering.
+document.addEventListener("click", event => {
+  const closeTarget = event.target.closest("[data-close]");
+  if (closeTarget) {
+    closeModal(closeTarget.dataset.close);
+    return;
+  }
 
-initialize();
+  const actionButton = event.target.closest("[data-action]");
+  if (!actionButton) return;
+
+  const id = Number(actionButton.dataset.id);
+  const action = actionButton.dataset.action;
+
+  if (action === "details") showDetails(id);
+  if (action === "watchlist") toggleWatchlist(id);
+
+  if (action === "play") {
+    const movie = getMovie(id);
+    if (!movie) return;
+    $("#trailerContainer").innerHTML = `
+      <iframe class="trailer-frame"
+        src="${movie.trailer}?autoplay=1"
+        title="${movie.title} trailer"
+        allow="autoplay; encrypted-media; picture-in-picture"
+        allowfullscreen loading="lazy"></iframe>
+      <p>Demo trailer embed. Replace this URL with a licensed trailer for your project.</p>
+    `;
+    if (!Number(progress[id])) saveProgress(id, 5);
+  }
+});
+
+document.addEventListener("input", event => {
+  const input = event.target.closest('[data-action="progress"]');
+  if (input) saveProgress(Number(input.dataset.id), input.value);
+});
+
+$("#searchInput").addEventListener("input", renderMovies);
+$("#genreFilter").addEventListener("change", renderMovies);
+
+$("#heroWatchlistButton").addEventListener("click", () => {
+  $("#watchlist").scrollIntoView({ behavior: "smooth" });
+});
+
+$("#profileButton").addEventListener("click", () => {
+  $("#profileMenu").classList.toggle("hidden");
+});
+
+document.addEventListener("click", event => {
+  const menu = $("#profileMenu");
+  if (!menu.contains(event.target) && !$("#profileButton").contains(event.target)) {
+    menu.classList.add("hidden");
+  }
+});
+
+function setAuthMode(mode) {
+  authMode = mode;
+  const registering = mode === "register";
+
+  $("#authHeading").textContent = registering ? "Create your account" : "Welcome back";
+  $("#authSubmit").textContent = registering ? "Create Account" : "Login";
+  $("#nameLabel").classList.toggle("hidden", !registering);
+  $("#authName").classList.toggle("hidden", !registering);
+  $("#authName").required = registering;
+  $("#authPassword").autocomplete = registering ? "new-password" : "current-password";
+  $("#authSwitchText").textContent = registering ? "Already registered?" : "New to CINEVERSE?";
+  $("#authSwitchButton").textContent = registering ? "Login" : "Create account";
+  $("#authMessage").textContent = "";
+}
+
+function updateProfile() {
+  const session = readStorage(STORAGE.session, null);
+  const signedIn = Boolean(session && session.email);
+
+  $("#profileLabel").textContent = signedIn ? (session.name || "Member") : "Guest";
+  $("#profileEmail").textContent = signedIn ? session.email : "Not signed in";
+  $("#profileAvatar").textContent = signedIn
+    ? (session.name || session.email).charAt(0).toUpperCase()
+    : "G";
+
+  $("#openAuthButton").classList.toggle("hidden", signedIn);
+  $("#logoutButton").classList.toggle("hidden", !signedIn);
+}
+
+$("#openAuthButton").addEventListener("click", () => {
+  $("#profileMenu").classList.add("hidden");
+  setAuthMode("register");
+  $("#authForm").reset();
+  openModal("authModal");
+});
+
+$("#closeAuthButton").addEventListener("click", () => closeModal("authModal"));
+
+$("#authSwitchButton").addEventListener("click", () => {
+  setAuthMode(authMode === "register" ? "login" : "register");
+});
+
+$("#authForm").addEventListener("submit", event => {
+  event.preventDefault();
+
+  const name = $("#authName").value.trim();
+  const email = $("#authEmail").value.trim().toLowerCase();
+  const password = $("#authPassword").value;
+
+  if (!email || password.length < 6 || (authMode === "register" && !name)) {
+    $("#authMessage").textContent = "Please complete all required fields.";
+    return;
+  }
+
+  const users = readStorage(STORAGE.users, []);
+
+  if (authMode === "register") {
+    if (users.some(user => user.email === email)) {
+      $("#authMessage").textContent = "This email is already registered. Please log in.";
+      return;
+    }
+
+    // Portfolio demo only: passwords are stored in browser storage.
+    // Never use this approach for a real production account system.
+    users.push({ name, email, password });
+    writeStorage(STORAGE.users, users);
+    writeStorage(STORAGE.session, { name, email });
+  } else {
+    const user = users.find(item => item.email === email && item.password === password);
+    if (!user) {
+      $("#authMessage").textContent = "Email or password is incorrect.";
+      return;
+    }
+    writeStorage(STORAGE.session, { name: user.name, email: user.email });
+  }
+
+  updateProfile();
+  closeModal("authModal");
+  $("#authForm").reset();
+});
+
+$("#logoutButton").addEventListener("click", () => {
+  localStorage.removeItem(STORAGE.session);
+  updateProfile();
+  $("#profileMenu").classList.add("hidden");
+});
+
+// Close open modals when Escape is pressed.
+document.addEventListener("keydown", event => {
+  if (event.key === "Escape") {
+    closeModal("authModal");
+    closeModal("detailsModal");
+    $("#profileMenu").classList.add("hidden");
+  }
+});
+
+// Initial state: both modals and the profile menu remain closed.
+closeModal("authModal");
+closeModal("detailsModal");
+$("#profileMenu").classList.add("hidden");
+
+setAuthMode("register");
+updateProfile();
+renderMovies();
+renderContinueWatching();

@@ -1,372 +1,165 @@
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
-    <title>CINEVERSE</title>
-
-    <link rel="stylesheet" href="style.css">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="theme-color" content="#080910">
+  <title>CINEVERSE | Your Cinematic Universe</title>
+  <link rel="stylesheet" href="./style.css">
+  <script src="./script.js" defer></script>
 </head>
-
 <body>
-
-    <!-- ================= NAVBAR ================= -->
-    <header class="navbar">
-        <div class="logo">
-            CINE<span>VERSE</span>
-        </div>
-
-        <nav>
-            <a href="#home">Home</a>
-            <a href="#movies">Movies</a>
-            <a href="#my-list">My List</a>
-            <a href="#continue">Continue Watching</a>
-        </nav>
-
-        <button class="nav-list-btn" data-action="scroll-list">
-            + My List
-        </button>
-    </header>
-
-
-    <!-- ================= HERO ================= -->
-    <main>
-
-        <section class="hero" id="home">
-
-            <div class="hero-overlay"></div>
-
-            <div class="hero-content">
-
-                <span class="hero-badge">
-                    ✦ CINEVERSE ORIGINAL
-                </span>
-
-                <h1>THE LAST<br><span>HORIZON</span></h1>
-
-                <p class="hero-meta">
-                    2026 &nbsp; • &nbsp; 2h 18m &nbsp; • &nbsp; Sci-Fi
-                </p>
-
-                <p class="hero-description">
-                    Humanity's final journey begins beyond the edge of space.
-                    One crew. One mission. One impossible choice.
-                </p>
-
-                <div class="hero-buttons">
-
-                    <button
-                        class="primary-btn"
-                        data-action="hero-play">
-                        ▶ Watch Now
-                    </button>
-
-                    <button
-                        class="secondary-btn"
-                        data-action="hero-details">
-                        More Info
-                    </button>
-
-                </div>
-
-            </div>
-
-        </section>
-
-
-        <!-- ================= SEARCH ================= -->
-        <section class="search-section">
-
-            <div class="search-box">
-
-                <span>⌕</span>
-
-                <input
-                    type="search"
-                    id="movieSearch"
-                    placeholder="Search movies, genres..."
-                    autocomplete="off">
-
-            </div>
-
-        </section>
-
-
-        <!-- ================= MOVIES ================= -->
-        <section class="content-section" id="movies">
-
-            <div class="section-header">
-
-                <div>
-                    <span class="section-label">EXPLORE</span>
-                    <h2>Popular Movies</h2>
-                </div>
-
-                <span
-                    id="movieCount"
-                    class="movie-count">
-                    0 Movies
-                </span>
-
-            </div>
-
-
-            <div class="filter-container">
-
-                <button class="filter-btn active" data-genre="All">
-                    All
-                </button>
-
-                <button class="filter-btn" data-genre="Action">
-                    Action
-                </button>
-
-                <button class="filter-btn" data-genre="Sci-Fi">
-                    Sci-Fi
-                </button>
-
-                <button class="filter-btn" data-genre="Drama">
-                    Drama
-                </button>
-
-                <button class="filter-btn" data-genre="Thriller">
-                    Thriller
-                </button>
-
-            </div>
-
-
-            <div
-                class="movie-grid"
-                id="movieGrid">
-            </div>
-
-        </section>
-
-
-        <!-- ================= CONTINUE ================= -->
-        <section
-            class="content-section hidden-section"
-            id="continue">
-
-            <div class="section-header">
-
-                <div>
-                    <span class="section-label">
-                        PICK UP WHERE YOU LEFT OFF
-                    </span>
-
-                    <h2>Continue Watching</h2>
-                </div>
-
-            </div>
-
-            <div
-                class="movie-grid"
-                id="continueGrid">
-            </div>
-
-        </section>
-
-
-        <!-- ================= MY LIST ================= -->
-        <section
-            class="content-section hidden-section"
-            id="my-list">
-
-            <div class="section-header">
-
-                <div>
-                    <span class="section-label">
-                        YOUR COLLECTION
-                    </span>
-
-                    <h2>My List</h2>
-                </div>
-
-                <button
-                    class="clear-btn"
-                    data-action="clear-list">
-                    Clear All
-                </button>
-
-            </div>
-
-            <div
-                class="movie-grid"
-                id="watchlistGrid">
-            </div>
-
-        </section>
-
-    </main>
-
-
-    <!-- ================= MOVIE DETAILS MODAL ================= -->
-
-    <div
-        class="modal"
-        id="movieModal"
-        aria-hidden="true">
-
-        <div class="modal-backdrop"></div>
-
-        <div class="details-modal">
-
-            <button
-                class="close-btn"
-                data-action="close-details">
-                ×
-            </button>
-
-            <div
-                class="details-image"
-                id="detailsImage">
-            </div>
-
-            <div class="details-body">
-
-                <span
-                    class="section-label"
-                    id="detailsGenre">
-                    MOVIE
-                </span>
-
-                <h2 id="detailsTitle">
-                    Movie Title
-                </h2>
-
-                <div
-                    class="details-meta"
-                    id="detailsMeta">
-                </div>
-
-                <p
-                    id="detailsDescription">
-                </p>
-
-                <div class="details-actions">
-
-                    <button
-                        class="primary-btn"
-                        data-action="details-play">
-                        ▶ Watch Trailer
-                    </button>
-
-                    <button
-                        class="secondary-btn"
-                        id="listButton"
-                        data-action="toggle-list">
-                        + Add to My List
-                    </button>
-
-                </div>
-
-            </div>
-
-        </div>
-
+  <header class="navbar">
+    <a href="#" class="logo">CINE<span>VERSE</span></a>
+
+    <nav class="nav-links">
+      <a href="#home">Home</a>
+      <a href="#movies">Movies</a>
+      <a href="#watchlist">My List</a>
+    </nav>
+
+    <div class="nav-actions">
+      <input id="searchInput" class="search-input"
+        type="search" placeholder="Search movies..." aria-label="Search movies">
+
+      <button id="profileButton" class="profile-button" type="button">
+        <span id="profileAvatar">G</span>
+      </button>
+
+      <div id="profileMenu" class="profile-menu hidden">
+        <strong id="profileLabel">Guest</strong>
+        <p id="profileEmail">Not signed in</p>
+        <button id="openAuthButton" type="button">Login / Register</button>
+        <button id="logoutButton" type="button" class="hidden">Logout</button>
+      </div>
     </div>
+  </header>
 
-
-    <!-- ================= PLAYER ================= -->
-
-    <div
-        class="modal"
-        id="playerModal"
-        aria-hidden="true">
-
-        <div class="modal-backdrop"></div>
-
-        <div class="player-modal">
-
-            <button
-                class="close-btn"
-                data-action="close-player">
-                ×
-            </button>
-
-            <div class="player-screen">
-
-                <iframe
-                    id="trailerFrame"
-                    src=""
-                    title="Movie Trailer"
-                    allow="autoplay; encrypted-media; picture-in-picture"
-                    allowfullscreen>
-                </iframe>
-
-            </div>
-
-            <div class="player-info">
-
-                <h2 id="playerTitle">
-                    Movie
-                </h2>
-
-                <div class="watch-progress">
-
-                    <div class="progress-header">
-
-                        <span>
-                            Watch Progress
-                        </span>
-
-                        <span id="progressValue">
-                            0%
-                        </span>
-
-                    </div>
-
-                    <input
-                        type="range"
-                        id="movieProgress"
-                        min="0"
-                        max="100"
-                        value="0">
-
-                </div>
-
-                <button
-                    class="save-progress-btn"
-                    data-action="save-progress">
-                    Save Progress
-                </button>
-
-            </div>
-
-        </div>
-
-    </div>
-
-
-    <!-- ================= TOAST ================= -->
-
-    <div
-        class="toast"
-        id="toast">
-    </div>
-
-
-    <footer>
-
-        <div class="logo">
-            CINE<span>VERSE</span>
-        </div>
-
-        <p>
-            Your cinematic universe.
+  <main>
+    <section id="home" class="hero">
+      <div class="hero-content">
+        <p class="eyebrow">YOUR NEXT OBSESSION STARTS HERE</p>
+        <h1>ENTER YOUR<br><span>CINEMATIC</span> UNIVERSE.</h1>
+        <p class="hero-description">
+          Discover unforgettable stories, explore new worlds,
+          and build your personal movie collection.
         </p>
+        <div class="hero-actions">
+          <a href="#movies" class="primary-button">Explore Movies</a>
+          <button id="heroWatchlistButton" class="secondary-button" type="button">
+            ♡ My Watchlist
+          </button>
+        </div>
+      </div>
+      <div class="hero-decoration">
+        <div class="hero-orbit"></div>
+        <div class="hero-orbit orbit-two"></div>
+        <span class="hero-symbol">C</span>
+      </div>
+    </section>
 
-        <small>
-            © 2026 CINEVERSE. All rights reserved.
-        </small>
+    <section id="movies" class="section">
+      <div class="section-heading">
+        <div>
+          <p class="eyebrow">CURATED FOR YOU</p>
+          <h2>Discover Movies</h2>
+        </div>
+        <select id="genreFilter" aria-label="Filter by genre">
+          <option value="All">All genres</option>
+          <option value="Action">Action</option>
+          <option value="Sci-Fi">Sci-Fi</option>
+          <option value="Drama">Drama</option>
+          <option value="Adventure">Adventure</option>
+        </select>
+      </div>
+      <div id="movieGrid" class="movie-grid"></div>
+      <p id="emptyMessage" class="empty-message hidden">No movies found. Try another search.</p>
+    </section>
 
-    </footer>
+    <section id="watchlist" class="section watchlist-section">
+      <div class="section-heading">
+        <div>
+          <p class="eyebrow">YOUR COLLECTION</p>
+          <h2>My Watchlist</h2>
+        </div>
+      </div>
+      <div id="watchlistGrid" class="movie-grid"></div>
+      <p id="watchlistEmpty" class="empty-message">
+        Your list is empty. Add a movie using the ♡ button.
+      </p>
+    </section>
 
+    <section class="section continue-section">
+      <div class="section-heading">
+        <div>
+          <p class="eyebrow">PICK UP WHERE YOU LEFT OFF</p>
+          <h2>Continue Watching</h2>
+        </div>
+      </div>
+      <div id="continueGrid" class="continue-grid"></div>
+      <p id="continueEmpty" class="empty-message">
+        Movies you start tracking will appear here.
+      </p>
+    </section>
+  </main>
 
-    <script src="script.js"></script>
+  <footer class="footer">
+    <a href="#home" class="logo">CINE<span>VERSE</span></a>
+    <p>Stories that stay with you.</p>
+    <p>© 2026 CINEVERSE. Portfolio demo project.</p>
+  </footer>
 
+  <!-- Movie details modal: hidden until a movie is selected -->
+  <div id="detailsModal" class="modal" aria-hidden="true">
+    <div class="modal-backdrop" data-close="detailsModal"></div>
+    <div class="modal-card details-card" role="dialog" aria-modal="true"
+      aria-labelledby="detailsTitle">
+      <button class="close-button" type="button" data-close="detailsModal"
+        aria-label="Close">×</button>
+      <div id="detailsContent"></div>
+    </div>
+  </div>
+
+  <!-- Authentication modal: hidden on initial page load -->
+  <div id="authModal" class="modal" aria-hidden="true">
+    <div class="modal-backdrop" data-close="authModal"></div>
+    <div class="modal-card auth-card" role="dialog" aria-modal="true"
+      aria-labelledby="authHeading">
+      <button id="closeAuthButton" class="close-button" type="button"
+        aria-label="Close">×</button>
+
+      <p class="eyebrow">WELCOME TO CINEVERSE</p>
+      <h2 id="authHeading">Create your account</h2>
+      <p class="auth-subtitle">Your personal cinematic universe starts here.</p>
+
+      <form id="authForm">
+        <label id="nameLabel" for="authName">Full name</label>
+        <input id="authName" type="text" placeholder="Enter your name"
+          autocomplete="name">
+
+        <label for="authEmail">Email address</label>
+        <input id="authEmail" type="email" placeholder="you@example.com"
+          autocomplete="email" required>
+
+        <label for="authPassword">Password</label>
+        <input id="authPassword" type="password" placeholder="At least 6 characters"
+          minlength="6" autocomplete="current-password" required>
+
+        <p id="authMessage" class="auth-message" aria-live="polite"></p>
+        <button id="authSubmit" class="primary-button full-button" type="submit">
+          Create Account
+        </button>
+      </form>
+
+      <p class="auth-switch">
+        <span id="authSwitchText">Already registered?</span>
+        <button id="authSwitchButton" type="button">Login</button>
+      </p>
+      <p class="demo-notice">
+        Demo authentication only. Do not use a real password.
+      </p>
+    </div>
+  </div>
 </body>
 </html>
